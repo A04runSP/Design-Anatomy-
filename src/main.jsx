@@ -66,37 +66,28 @@ function DepthVisual() {
 }
 
 function TypographyVisual() {
-  return <div className="typography-card" aria-label="Typography information and visual specimen">
-    <div className="typography-specimen"></div>
-  </div>;
+  return <div className="typography-card" aria-label="Typography information and visual specimen"><div className="typography-specimen"></div></div>;
 }
 
 function ColourVisual() {
   return <div className="colour-section" aria-label="Colour information and control visual">
     <div className="colour-heading"><span>03</span><strong>COLOUR</strong></div>
     <p className="colour-intro">Colour gives meaning to hierarchy. Contrast, accent and restraint help the eye understand what matters first.</p>
+    <div className="colour-control"><div className="colour-control-top"><span>CONTROL</span><b>03</b></div><div className="colour-swatch-grid"><div className="colour-swatch background-swatch"><span>BACKGROUND</span><b>#020E11</b></div><div className="colour-swatch surface-swatch"><span>SURFACE</span><b>#092A2E</b></div><div className="colour-swatch accent-swatch"><span>ACCENT</span><b>#16E1EF</b></div><div className="colour-swatch text-swatch"><span>TEXT</span><b>#F4FFFF</b></div></div><div className="colour-control-demo"><div className="colour-demo-label">ACCENT / CYAN</div><div className="colour-demo-title">Focus the eye.</div><div className="colour-demo-bar"><b></b></div><div className="colour-demo-knob">+</div></div></div>
+    <div className="colour-principles"><div><span>01</span><strong>HIERARCHY</strong><p>Use colour to tell the eye what matters first.</p></div><div><span>02</span><strong>CONTRAST</strong><p>Separate information clearly without making it harsh.</p></div><div><span>03</span><strong>RESTRAINT</strong><p>Let important elements earn the accent colour.</p></div></div>
+  </div>;
+}
 
-    <div className="colour-control">
-      <div className="colour-control-top"><span>CONTROL</span><b>03</b></div>
-      <div className="colour-swatch-grid">
-        <div className="colour-swatch background-swatch"><span>BACKGROUND</span><b>#020E11</b></div>
-        <div className="colour-swatch surface-swatch"><span>SURFACE</span><b>#092A2E</b></div>
-        <div className="colour-swatch accent-swatch"><span>ACCENT</span><b>#16E1EF</b></div>
-        <div className="colour-swatch text-swatch"><span>TEXT</span><b>#F4FFFF</b></div>
-      </div>
-      <div className="colour-control-demo">
-        <div className="colour-demo-label">ACCENT / CYAN</div>
-        <div className="colour-demo-title">Focus the eye.</div>
-        <div className="colour-demo-bar"><b></b></div>
-        <div className="colour-demo-knob">+</div>
-      </div>
+function SpacingVisual() {
+  return <div className="spacing-section" aria-label="Spacing information and comparison visual">
+    <div className="spacing-heading"><span>04</span><strong>SPACING</strong></div>
+    <p className="spacing-intro">Space isn't empty. It separates ideas, creates rhythm, and gives important elements room to breathe.</p>
+    <div className="spacing-showcase">
+      <div className="spacing-panel tight-panel"><div className="spacing-panel-head"><span>✕</span><strong>TOO TIGHT</strong></div><div className="mock-ui"><b>TITLE</b><small>Description text</small><button>BUTTON</button><i></i></div><p>Cramped · hard to scan</p></div>
+      <div className="spacing-panel balanced-panel"><div className="spacing-panel-head"><span>✓</span><strong>BALANCED</strong></div><div className="mock-ui"><b>TITLE</b><small>Description text</small><button>BUTTON</button><i></i></div><p>Clear · comfortable to scan</p></div>
     </div>
-
-    <div className="colour-principles">
-      <div><span>01</span><strong>HIERARCHY</strong><p>Use colour to tell the eye what matters first.</p></div>
-      <div><span>02</span><strong>CONTRAST</strong><p>Separate information clearly without making it harsh.</p></div>
-      <div><span>03</span><strong>RESTRAINT</strong><p>Let important elements earn the accent colour.</p></div>
-    </div>
+    <div className="spacing-principles"><div><span>01</span><strong>RHYTHM</strong><p>Consistent spacing helps the eye move through a page.</p></div><div><span>02</span><strong>GROUPING</strong><p>Related elements stay closer; separate ideas get more space.</p></div><div><span>03</span><strong>BREATHING ROOM</strong><p>Important content needs enough space around it to stand out.</p></div></div>
+    <div className="spacing-takeaway"><span>SPACE</span><b>Good spacing makes the right things easier to see.</b></div>
   </div>;
 }
 
@@ -104,61 +95,17 @@ function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeCard, setActiveCard] = useState(null);
-
-  useEffect(() => {
-    if (!searchOpen) return;
-    const onKey = event => { if (event.key === "Escape") { setSearchOpen(false); setQuery(""); } };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [searchOpen]);
-
-  const filteredCards = useMemo(() => {
-    const term = query.trim().toLowerCase();
-    if (!term) return dashboardCards;
-    return dashboardCards.filter(card => `${card.tag} ${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term));
-  }, [query]);
-
-  const activateCard = tag => {
-    setActiveCard(tag);
-    window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850);
-  };
-
+  useEffect(() => { if (!searchOpen) return; const onKey = event => { if (event.key === "Escape") { setSearchOpen(false); setQuery(""); } }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [searchOpen]);
+  const filteredCards = useMemo(() => { const term = query.trim().toLowerCase(); if (!term) return dashboardCards; return dashboardCards.filter(card => `${card.tag} ${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term)); }, [query]);
+  const activateCard = tag => { setActiveCard(tag); window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850); };
   return <main className="dashboard-page">
-    <header className="dash-header">
-      <button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button>
-      <div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div>
-      <div className={`search-wrap ${searchOpen ? "open" : ""}`}>
-        {searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}
-        <button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>
-          {searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span>
-        </button>
-      </div>
-    </header>
-
+    <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header>
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
-
-    <section className="dashboard-grid">
-      {filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}>
-        <span className="dashboard-number">{tag}</span>
-        <div className="dashboard-icon"><CardIcon size={24}/></div>
-        <h2>{title}</h2><p>{copy}</p>
-        {tag === "02" && <DesignReference/>}
-        {tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/></div>}
-        <button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button>
-      </article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}
-    </section>
-
+    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
     <section className="dashboard-note"><span>01</span><div><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p></div></section>
   </main>;
 }
 
-function App() {
-  const [dashboard, setDashboard] = useState(() => window.location.hash === "#dashboard");
-  const enter = () => { window.location.hash = "dashboard"; setDashboard(true); window.scrollTo(0,0); };
-  const back = () => { window.location.hash = ""; setDashboard(false); window.scrollTo(0,0); };
-  useEffect(() => { const onHash = () => setDashboard(window.location.hash === "#dashboard"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []);
-  return dashboard ? <Dashboard onBack={back}/> : <Home onEnter={enter}/>;
-}
-
+function App() { const [dashboard, setDashboard] = useState(() => window.location.hash === "#dashboard"); const enter = () => { window.location.hash = "dashboard"; setDashboard(true); window.scrollTo(0,0); }; const back = () => { window.location.hash = ""; setDashboard(false); window.scrollTo(0,0); }; useEffect(() => { const onHash = () => setDashboard(window.location.hash === "#dashboard"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []); return dashboard ? <Dashboard onBack={back}/> : <Home onEnter={enter}/>; }
 createRoot(document.getElementById("root")).render(<App />);
