@@ -46,6 +46,15 @@ const dashboardCards = [
   { tag: "03", icon: Lightbulb, title: "Understand the Design", copy: "Break down the decisions behind depth, type, colour and space.", action: "START LEARNING" },
 ];
 
+function DesignReference() {
+  return <div className="design-reference" aria-label="Visual design examples">
+    <div className="reference-minimal"><span>01</span><strong>TYPE</strong><b>Less,<br/>but better.</b><i></i><small>SPACE · HIERARCHY · RESTRAINT</small></div>
+    <div className="reference-glass"><div className="reference-glass-panel"><span></span><small>GLASS / 02</small><strong>72<span>%</span></strong><i></i></div></div>
+    <div className="reference-neo"><div className="reference-neo-panel"><small>CONTROL</small><b>+</b><i></i><span>LIGHT&nbsp;&nbsp; ON</span></div></div>
+    <div className="reference-caption"><span>VISUAL REFERENCES</span><b>Minimal · Glass · Neo</b></div>
+  </div>;
+}
+
 function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -53,9 +62,7 @@ function Dashboard({ onBack }) {
 
   useEffect(() => {
     if (!searchOpen) return;
-    const onKey = event => {
-      if (event.key === "Escape") { setSearchOpen(false); setQuery(""); }
-    };
+    const onKey = event => { if (event.key === "Escape") { setSearchOpen(false); setQuery(""); } };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [searchOpen]);
@@ -84,14 +91,14 @@ function Dashboard({ onBack }) {
     </header>
 
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
-
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
 
     <section className="dashboard-grid">
-      {filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}>
+      {filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}>
         <span className="dashboard-number">{tag}</span>
         <div className="dashboard-icon"><CardIcon size={24}/></div>
         <h2>{title}</h2><p>{copy}</p>
+        {tag === "02" && <DesignReference/>}
         <button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button>
       </article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}
     </section>
