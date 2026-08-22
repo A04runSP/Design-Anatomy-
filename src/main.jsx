@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { ArrowRight, Compass, Eye, Lightbulb, Search, ArrowLeft, X } from "lucide-react";
 import "./style.css";
 import "./enhancements.css";
+import "./typography.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
