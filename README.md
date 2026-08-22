@@ -1,6 +1,10 @@
-# Design Explained
+# Design Anatomy
 
-A React + Vite recreation of the Design Explained homepage.
+> Design has a language. Learn to see it.
+
+**Created:** 22 August 2026
+
+A React + Vite recreation of the Design Anatomy homepage.
 
 ## Stack
 - Vite
