@@ -32,7 +32,6 @@ function StylePreview({ index }) {
         <div className="glass-bar"><b></b></div>
         <div className="glass-pills"><i></i><i></i><i></i></div>
       </div>
-      <div className="glass-orb"></div>
     </div>
   );
   return (
@@ -47,12 +46,32 @@ function StylePreview({ index }) {
   );
 }
 
+function IntroSection() {
+  return (
+    <section className="intro-card">
+      <div className="section-number">01</div>
+      <h2>What is Design Anatomy?</h2>
+      <p>It is a visual library for interface aesthetics. Every style is broken into the parts you can actually reuse — light, depth, material, type, rhythm — so you stop copying screenshots and start recognising intent. No trends for their own sake, no noise; just careful looking, explained in plain language.</p>
+    </section>
+  );
+}
+
+const featureCards = [
+  { icon: Compass, title: "Explore Styles", copy: "Move through a curated library of design languages, each framed with the context it grew out of." },
+  { icon: Eye, title: "See the Design", copy: "Study visual examples and real interface references that show how a style actually behaves." },
+  { icon: Lightbulb, title: "Understand the Design", copy: "Read the reasoning behind every choice — depth, contrast, spacing, type, light and restraint." },
+];
+
 function App() {
   const [active, setActive] = useState(0);
+
   useEffect(() => {
-    const timer = setInterval(() => setActive((value) => (value + 1) % styles.length), 4200);
+    const timer = setInterval(() => setActive((value) => (value + 1) % styles.length), 5000);
     return () => clearInterval(timer);
   }, []);
+
+  const current = styles[active];
+  const Icon = current.icon;
 
   return (
     <main>
@@ -70,29 +89,40 @@ function App() {
         <p className="section-link">What is Design Anatomy?</p>
       </section>
 
+      <IntroSection />
+
+      <section className="feature-grid">
+        {featureCards.map(({ icon: FeatureIcon, title, copy }) => (
+          <article className="feature-card" key={title}>
+            <div className="feature-icon"><FeatureIcon size={25}/></div>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+            <div className="feature-arrow">Explore <ArrowRight size={21}/></div>
+          </article>
+        ))}
+      </section>
+
       <section className="style-stage">
-        <div className="stage-smoke"></div><div className="stage-orb"></div>
-        <div className="stack">
-          {styles.map((item, index) => {
-            const Icon = item.icon;
-            const isActive = index === active;
-            const distance = (index - active + styles.length) % styles.length;
-            return (
-              <article className={`style-card ${isActive ? "active" : ""} pos-${distance}`} key={item.name}>
-                <div className="card-head"><div className="style-icon"><Icon size={25}/></div><span className="card-number">{item.tag}</span></div>
-                <div className="card-body">
-                  <p className="style-name">{item.name}</p>
-                  <p className="style-copy">{item.copy}</p>
-                  <StylePreview index={index}/>
-                </div>
-              </article>
-            );
-          })}
+        <div className="stage-smoke"></div>
+        <div className="stage-orb"></div>
+        <div className="style-card" key={current.name}>
+          <div className="card-head">
+            <div className="style-icon"><Icon size={25}/></div>
+            <span className="card-number">{current.tag}</span>
+          </div>
+          <div className="card-body">
+            <p className="style-name">{current.name}</p>
+            <p className="style-copy">{current.copy}</p>
+            <StylePreview index={active}/>
+          </div>
         </div>
         <div className="auto-note"><span className="pulse-dot"></span>AUTOMATICALLY EXPLORING</div>
       </section>
 
-      <section className="closing"><p>DESIGN ANATOMY</p><h2>LEARN TO SEE<br/>THE LANGUAGE.</h2></section>
+      <footer className="closing">
+        <div>DESIGN ANATOMY</div>
+        <div>LEARN TO SEE THE LANGUAGE</div>
+      </footer>
     </main>
   );
 }
