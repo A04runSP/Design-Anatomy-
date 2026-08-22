@@ -64,6 +64,12 @@ function DepthVisual() {
   </div>;
 }
 
+function TypographyVisual() {
+  return <div className="typography-card" aria-label="Typography information and visual specimen">
+    <div className="typography-specimen"></div>
+  </div>;
+}
+
 function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -108,7 +114,7 @@ function Dashboard({ onBack }) {
         <div className="dashboard-icon"><CardIcon size={24}/></div>
         <h2>{title}</h2><p>{copy}</p>
         {tag === "02" && <DesignReference/>}
-        {tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><div className="depth-takeaway"><span>DEPTH</span><b>hierarchy through distance</b></div></div>}
+        {tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><div className="depth-takeaway"><span>DEPTH</span><b>hierarchy through distance</b></div></div>}
         <button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button>
       </article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}
     </section>
