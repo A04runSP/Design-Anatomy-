@@ -4,6 +4,7 @@ import { ArrowRight, Compass, Eye, Lightbulb, Search, ArrowLeft, X } from "lucid
 import "./style.css";
 import "./enhancements.css";
 import "./typography.css";
+import "./spacing.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
