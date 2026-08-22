@@ -1,3 +1,4 @@
+// Created: 22 August 2026
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowRight, Compass, Eye, Lightbulb, Search } from "lucide-react";
