@@ -5,6 +5,7 @@ import "./style.css";
 import "./enhancements.css";
 import "./typography.css";
 import "./spacing.css";
+import "./light-material.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
@@ -92,6 +93,24 @@ function SpacingVisual() {
   </div>;
 }
 
+function LightMaterialVisual() {
+  return <section className="light-material-section" aria-label="Light and material information">
+    <div className="light-material-heading"><span>05</span><strong>LIGHT &amp; MATERIAL</strong></div>
+    <p className="light-material-intro">Light reveals the material. Material tells the interface what it is made of — glass, metal, paper, plastic, or something soft. Light gives those surfaces form, depth and character.</p>
+    <div className="material-showcase">
+      <div className="material-stage"><div className="material-orb matte-orb"></div><div className="material-label"><span>MATTE</span><small>Soft · low reflection</small></div></div>
+      <div className="material-stage glass-material"><div className="material-orb glass-orb"></div><div className="material-label"><span>GLASS</span><small>Transparent · blurred · reflective</small></div></div>
+      <div className="material-stage gloss-material"><div className="material-orb gloss-orb"></div><div className="material-label"><span>GLOSS</span><small>Polished · strong highlight</small></div></div>
+    </div>
+    <div className="light-material-principles">
+      <div><span>01</span><strong>DIRECTION</strong><p>Light needs a believable source. Highlights and shadows should suggest where it comes from.</p></div>
+      <div><span>02</span><strong>SURFACE</strong><p>Different materials respond differently to light. Matte absorbs; glass catches; glossy surfaces reflect.</p></div>
+      <div><span>03</span><strong>DEPTH</strong><p>Light separates layers and makes elements feel closer without making the interface heavy.</p></div>
+    </div>
+    <div className="light-material-takeaway"><span>LIGHT + MATERIAL</span><b>Good lighting makes the surface believable.</b></div>
+  </section>;
+}
+
 function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -103,7 +122,7 @@ function Dashboard({ onBack }) {
     <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header>
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
-    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
+    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
     <section className="dashboard-note"><span>01</span><div><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p></div></section>
   </main>;
 }
