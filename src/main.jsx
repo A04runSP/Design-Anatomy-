@@ -1,0 +1,382 @@
+import React, { useState } from "react";
+import { createRoot } from "react-dom/client";
+import { ArrowRight, Compass, Eye, Lightbulb, Search } from "lucide-react";
+
+const styleNames = ["MINIMALISM", "GLASSMORPHISM", "NEUMORPHISM"];
+
+const css = String.raw`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+  --black: #020708;
+  --deep: #041316;
+  --cyan: #19e5ee;
+  --cyan-soft: #77f2f5;
+  --muted: #91a7aa;
+  --white: #f2fbfb;
+  --line: rgba(44, 231, 238, .23);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+}
+button, a { font: inherit; }
+button { cursor: pointer; }
+
+.page, .dashboard-placeholder {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 55% 12%, rgba(7, 62, 68, .30), transparent 31%),
+    radial-gradient(circle at 10% 70%, rgba(0, 50, 55, .18), transparent 30%),
+    linear-gradient(120deg, #010506 0%, #031013 50%, #010506 100%);
+}
+
+.noise {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .17;
+  background-image: radial-gradient(rgba(120, 250, 250, .18) .55px, transparent .55px);
+  background-size: 5px 5px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.nav {
+  position: relative; z-index: 10;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 28px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+
+.brand {
+  letter-spacing: .22em; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.brand-mark { color: var(--cyan); font-size: 18px; text-shadow: 0 0 16px rgba(25,229,238,.8); }
+.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-links a, .nav-links button {
+  color: #9aacad; text-decoration: none; background: none; border: 0;
+  transition: color .25s ease;
+}
+.nav-links a:hover, .nav-links button:hover { color: var(--white); }
+.search-button {
+  width: 38px; height: 38px; border: 1px solid var(--line) !important;
+  border-radius: 11px !important; display: grid; place-items: center;
+  color: var(--cyan) !important; background: rgba(6,28,31,.48) !important;
+  box-shadow: 0 0 20px rgba(25,229,238,.13), inset 0 0 18px rgba(25,229,238,.06);
+}
+
+.hero {
+  position: relative; z-index: 2;
+  width: min(1180px, calc(100% - 48px));
+  min-height: 680px;
+  margin: 0 auto;
+  display: grid; grid-template-columns: .9fr 1.1fr;
+  align-items: center; gap: 30px;
+  padding: 70px 0 100px;
+}
+.hero-copy { position: relative; z-index: 3; }
+.eyebrow {
+  color: #67dce1; letter-spacing: .38em; font-size: 11px; line-height: 1.8;
+}
+h1 {
+  margin: 24px 0 25px;
+  font-size: clamp(48px, 6.2vw, 84px);
+  line-height: .98; letter-spacing: -.045em;
+  font-weight: 600;
+}
+h1 span {
+  background: linear-gradient(110deg, #f4ffff 5%, #79f1f3 52%, #14dbe5 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 32px rgba(25,229,238,.12);
+}
+.hero-copy > p {
+  max-width: 560px; color: var(--muted); font-size: 17px;
+  line-height: 1.75; margin-bottom: 35px;
+}
+.hero-actions { display: flex; align-items: center; gap: 28px; }
+.primary-cta {
+  border: 1px solid rgba(40,239,245,.7); border-radius: 999px;
+  padding: 17px 25px; display: flex; align-items: center; gap: 16px;
+  color: #051114; background: linear-gradient(120deg, #25e8ef, #6af4f4);
+  font-weight: 600; letter-spacing: .08em;
+  box-shadow: 0 0 30px rgba(25,229,238,.25);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.primary-cta:hover { transform: translateY(-2px); box-shadow: 0 0 45px rgba(25,229,238,.42); }
+.secondary-link { color: #91a7aa; text-decoration: none; font-size: 15px; }
+
+.style-orbit { height: 590px; position: relative; }
+.orbit-core {
+  position: absolute; width: 410px; height: 410px; border-radius: 50%;
+  left: 50%; top: 48%; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(3,48,54,.48), rgba(0,0,0,.08) 65%, transparent 70%);
+  box-shadow: 0 0 100px rgba(5, 165, 175, .08);
+}
+.orbit-glow {
+  position: absolute; width: 280px; height: 280px; border-radius: 50%;
+  left: 55%; top: 48%; transform: translate(-50%,-50%);
+  background: rgba(13, 225, 233, .07); filter: blur(55px);
+}
+.style-card {
+  position: absolute; width: 390px; height: 190px; border-radius: 30px;
+  border: 1px solid rgba(33, 235, 242, .28);
+  background: linear-gradient(135deg, rgba(22,95,100,.23), rgba(2,16,18,.28));
+  backdrop-filter: blur(13px);
+  box-shadow: inset 0 0 40px rgba(26,226,233,.055), 0 20px 80px rgba(0,0,0,.35);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 28px 30px; color: #a7b7b8; letter-spacing: .25em; font-size: 13px;
+}
+.style-card i {
+  width: 9px; height: 9px; border-radius: 50%; background: var(--cyan);
+  box-shadow: 0 0 18px rgba(25,229,238,.8);
+}
+.style-0 { left: 2%; top: 11%; transform: rotate(-3deg); }
+.style-1 { right: 0; top: 38%; transform: rotate(2deg); }
+.style-2 { left: 18%; bottom: 4%; transform: rotate(-2deg); }
+
+.glass-section, .feature-grid, footer {
+  position: relative; z-index: 3;
+  width: min(1080px, calc(100% - 48px)); margin: 0 auto;
+}
+.glass-section {
+  display: grid; grid-template-columns: 70px 1fr; gap: 25px;
+  padding: 65px 55px; border-radius: 32px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(7,50,54,.50), rgba(2,14,16,.65));
+  box-shadow: inset 0 0 65px rgba(22,220,230,.035), 0 30px 100px rgba(0,0,0,.32);
+  backdrop-filter: blur(18px);
+}
+.section-label { color: var(--cyan); font-size: 12px; letter-spacing: .25em; padding-top: 10px; }
+h2 {
+  font-family: "Playfair Display", serif; font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.05; margin: 0 0 25px; font-weight: 500;
+}
+.glass-section p { max-width: 780px; color: #8fa7aa; font-size: 19px; line-height: 1.85; margin: 0; }
+
+.feature-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 100px 0;
+}
+.feature-card {
+  min-height: 340px; padding: 38px 35px; border-radius: 28px;
+  border: 1px solid rgba(33,235,242,.18);
+  background: linear-gradient(145deg, rgba(8,48,51,.45), rgba(2,14,16,.76));
+  box-shadow: inset 0 0 50px rgba(20,220,230,.025);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(33,235,242,.45);
+  box-shadow: 0 20px 70px rgba(0,0,0,.35), 0 0 35px rgba(25,229,238,.07);
+}
+.icon-ring {
+  width: 55px; height: 55px; border-radius: 50%; display: grid; place-items: center;
+  color: var(--cyan); border: 1px solid rgba(25,229,238,.2);
+  background: rgba(0,30,33,.45); box-shadow: 0 0 22px rgba(25,229,238,.06);
+}
+h3 { font-size: 24px; margin: 48px 0 17px; }
+.feature-card p { color: #879fa2; line-height: 1.75; font-size: 15px; }
+.feature-arrow { display: flex; align-items: center; gap: 8px; margin-top: 25px; color: var(--cyan); font-size: 13px; }
+
+footer {
+  padding: 30px 0 45px; display: flex; justify-content: space-between;
+  color: #526b6d; letter-spacing: .2em; font-size: 10px;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+.smoke {
+  position: absolute; z-index: 1; pointer-events: none; filter: blur(28px);
+  mix-blend-mode: screen; opacity: .65;
+}
+.smoke-a {
+  width: 680px; height: 470px; left: 22%; top: -50px;
+  background:
+    radial-gradient(ellipse at 25% 48%, rgba(0,225,238,.42) 0 8%, transparent 29%),
+    radial-gradient(ellipse at 52% 35%, rgba(0,152,174,.34) 0 10%, transparent 33%),
+    radial-gradient(ellipse at 72% 60%, rgba(0,232,238,.32) 0 7%, transparent 28%),
+    radial-gradient(ellipse at 42% 78%, rgba(0,110,135,.32) 0 13%, transparent 34%);
+  transform: rotate(-12deg);
+}
+.smoke-b {
+  width: 560px; height: 520px; right: -80px; top: 280px;
+  background:
+    radial-gradient(ellipse at 25% 55%, rgba(0,205,222,.28) 0 8%, transparent 31%),
+    radial-gradient(ellipse at 60% 40%, rgba(0,115,138,.30) 0 12%, transparent 36%),
+    radial-gradient(ellipse at 75% 72%, rgba(0,225,238,.22) 0 7%, transparent 28%);
+  transform: rotate(25deg);
+}
+.smoke-c {
+  width: 620px; height: 400px; left: -180px; top: 720px;
+  background:
+    radial-gradient(ellipse at 70% 45%, rgba(0,190,210,.20) 0 10%, transparent 32%),
+    radial-gradient(ellipse at 45% 70%, rgba(0,90,110,.26) 0 14%, transparent 38%);
+}
+.cyan-bloom { position: absolute; z-index: 1; width: 300px; height: 300px; border-radius: 50%; filter: blur(100px); background: rgba(0,210,225,.08); pointer-events: none; }
+.bloom-a { top: 180px; left: 42%; }
+.bloom-b { top: 1050px; right: 5%; }
+
+.dashboard-placeholder { padding-bottom: 80px; }
+.dashboard-empty {
+  position: relative; z-index: 2; min-height: 75vh;
+  width: min(1000px, calc(100% - 48px)); margin: 0 auto;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.dashboard-empty h1 { margin-bottom: 20px; }
+.dashboard-empty em { color: var(--cyan); font-family: "Playfair Display", serif; font-weight: 500; }
+.dashboard-empty p { max-width: 500px; color: var(--muted); line-height: 1.8; }
+
+@media (max-width: 800px) {
+  .nav { width: min(100% - 32px, 1180px); }
+  .nav-links { gap: 15px; }
+  .nav-links a { display: none; }
+  .hero {
+    width: calc(100% - 32px); display: flex; flex-direction: column;
+    align-items: stretch; padding-top: 60px; min-height: auto;
+  }
+  h1 { font-size: clamp(47px, 14vw, 72px); }
+  .hero-copy > p { font-size: 15px; }
+  .hero-actions { flex-wrap: wrap; }
+  .style-orbit { height: 490px; margin-top: 10px; transform: scale(.86); transform-origin: top center; }
+  .style-card { width: 320px; height: 165px; }
+  .style-0 { left: 0; }
+  .style-1 { right: 0; }
+  .style-2 { left: 12%; }
+  .glass-section { width: calc(100% - 32px); grid-template-columns: 1fr; padding: 42px 30px; }
+  .glass-section p { font-size: 16px; }
+  .feature-grid { width: calc(100% - 32px); grid-template-columns: 1fr; padding: 60px 0; }
+  footer { width: calc(100% - 32px); flex-direction: column; gap: 12px; }
+  .smoke-a { left: -45%; top: 80px; opacity: .55; }
+  .smoke-b { right: -55%; }
+}
+`;
+
+function App() {
+  const [dashboard, setDashboard] = useState(false);
+
+  if (dashboard) {
+    return (
+      <>
+        <style>{css}</style>
+        <main className="dashboard-placeholder">
+          <div className="smoke smoke-a" />
+          <div className="smoke smoke-b" />
+          <nav className="nav">
+            <div className="brand"><span className="brand-mark">✦</span> DESIGN EXPLAINED</div>
+            <div className="nav-links">
+              <button onClick={() => setDashboard(false)}>Home</button>
+              <button>Explore</button>
+              <button>About</button>
+              <button className="search-button"><Search size={17}/></button>
+            </div>
+          </nav>
+          <div className="dashboard-empty">
+            <span className="eyebrow">01 · EXPLORE</span>
+            <h1>Design languages,<br/><em>coming next.</em></h1>
+            <p>The atmospheric foundation is ready. The design library will live here.</p>
+          </div>
+        </main>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <style>{css}</style>
+      <main className="page">
+        <div className="noise" />
+        <div className="smoke smoke-a" />
+        <div className="smoke smoke-b" />
+        <div className="smoke smoke-c" />
+        <div className="cyan-bloom bloom-a" />
+        <div className="cyan-bloom bloom-b" />
+
+        <nav className="nav">
+          <div className="brand"><span className="brand-mark">✦</span> DESIGN EXPLAINED</div>
+          <div className="nav-links">
+            <a href="#explore">Explore</a>
+            <a href="#about">About</a>
+            <button className="search-button" aria-label="Search"><Search size={17}/></button>
+          </div>
+        </nav>
+
+        <section className="hero">
+          <div className="hero-copy">
+            <span className="eyebrow">VISUAL LITERACY, ONE STYLE AT A TIME</span>
+            <h1>Design has a language.<br/><span>Learn to see it.</span></h1>
+            <p>
+              Design Explained is a quiet place to explore design styles, look closely
+              at examples, and understand the visual decisions behind them — why a
+              surface glows, why a grid breathes, why one interface feels expensive
+              and another feels loud.
+            </p>
+
+            <div className="hero-actions">
+              <button className="primary-cta" onClick={() => setDashboard(true)}>
+                JUMP IN <ArrowRight size={20}/>
+              </button>
+              <a className="secondary-link" href="#about">What is Design Explained?</a>
+            </div>
+          </div>
+
+          <div className="style-orbit" aria-label="Design styles preview">
+            <div className="orbit-glow" />
+            <div className="orbit-core" />
+            {styleNames.map((style, i) => (
+              <div key={style} className={`style-card style-${i}`}>
+                <span>{style}</span>
+                <i />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="about" className="glass-section">
+          <div className="section-label">01</div>
+          <div>
+            <h2>What is Design Explained?</h2>
+            <p>
+              It is a reading room for interface aesthetics. Every style is broken
+              into the parts you can actually reuse — light, depth, material, type,
+              rhythm — so you stop copying screenshots and start recognising intent.
+              No trends for their own sake, no noise; just careful looking, explained
+              in plain language.
+            </p>
+          </div>
+        </section>
+
+        <section id="explore" className="feature-grid">
+          <Feature icon={<Compass size={22}/>} title="Explore Styles"
+            text="Move through a curated library of design languages, each framed with the context it grew out of." />
+          <Feature icon={<Eye size={22}/>} title="See the Design"
+            text="Study visual examples and real interface references that show how a style actually behaves." />
+          <Feature icon={<Lightbulb size={22}/>} title="Understand the Design"
+            text="Read the reasoning behind every choice — depth, contrast, spacing, type, light and restraint." />
+        </section>
+
+        <footer>
+          <span>DESIGN EXPLAINED</span>
+          <span>LEARN TO SEE THE LANGUAGE</span>
+        </footer>
+      </main>
+    </>
+  );
+}
+
+function Feature({ icon, title, text }) {
+  return (
+    <article className="feature-card">
+      <div className="icon-ring">{icon}</div>
+      <h3>{title}</h3>
+      <p>{text}</p>
+      <span className="feature-arrow">Explore <ArrowRight size={16}/></span>
+    </article>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);
