@@ -55,6 +55,15 @@ function DesignReference() {
   </div>;
 }
 
+function DepthVisual() {
+  return <div className="depth-visual" aria-label="Three layers showing depth">
+    <div className="depth-layer depth-back"><span>BACKGROUND</span></div>
+    <div className="depth-layer depth-surface"><span>SURFACE</span></div>
+    <div className="depth-layer depth-float"><span>FLOATING ELEMENT</span><b>01</b></div>
+    <div className="depth-axis"><i></i><span>distance</span></div>
+  </div>;
+}
+
 function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -94,11 +103,12 @@ function Dashboard({ onBack }) {
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
 
     <section className="dashboard-grid">
-      {filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}>
+      {filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}>
         <span className="dashboard-number">{tag}</span>
         <div className="dashboard-icon"><CardIcon size={24}/></div>
         <h2>{title}</h2><p>{copy}</p>
         {tag === "02" && <DesignReference/>}
+        {tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><div className="depth-takeaway"><span>DEPTH</span><b>hierarchy through distance</b></div></div>}
         <button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button>
       </article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}
     </section>
