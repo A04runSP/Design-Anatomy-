@@ -6,6 +6,7 @@ import "./enhancements.css";
 import "./typography.css";
 import "./spacing.css";
 import "./light-material.css";
+import "./contrast.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
@@ -111,6 +112,24 @@ function LightMaterialVisual() {
   </section>;
 }
 
+function ContrastVisual() {
+  return <section className="contrast-section" aria-label="Contrast information and visual comparison">
+    <div className="contrast-heading"><span>06</span><strong>CONTRAST</strong></div>
+    <p className="contrast-intro">Contrast helps the eye separate what matters from what supports it. It can come from light and dark, size, weight, colour or distance.</p>
+    <div className="contrast-showcase">
+      <div className="contrast-card contrast-low"><div className="contrast-card-head"><span>LOW</span><small>QUIET</small></div><div className="contrast-demo"><b>Secondary information</b><span>Soft difference. Easy to miss.</span></div><p>Useful for supporting content.</p></div>
+      <div className="contrast-card contrast-balanced"><div className="contrast-card-head"><span>BALANCED</span><small>CLEAR</small></div><div className="contrast-demo"><b>Primary information</b><span>Strong enough to guide the eye.</span></div><p>Clear hierarchy without shouting.</p></div>
+      <div className="contrast-card contrast-high"><div className="contrast-card-head"><span>HIGH</span><small>STRONG</small></div><div className="contrast-demo"><b>Important action</b><span>Maximum separation and attention.</span></div><p>Use carefully for emphasis.</p></div>
+    </div>
+    <div className="contrast-principles">
+      <div><span>01</span><strong>HIERARCHY</strong><p>Give the strongest contrast to the information that matters most.</p></div>
+      <div><span>02</span><strong>READABILITY</strong><p>Text needs enough difference from its background to stay effortless to read.</p></div>
+      <div><span>03</span><strong>RESTRAINT</strong><p>Too much contrast everywhere removes the sense of priority.</p></div>
+    </div>
+    <div className="contrast-takeaway"><span>CONTRAST</span><b>Good contrast tells the eye where to look first.</b></div>
+  </section>;
+}
+
 function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -122,7 +141,7 @@ function Dashboard({ onBack }) {
     <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header>
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
-    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
+    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/><ContrastVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
     <section className="dashboard-note"><span>01</span><div><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p></div></section>
   </main>;
 }
