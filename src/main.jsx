@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { ArrowRight, Compass, Eye, Lightbulb, Search, ArrowLeft } from "lucide-react";
+import { ArrowRight, Compass, Eye, Lightbulb, Search, ArrowLeft, X } from "lucide-react";
 import "./style.css";
+import "./enhancements.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
@@ -39,16 +40,63 @@ function Home({ onEnter }) {
   </main>;
 }
 
+const dashboardCards = [
+  { tag: "01", icon: Compass, title: "Explore Styles", copy: "Browse design languages and discover what makes each one distinct.", action: "OPEN LIBRARY" },
+  { tag: "02", icon: Eye, title: "See the Design", copy: "Study visual examples and real interface references.", action: "VIEW EXAMPLES" },
+  { tag: "03", icon: Lightbulb, title: "Understand the Design", copy: "Break down the decisions behind depth, type, colour and space.", action: "START LEARNING" },
+];
+
 function Dashboard({ onBack }) {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [activeCard, setActiveCard] = useState(null);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const onKey = event => {
+      if (event.key === "Escape") { setSearchOpen(false); setQuery(""); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [searchOpen]);
+
+  const filteredCards = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    if (!term) return dashboardCards;
+    return dashboardCards.filter(card => `${card.tag} ${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term));
+  }, [query]);
+
+  const activateCard = tag => {
+    setActiveCard(tag);
+    window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850);
+  };
+
   return <main className="dashboard-page">
-    <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><button className="search-button" aria-label="Search"><Search size={20}/></button></header>
+    <header className="dash-header">
+      <button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button>
+      <div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div>
+      <div className={`search-wrap ${searchOpen ? "open" : ""}`}>
+        {searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}
+        <button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>
+          {searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span>
+        </button>
+      </div>
+    </header>
+
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
+
+    {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
+
     <section className="dashboard-grid">
-      <article className="dashboard-card large"><span className="dashboard-number">01</span><div className="dashboard-icon"><Compass size={24}/></div><h2>Explore Styles</h2><p>Browse design languages and discover what makes each one distinct.</p><button>OPEN LIBRARY <ArrowRight size={18}/></button></article>
-      <article className="dashboard-card"><span className="dashboard-number">02</span><div className="dashboard-icon"><Eye size={24}/></div><h2>See the Design</h2><p>Study visual examples and real interface references.</p><button>VIEW EXAMPLES <ArrowRight size={18}/></button></article>
-      <article className="dashboard-card"><span className="dashboard-number">03</span><div className="dashboard-icon"><Lightbulb size={24}/></div><h2>Understand the Design</h2><p>Break down the decisions behind depth, type, colour and space.</p><button>START LEARNING <ArrowRight size={18}/></button></article>
+      {filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}>
+        <span className="dashboard-number">{tag}</span>
+        <div className="dashboard-icon"><CardIcon size={24}/></div>
+        <h2>{title}</h2><p>{copy}</p>
+        <button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button>
+      </article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}
     </section>
-    <section className="dashboard-note"><span>01</span><div><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. More sections will grow from these three foundations.</p></div></section>
+
+    <section className="dashboard-note"><span>01</span><div><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p></div></section>
   </main>;
 }
 
