@@ -1,7 +1,8 @@
 {
-  "name": "design-explained",
+  "name": "design-anatomy",
   "private": true,
   "version": "0.1.0",
+  "created": "2026-08-22",
   "type": "module",
   "scripts": {
     "dev": "vite",
