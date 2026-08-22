@@ -4,15 +4,15 @@ import { ArrowRight, Compass, Eye, Lightbulb, Search } from "lucide-react";
 
 const styleNames = ["MINIMALISM", "GLASSMORPHISM", "NEUMORPHISM"];
 
-const css = String.raw`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+const css = String.raw`@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --black: #020708;
   --deep: #041316;
   --cyan: #19e5ee;
   --cyan-soft: #77f2f5;
-  --muted: #91a7aa;
-  --white: #f2fbfb;
+  --muted: #b0c3c5;
+  --white: #f7ffff;
   --line: rgba(44, 231, 238, .23);
 }
 
@@ -22,7 +22,7 @@ body {
   margin: 0;
   background: var(--black);
   color: var(--white);
-  font-family: "DM Sans", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 button, a { font: inherit; }
 button { cursor: pointer; }
@@ -54,14 +54,14 @@ button { cursor: pointer; }
 }
 
 .brand {
-  letter-spacing: .22em; font-size: 12px; font-weight: 600;
+  letter-spacing: .18em; font-size: 12px; font-weight: 800; color: #f7ffff;
   display: flex; align-items: center; gap: 10px;
 }
 
 .brand-mark { color: var(--cyan); font-size: 18px; text-shadow: 0 0 16px rgba(25,229,238,.8); }
 .nav-links { display: flex; align-items: center; gap: 34px; }
 .nav-links a, .nav-links button {
-  color: #9aacad; text-decoration: none; background: none; border: 0;
+  color: #d7e4e5; text-decoration: none; background: none; border: 0;
   transition: color .25s ease;
 }
 .nav-links a:hover, .nav-links button:hover { color: var(--white); }
@@ -83,21 +83,21 @@ button { cursor: pointer; }
 }
 .hero-copy { position: relative; z-index: 3; }
 .eyebrow {
-  color: #67dce1; letter-spacing: .38em; font-size: 11px; line-height: 1.8;
+  color: var(--cyan); letter-spacing: .28em; font-size: 11px; line-height: 1.8; font-weight: 800;
 }
 h1 {
   margin: 24px 0 25px;
   font-size: clamp(48px, 6.2vw, 84px);
   line-height: .98; letter-spacing: -.045em;
-  font-weight: 600;
+  font-weight: 900;
+  color: #f7ffff;
 }
 h1 span {
-  background: linear-gradient(110deg, #f4ffff 5%, #79f1f3 52%, #14dbe5 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  text-shadow: 0 0 32px rgba(25,229,238,.12);
+  color: var(--cyan);
+  text-shadow: 0 0 32px rgba(25,229,238,.18);
 }
 .hero-copy > p {
-  max-width: 560px; color: var(--muted); font-size: 17px;
+  max-width: 560px; color: #d5e3e4; font-size: 17px;
   line-height: 1.75; margin-bottom: 35px;
 }
 .hero-actions { display: flex; align-items: center; gap: 28px; }
@@ -105,12 +105,12 @@ h1 span {
   border: 1px solid rgba(40,239,245,.7); border-radius: 999px;
   padding: 17px 25px; display: flex; align-items: center; gap: 16px;
   color: #051114; background: linear-gradient(120deg, #25e8ef, #6af4f4);
-  font-weight: 600; letter-spacing: .08em;
+  font-weight: 800; letter-spacing: .08em;
   box-shadow: 0 0 30px rgba(25,229,238,.25);
   transition: transform .25s ease, box-shadow .25s ease;
 }
 .primary-cta:hover { transform: translateY(-2px); box-shadow: 0 0 45px rgba(25,229,238,.42); }
-.secondary-link { color: #91a7aa; text-decoration: none; font-size: 15px; }
+.secondary-link { color: #d0dfe0; text-decoration: none; font-size: 15px; font-weight: 700; }
 
 .style-orbit { height: 590px; position: relative; }
 .orbit-core {
@@ -131,7 +131,7 @@ h1 span {
   backdrop-filter: blur(13px);
   box-shadow: inset 0 0 40px rgba(26,226,233,.055), 0 20px 80px rgba(0,0,0,.35);
   display: flex; align-items: flex-end; justify-content: space-between;
-  padding: 28px 30px; color: #a7b7b8; letter-spacing: .25em; font-size: 13px;
+  padding: 28px 30px; color: #f1fbfb; font-weight: 700; letter-spacing: .25em; font-size: 13px;
 }
 .style-card i {
   width: 9px; height: 9px; border-radius: 50%; background: var(--cyan);
@@ -153,12 +153,12 @@ h1 span {
   box-shadow: inset 0 0 65px rgba(22,220,230,.035), 0 30px 100px rgba(0,0,0,.32);
   backdrop-filter: blur(18px);
 }
-.section-label { color: var(--cyan); font-size: 12px; letter-spacing: .25em; padding-top: 10px; }
+.section-label { color: var(--cyan); font-size: 12px; letter-spacing: .25em; padding-top: 10px; font-weight: 800; }
 h2 {
-  font-family: "Playfair Display", serif; font-size: clamp(38px, 5vw, 62px);
-  line-height: 1.05; margin: 0 0 25px; font-weight: 500;
+  font-family: "Nunito", sans-serif; font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.05; margin: 0 0 25px; font-weight: 800; color: #f7ffff;
 }
-.glass-section p { max-width: 780px; color: #8fa7aa; font-size: 19px; line-height: 1.85; margin: 0; }
+.glass-section p { max-width: 780px; color: #d5e3e4; font-size: 19px; line-height: 1.85; margin: 0; }
 
 .feature-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 100px 0;
@@ -180,13 +180,13 @@ h2 {
   color: var(--cyan); border: 1px solid rgba(25,229,238,.2);
   background: rgba(0,30,33,.45); box-shadow: 0 0 22px rgba(25,229,238,.06);
 }
-h3 { font-size: 24px; margin: 48px 0 17px; }
-.feature-card p { color: #879fa2; line-height: 1.75; font-size: 15px; }
-.feature-arrow { display: flex; align-items: center; gap: 8px; margin-top: 25px; color: var(--cyan); font-size: 13px; }
+h3 { font-size: 24px; margin: 48px 0 17px; font-weight: 800; color: #f7ffff; }
+.feature-card p { color: #c5d5d6; line-height: 1.75; font-size: 15px; }
+.feature-arrow { display: flex; align-items: center; gap: 8px; margin-top: 25px; color: var(--cyan); font-size: 13px; font-weight: 800; }
 
 footer {
   padding: 30px 0 45px; display: flex; justify-content: space-between;
-  color: #526b6d; letter-spacing: .2em; font-size: 10px;
+  color: #6e8587; letter-spacing: .2em; font-size: 10px;
   border-top: 1px solid rgba(255,255,255,.05);
 }
 
@@ -228,8 +228,8 @@ footer {
   display: flex; flex-direction: column; justify-content: center;
 }
 .dashboard-empty h1 { margin-bottom: 20px; }
-.dashboard-empty em { color: var(--cyan); font-family: "Playfair Display", serif; font-weight: 500; }
-.dashboard-empty p { max-width: 500px; color: var(--muted); line-height: 1.8; }
+.dashboard-empty em { color: var(--cyan); font-family: "Nunito", sans-serif; font-weight: 800; }
+.dashboard-empty p { max-width: 500px; color: #d5e3e4; line-height: 1.8; }
 
 @media (max-width: 800px) {
   .nav { width: min(100% - 32px, 1180px); }
@@ -267,7 +267,7 @@ function App() {
           <div className="smoke smoke-a" />
           <div className="smoke smoke-b" />
           <nav className="nav">
-            <div className="brand"><span className="brand-mark">✦</span> DESIGN EXPLAINED</div>
+            <div className="brand"><span className="brand-mark">✦</span> DESIGN ANATOMY</div>
             <div className="nav-links">
               <button onClick={() => setDashboard(false)}>Home</button>
               <button>Explore</button>
@@ -297,7 +297,7 @@ function App() {
         <div className="cyan-bloom bloom-b" />
 
         <nav className="nav">
-          <div className="brand"><span className="brand-mark">✦</span> DESIGN EXPLAINED</div>
+          <div className="brand"><span className="brand-mark">✦</span> DESIGN ANATOMY</div>
           <div className="nav-links">
             <a href="#explore">Explore</a>
             <a href="#about">About</a>
@@ -310,7 +310,7 @@ function App() {
             <span className="eyebrow">VISUAL LITERACY, ONE STYLE AT A TIME</span>
             <h1>Design has a language.<br/><span>Learn to see it.</span></h1>
             <p>
-              Design Explained is a quiet place to explore design styles, look closely
+              Design Anatomy is a quiet place to explore design styles, look closely
               at examples, and understand the visual decisions behind them — why a
               surface glows, why a grid breathes, why one interface feels expensive
               and another feels loud.
@@ -320,7 +320,7 @@ function App() {
               <button className="primary-cta" onClick={() => setDashboard(true)}>
                 JUMP IN <ArrowRight size={20}/>
               </button>
-              <a className="secondary-link" href="#about">What is Design Explained?</a>
+              <a className="secondary-link" href="#about">What is Design Anatomy?</a>
             </div>
           </div>
 
@@ -339,9 +339,9 @@ function App() {
         <section id="about" className="glass-section">
           <div className="section-label">01</div>
           <div>
-            <h2>What is Design Explained?</h2>
+            <h2>What is Design Anatomy?</h2>
             <p>
-              It is a reading room for interface aesthetics. Every style is broken
+              It is a visual library for interface aesthetics. Every style is broken
               into the parts you can actually reuse — light, depth, material, type,
               rhythm — so you stop copying screenshots and start recognising intent.
               No trends for their own sake, no noise; just careful looking, explained
@@ -360,7 +360,7 @@ function App() {
         </section>
 
         <footer>
-          <span>DESIGN EXPLAINED</span>
+          <span>DESIGN ANATOMY</span>
           <span>LEARN TO SEE THE LANGUAGE</span>
         </footer>
       </main>
