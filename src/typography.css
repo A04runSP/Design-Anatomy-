@@ -1,1 +1,12 @@
 .depth-section .depth-takeaway{display:none}
+
+/* Typography specimen: clean white-to-cyan treatment */
+.typography-specimen:before{
+  background:linear-gradient(135deg,#ffffff 18%,#f4ffff 45%,#16e1ef 78%,#78f6ff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  opacity:.95;
+  filter:drop-shadow(0 0 18px rgba(22,225,239,.10));
+}
