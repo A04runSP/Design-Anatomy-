@@ -84,8 +84,8 @@ function SpacingVisual() {
     <div className="spacing-heading"><span>04</span><strong>SPACING</strong></div>
     <p className="spacing-intro">Space isn't empty. It separates ideas, creates rhythm, and gives important elements room to breathe.</p>
     <div className="spacing-showcase">
-      <div className="spacing-panel tight-panel"><div className="spacing-panel-head"><span>✕</span><strong>TOO TIGHT</strong></div><div className="mock-ui"><b>TITLE</b><small>Description text</small><button>BUTTON</button><i></i></div><p>Cramped · hard to scan</p></div>
-      <div className="spacing-panel balanced-panel"><div className="spacing-panel-head"><span>✓</span><strong>BALANCED</strong></div><div className="mock-ui"><b>TITLE</b><small>Description text</small><button>BUTTON</button><i></i></div><p>Clear · comfortable to scan</p></div>
+      <div className="spacing-panel tight-panel"><div className="spacing-panel-head"><span aria-hidden="true">✕</span><strong>TOO TIGHT</strong></div><div className="mock-ui"><b>Build with intention.</b><small>Clear structure makes interfaces easier to understand.</small><button>EXPLORE</button><i></i></div><p>Cramped · hard to scan</p></div>
+      <div className="spacing-panel balanced-panel"><div className="spacing-panel-head"><span aria-hidden="true">✓</span><strong>BALANCED</strong></div><div className="mock-ui"><b>Build with intention.</b><small>Clear structure makes interfaces easier to understand.</small><button>EXPLORE</button><i></i></div><p>Clear · comfortable to scan</p></div>
     </div>
     <div className="spacing-principles"><div><span>01</span><strong>RHYTHM</strong><p>Consistent spacing helps the eye move through a page.</p></div><div><span>02</span><strong>GROUPING</strong><p>Related elements stay closer; separate ideas get more space.</p></div><div><span>03</span><strong>BREATHING ROOM</strong><p>Important content needs enough space around it to stand out.</p></div></div>
     <div className="spacing-takeaway"><span>SPACE</span><b>Good spacing makes the right things easier to see.</b></div>
