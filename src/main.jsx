@@ -71,6 +71,35 @@ function TypographyVisual() {
   </div>;
 }
 
+function ColourVisual() {
+  return <div className="colour-section" aria-label="Colour information and control visual">
+    <div className="colour-heading"><span>03</span><strong>COLOUR</strong></div>
+    <p className="colour-intro">Colour gives meaning to hierarchy. Contrast, accent and restraint help the eye understand what matters first.</p>
+
+    <div className="colour-control">
+      <div className="colour-control-top"><span>CONTROL</span><b>03</b></div>
+      <div className="colour-swatch-grid">
+        <div className="colour-swatch background-swatch"><span>BACKGROUND</span><b>#020E11</b></div>
+        <div className="colour-swatch surface-swatch"><span>SURFACE</span><b>#092A2E</b></div>
+        <div className="colour-swatch accent-swatch"><span>ACCENT</span><b>#16E1EF</b></div>
+        <div className="colour-swatch text-swatch"><span>TEXT</span><b>#F4FFFF</b></div>
+      </div>
+      <div className="colour-control-demo">
+        <div className="colour-demo-label">ACCENT / CYAN</div>
+        <div className="colour-demo-title">Focus the eye.</div>
+        <div className="colour-demo-bar"><b></b></div>
+        <div className="colour-demo-knob">+</div>
+      </div>
+    </div>
+
+    <div className="colour-principles">
+      <div><span>01</span><strong>HIERARCHY</strong><p>Use colour to tell the eye what matters first.</p></div>
+      <div><span>02</span><strong>CONTRAST</strong><p>Separate information clearly without making it harsh.</p></div>
+      <div><span>03</span><strong>RESTRAINT</strong><p>Let important elements earn the accent colour.</p></div>
+    </div>
+  </div>;
+}
+
 function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -115,7 +144,7 @@ function Dashboard({ onBack }) {
         <div className="dashboard-icon"><CardIcon size={24}/></div>
         <h2>{title}</h2><p>{copy}</p>
         {tag === "02" && <DesignReference/>}
-        {tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><div className="depth-takeaway"><span>DEPTH</span><b>hierarchy through distance</b></div></div>}
+        {tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/></div>}
         <button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button>
       </article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}
     </section>
