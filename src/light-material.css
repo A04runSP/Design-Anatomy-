@@ -1,0 +1,39 @@
+.light-material-section{margin-top:44px;padding-top:38px;border-top:1px solid rgba(22,225,239,.12)}
+.light-material-heading{display:flex;align-items:baseline;gap:14px;margin:0 0 24px}
+.light-material-heading span{color:var(--cyan);font-size:14px;font-weight:900;letter-spacing:.18em;line-height:1}
+.light-material-heading strong{color:var(--cyan2);font-size:17px;font-weight:900;letter-spacing:.1em;line-height:1}
+.light-material-intro{max-width:600px!important;margin:0 0 30px!important;color:var(--body)!important;font-size:15px!important;line-height:1.85!important}
+.material-showcase{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 30px}
+.material-stage{position:relative;min-height:205px;overflow:hidden;padding:20px;border:1px solid rgba(22,225,239,.17);border-radius:22px;background:linear-gradient(145deg,rgba(9,42,46,.66),rgba(2,15,18,.92));box-shadow:inset 0 0 42px rgba(22,225,239,.025),0 16px 38px rgba(0,0,0,.16)}
+.material-stage:before{content:"";position:absolute;inset:-35%;background:radial-gradient(circle at 35% 25%,rgba(104,246,255,.13),transparent 30%),radial-gradient(circle at 75% 80%,rgba(22,225,239,.06),transparent 32%);pointer-events:none}
+.material-orb{position:absolute;left:50%;top:42%;width:86px;height:86px;transform:translate(-50%,-50%);border-radius:50%}
+.matte-orb{background:linear-gradient(145deg,#b8c7c8,#647b7e);box-shadow:-13px -13px 25px rgba(255,255,255,.07),18px 20px 28px rgba(0,0,0,.38)}
+.glass-orb{background:linear-gradient(145deg,rgba(210,255,255,.34),rgba(22,225,239,.08) 45%,rgba(75,115,255,.18));border:1px solid rgba(190,255,255,.46);box-shadow:inset 12px 10px 22px rgba(255,255,255,.12),0 0 28px rgba(22,225,239,.16);backdrop-filter:blur(8px)}
+.gloss-orb{background:linear-gradient(145deg,#eaffff 0%,#7c9ea2 18%,#284e53 52%,#0c2428 100%);box-shadow:inset 13px 9px 18px rgba(255,255,255,.3),12px 18px 30px rgba(0,0,0,.4)}
+.material-label{position:absolute;left:20px;right:20px;bottom:18px;display:flex;justify-content:space-between;align-items:end;gap:10px;z-index:1}
+.material-label span{color:var(--white);font-size:12px;font-weight:900;letter-spacing:.14em}
+.material-label small{color:var(--body);font-size:10px;line-height:1.4;text-align:right}
+.light-material-principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 24px}
+.light-material-principles>div{padding:18px;border-left:2px solid rgba(22,225,239,.55);border-radius:0 16px 16px 0;background:rgba(22,225,239,.035)}
+.light-material-principles span{display:block;color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:.16em;margin-bottom:10px}
+.light-material-principles strong{display:block;color:var(--white);font-size:12px;font-weight:900;letter-spacing:.1em;margin-bottom:9px}
+.light-material-principles p{margin:0!important;color:var(--body)!important;font-size:12px!important;line-height:1.65!important}
+.light-material-takeaway{display:flex;align-items:baseline;gap:12px;padding:17px 18px;border-left:2px solid var(--cyan);border-radius:0 14px 14px 0;background:rgba(22,225,239,.045);box-shadow:inset 18px 0 35px rgba(22,225,239,.025)}
+.light-material-takeaway span{color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:.16em;white-space:nowrap}
+.light-material-takeaway b{color:#e7f5f6;font-size:13px;line-height:1.5;font-weight:700}
+@media(max-width:700px){
+  .light-material-section{margin-top:36px;padding-top:30px}
+  .light-material-heading{gap:12px;margin-bottom:20px}
+  .light-material-heading span{font-size:13px}
+  .light-material-heading strong{font-size:15px}
+  .light-material-intro{font-size:14px!important;line-height:1.8!important;margin-bottom:26px!important}
+  .material-showcase{grid-template-columns:1fr;gap:12px;margin-bottom:26px}
+  .material-stage{min-height:170px;padding:18px;border-radius:20px}
+  .material-orb{width:76px;height:76px}
+  .material-label{left:18px;right:18px;bottom:16px}
+  .light-material-principles{grid-template-columns:1fr;gap:11px;margin-bottom:20px}
+  .light-material-principles>div{padding:16px 15px}
+  .light-material-principles p{font-size:12px!important;line-height:1.6!important}
+  .light-material-takeaway{gap:9px;padding:15px}
+  .light-material-takeaway b{font-size:12px}
+}
