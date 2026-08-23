@@ -8,6 +8,7 @@ import "./spacing.css";
 import "./light-material.css";
 import "./contrast.css";
 import "./start-here.css";
+import "./library.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
@@ -21,9 +22,7 @@ function StylePreview({ index }) {
   return <div className="preview neo-preview"><div className="neo-panel"><div className="neo-label">CONTROL</div><div className="neo-knob">+</div><div className="neo-slider"><b></b></div><div className="neo-row"><span>LIGHT</span><strong>ON</strong></div></div></div>;
 }
 
-function IntroSection() {
-  return <section className="intro-card"><div className="section-number">01</div><h2>What is Design Anatomy?</h2><p>It is a visual library for interface aesthetics. Every style is broken into the parts you can actually reuse — light, depth, material, type, rhythm — so you stop copying screenshots and start recognising intent. No trends for their own sake, no noise; just careful looking, explained in plain language.</p></section>;
-}
+function IntroSection() { return <section className="intro-card"><div className="section-number">01</div><h2>What is Design Anatomy?</h2><p>It is a visual library for interface aesthetics. Every style is broken into the parts you can actually reuse — light, depth, material, type, rhythm — so you stop copying screenshots and start recognising intent. No trends for their own sake, no noise; just careful looking, explained in plain language.</p></section>; }
 
 const featureCards = [
   { icon: Compass, title: "Explore Styles", copy: "Move through a curated library of design languages, each framed with the context it grew out of." },
@@ -51,143 +50,22 @@ const dashboardCards = [
   { tag: "03", icon: Lightbulb, title: "Understand the Design", copy: "Break down the decisions behind depth, type, colour and space.", action: "START LEARNING" },
 ];
 
-function DesignReference() {
-  return <div className="design-reference" aria-label="Visual design examples">
-    <div className="reference-minimal"><span>01</span><strong>TYPE</strong><b>Less,<br/>but better.</b><i></i><small>SPACE · HIERARCHY · RESTRAINT</small></div>
-    <div className="reference-glass"><div className="reference-glass-panel"><span></span><small>GLASS / 02</small><strong>72<span>%</span></strong><i></i></div></div>
-    <div className="reference-neo"><div className="reference-neo-panel"><small>CONTROL</small><b>+</b><i></i><span>LIGHT&nbsp;&nbsp; ON</span></div></div>
-    <div className="reference-caption"><span>VISUAL REFERENCES</span><b>Minimal · Glass · Neo</b></div>
-  </div>;
-}
+function DesignReference() { return <div className="design-reference" aria-label="Visual design examples"><div className="reference-minimal"><span>01</span><strong>TYPE</strong><b>Less,<br/>but better.</b><i></i><small>SPACE · HIERARCHY · RESTRAINT</small></div><div className="reference-glass"><div className="reference-glass-panel"><span></span><small>GLASS / 02</small><strong>72<span>%</span></strong><i></i></div></div><div className="reference-neo"><div className="reference-neo-panel"><small>CONTROL</small><b>+</b><i></i><span>LIGHT&nbsp;&nbsp; ON</span></div></div><div className="reference-caption"><span>VISUAL REFERENCES</span><b>Minimal · Glass · Neo</b></div></div>; }
+function DepthVisual() { return <div className="depth-visual" aria-label="Three layers showing depth"><div className="depth-layer depth-back"><span>BACKGROUND</span></div><div className="depth-layer depth-surface"><span>SURFACE</span></div><div className="depth-layer depth-float"><span>FLOATING ELEMENT</span><b>01</b></div><div className="depth-axis"><i></i><span>distance</span></div></div>; }
+function TypographyVisual() { return <div className="typography-card" aria-label="Typography information and visual specimen"><div className="typography-specimen"></div></div>; }
+function ColourVisual() { return <div className="colour-section" aria-label="Colour information and control visual"><div className="colour-heading"><span>03</span><strong>COLOUR</strong></div><p className="colour-intro">Colour gives meaning to hierarchy. Contrast, accent and restraint help the eye understand what matters first.</p><div className="colour-control"><div className="colour-control-top"><span>CONTROL</span><b>03</b></div><div className="colour-swatch-grid"><div className="colour-swatch background-swatch"><span>BACKGROUND</span><b>#020E11</b></div><div className="colour-swatch surface-swatch"><span>SURFACE</span><b>#092A2E</b></div><div className="colour-swatch accent-swatch"><span>ACCENT</span><b>#16E1EF</b></div><div className="colour-swatch text-swatch"><span>TEXT</span><b>#F4FFFF</b></div></div><div className="colour-control-demo"><div className="colour-demo-label">ACCENT / CYAN</div><div className="colour-demo-title">Focus the eye.</div><div className="colour-demo-bar"><b></b></div><div className="colour-demo-knob">+</div></div></div><div className="colour-principles"><div><span>01</span><strong>HIERARCHY</strong><p>Use colour to tell the eye what matters first.</p></div><div><span>02</span><strong>CONTRAST</strong><p>Separate information clearly without making it harsh.</p></div><div><span>03</span><strong>RESTRAINT</strong><p>Let important elements earn the accent colour.</p></div></div></div>; }
+function SpacingVisual() { return <div className="spacing-section" aria-label="Spacing information and comparison visual"><div className="spacing-heading"><span>04</span><strong>SPACING</strong></div><p className="spacing-intro">Space isn't empty. It separates ideas, creates rhythm, and gives important elements room to breathe.</p><div className="spacing-showcase"><div className="spacing-panel tight-panel"><div className="spacing-panel-head"><span aria-hidden="true">✕</span><strong>TOO TIGHT</strong></div><div className="mock-ui"><b>Build with intention.</b><small>Clear structure makes interfaces easier to understand.</small><button>EXPLORE</button><i></i></div><p>Cramped · hard to scan</p></div><div className="spacing-panel balanced-panel"><div className="spacing-panel-head"><span aria-hidden="true">✓</span><strong>BALANCED</strong></div><div className="mock-ui"><b>Build with intention.</b><small>Clear structure makes interfaces easier to understand.</small><button>EXPLORE</button><i></i></div><p>Clear · comfortable to scan</p></div></div><div className="spacing-principles"><div><span>01</span><strong>RHYTHM</strong><p>Consistent spacing helps the eye move through a page.</p></div><div><span>02</span><strong>GROUPING</strong><p>Related elements stay closer; separate ideas get more space.</p></div><div><span>03</span><strong>BREATHING ROOM</strong><p>Important content needs enough space around it to stand out.</p></div></div><div className="spacing-takeaway"><span>SPACE</span><b>Good spacing makes the right things easier to see.</b></div></div>; }
+function LightMaterialVisual() { return <section className="light-material-section" aria-label="Light and material information"><div className="light-material-heading"><span>05</span><strong>LIGHT &amp; MATERIAL</strong></div><p className="light-material-intro">Light reveals the material. Material tells the interface what it is made of — glass, metal, paper, plastic, or something soft. Light gives those surfaces form, depth and character.</p><div className="material-showcase"><div className="material-stage"><div className="material-orb matte-orb"></div><div className="material-label"><span>MATTE</span><small>Soft · low reflection</small></div></div><div className="material-stage glass-material"><div className="material-orb glass-orb"></div><div className="material-label"><span>GLASS</span><small>Transparent · blurred · reflective</small></div></div><div className="material-stage gloss-material"><div className="material-orb gloss-orb"></div><div className="material-label"><span>GLOSS</span><small>Polished · strong highlight</small></div></div></div><div className="light-material-principles"><div><span>01</span><strong>DIRECTION</strong><p>Light needs a believable source. Highlights and shadows should suggest where it comes from.</p></div><div><span>02</span><strong>SURFACE</strong><p>Different materials respond differently to light. Matte absorbs; glass catches; glossy surfaces reflect.</p></div><div><span>03</span><strong>DEPTH</strong><p>Light separates layers and makes elements feel closer without making the interface heavy.</p></div></div><div className="light-material-takeaway"><span>LIGHT + MATERIAL</span><b>Good lighting makes the surface believable.</b></div></section>; }
+function ContrastVisual() { return <section className="contrast-section" aria-label="Contrast information and visual comparison"><div className="contrast-heading"><span>06</span><strong>CONTRAST</strong></div><p className="contrast-intro">Contrast helps the eye separate what matters from what supports it. It can come from light and dark, size, weight, colour or distance.</p><div className="contrast-showcase"><div className="contrast-card contrast-low"><div className="contrast-card-head"><span>LOW</span><small>QUIET</small></div><div className="contrast-demo"><b>Secondary information</b><span>Soft difference. Easy to miss.</span></div><p>Useful for supporting content.</p></div><div className="contrast-card contrast-balanced"><div className="contrast-card-head"><span>BALANCED</span><small>CLEAR</small></div><div className="contrast-demo"><b>Primary information</b><span>Strong enough to guide the eye.</span></div><p>Clear hierarchy without shouting.</p></div><div className="contrast-card contrast-high"><div className="contrast-card-head"><span>HIGH</span><small>STRONG</small></div><div className="contrast-demo"><b>Important action</b><span>Maximum separation and attention.</span></div><p>Use carefully for emphasis.</p></div></div><div className="contrast-principles"><div><span>01</span><strong>HIERARCHY</strong><p>Give the strongest contrast to the information that matters most.</p></div><div><span>02</span><strong>READABILITY</strong><p>Text needs enough difference from its background to stay effortless to read.</p></div><div><span>03</span><strong>RESTRAINT</strong><p>Too much contrast everywhere removes the sense of priority.</p></div></div><div className="contrast-takeaway"><span>CONTRAST</span><b>Good contrast tells the eye where to look first.</b></div><div className="rhythm-section" aria-label="03.07 Rhythm"><div className="rhythm-heading"><span>03.07</span><strong>RHYTHM</strong></div><p className="rhythm-intro">Repeated patterns help the eye move through an interface. Consistent spacing, alignment, shapes, and visual beats create a sense of order without making everything feel identical.</p><div className="rhythm-principles"><div><span>01</span><strong>REPETITION</strong><p>Repeat useful visual elements so the interface feels connected.</p></div><div><span>02</span><strong>CONSISTENCY</strong><p>Keep spacing, sizing, alignment, and patterns predictable.</p></div><div><span>03</span><strong>FLOW</strong><p>Let each section naturally lead the eye toward the next.</p></div></div></div></section>; }
 
-function DepthVisual() {
-  return <div className="depth-visual" aria-label="Three layers showing depth">
-    <div className="depth-layer depth-back"><span>BACKGROUND</span></div>
-    <div className="depth-layer depth-surface"><span>SURFACE</span></div>
-    <div className="depth-layer depth-float"><span>FLOATING ELEMENT</span><b>01</b></div>
-    <div className="depth-axis"><i></i><span>distance</span></div>
-  </div>;
-}
-
-function TypographyVisual() {
-  return <div className="typography-card" aria-label="Typography information and visual specimen"><div className="typography-specimen"></div></div>;
-}
-
-function ColourVisual() {
-  return <div className="colour-section" aria-label="Colour information and control visual">
-    <div className="colour-heading"><span>03</span><strong>COLOUR</strong></div>
-    <p className="colour-intro">Colour gives meaning to hierarchy. Contrast, accent and restraint help the eye understand what matters first.</p>
-    <div className="colour-control"><div className="colour-control-top"><span>CONTROL</span><b>03</b></div><div className="colour-swatch-grid"><div className="colour-swatch background-swatch"><span>BACKGROUND</span><b>#020E11</b></div><div className="colour-swatch surface-swatch"><span>SURFACE</span><b>#092A2E</b></div><div className="colour-swatch accent-swatch"><span>ACCENT</span><b>#16E1EF</b></div><div className="colour-swatch text-swatch"><span>TEXT</span><b>#F4FFFF</b></div></div><div className="colour-control-demo"><div className="colour-demo-label">ACCENT / CYAN</div><div className="colour-demo-title">Focus the eye.</div><div className="colour-demo-bar"><b></b></div><div className="colour-demo-knob">+</div></div></div>
-    <div className="colour-principles"><div><span>01</span><strong>HIERARCHY</strong><p>Use colour to tell the eye what matters first.</p></div><div><span>02</span><strong>CONTRAST</strong><p>Separate information clearly without making it harsh.</p></div><div><span>03</span><strong>RESTRAINT</strong><p>Let important elements earn the accent colour.</p></div></div>
-  </div>;
-}
-
-function SpacingVisual() {
-  return <div className="spacing-section" aria-label="Spacing information and comparison visual">
-    <div className="spacing-heading"><span>04</span><strong>SPACING</strong></div>
-    <p className="spacing-intro">Space isn't empty. It separates ideas, creates rhythm, and gives important elements room to breathe.</p>
-    <div className="spacing-showcase">
-      <div className="spacing-panel tight-panel"><div className="spacing-panel-head"><span aria-hidden="true">✕</span><strong>TOO TIGHT</strong></div><div className="mock-ui"><b>Build with intention.</b><small>Clear structure makes interfaces easier to understand.</small><button>EXPLORE</button><i></i></div><p>Cramped · hard to scan</p></div>
-      <div className="spacing-panel balanced-panel"><div className="spacing-panel-head"><span aria-hidden="true">✓</span><strong>BALANCED</strong></div><div className="mock-ui"><b>Build with intention.</b><small>Clear structure makes interfaces easier to understand.</small><button>EXPLORE</button><i></i></div><p>Clear · comfortable to scan</p></div>
-    </div>
-    <div className="spacing-principles"><div><span>01</span><strong>RHYTHM</strong><p>Consistent spacing helps the eye move through a page.</p></div><div><span>02</span><strong>GROUPING</strong><p>Related elements stay closer; separate ideas get more space.</p></div><div><span>03</span><strong>BREATHING ROOM</strong><p>Important content needs enough space around it to stand out.</p></div></div>
-    <div className="spacing-takeaway"><span>SPACE</span><b>Good spacing makes the right things easier to see.</b></div>
-  </div>;
-}
-
-function LightMaterialVisual() {
-  return <section className="light-material-section" aria-label="Light and material information">
-    <div className="light-material-heading"><span>05</span><strong>LIGHT &amp; MATERIAL</strong></div>
-    <p className="light-material-intro">Light reveals the material. Material tells the interface what it is made of — glass, metal, paper, plastic, or something soft. Light gives those surfaces form, depth and character.</p>
-    <div className="material-showcase">
-      <div className="material-stage"><div className="material-orb matte-orb"></div><div className="material-label"><span>MATTE</span><small>Soft · low reflection</small></div></div>
-      <div className="material-stage glass-material"><div className="material-orb glass-orb"></div><div className="material-label"><span>GLASS</span><small>Transparent · blurred · reflective</small></div></div>
-      <div className="material-stage gloss-material"><div className="material-orb gloss-orb"></div><div className="material-label"><span>GLOSS</span><small>Polished · strong highlight</small></div></div>
-    </div>
-    <div className="light-material-principles">
-      <div><span>01</span><strong>DIRECTION</strong><p>Light needs a believable source. Highlights and shadows should suggest where it comes from.</p></div>
-      <div><span>02</span><strong>SURFACE</strong><p>Different materials respond differently to light. Matte absorbs; glass catches; glossy surfaces reflect.</p></div>
-      <div><span>03</span><strong>DEPTH</strong><p>Light separates layers and makes elements feel closer without making the interface heavy.</p></div>
-    </div>
-    <div className="light-material-takeaway"><span>LIGHT + MATERIAL</span><b>Good lighting makes the surface believable.</b></div>
-  </section>;
-}
-
-function ContrastVisual() {
-  return <section className="contrast-section" aria-label="Contrast information and visual comparison">
-    <div className="contrast-heading"><span>06</span><strong>CONTRAST</strong></div>
-    <p className="contrast-intro">Contrast helps the eye separate what matters from what supports it. It can come from light and dark, size, weight, colour or distance.</p>
-    <div className="contrast-showcase">
-      <div className="contrast-card contrast-low"><div className="contrast-card-head"><span>LOW</span><small>QUIET</small></div><div className="contrast-demo"><b>Secondary information</b><span>Soft difference. Easy to miss.</span></div><p>Useful for supporting content.</p></div>
-      <div className="contrast-card contrast-balanced"><div className="contrast-card-head"><span>BALANCED</span><small>CLEAR</small></div><div className="contrast-demo"><b>Primary information</b><span>Strong enough to guide the eye.</span></div><p>Clear hierarchy without shouting.</p></div>
-      <div className="contrast-card contrast-high"><div className="contrast-card-head"><span>HIGH</span><small>STRONG</small></div><div className="contrast-demo"><b>Important action</b><span>Maximum separation and attention.</span></div><p>Use carefully for emphasis.</p></div>
-    </div>
-    <div className="contrast-principles">
-      <div><span>01</span><strong>HIERARCHY</strong><p>Give the strongest contrast to the information that matters most.</p></div>
-      <div><span>02</span><strong>READABILITY</strong><p>Text needs enough difference from its background to stay effortless to read.</p></div>
-      <div><span>03</span><strong>RESTRAINT</strong><p>Too much contrast everywhere removes the sense of priority.</p></div>
-    </div>
-    <div className="contrast-takeaway"><span>CONTRAST</span><b>Good contrast tells the eye where to look first.</b></div>
-    <div className="rhythm-section" aria-label="03.07 Rhythm">
-      <div className="rhythm-heading"><span>03.07</span><strong>RHYTHM</strong></div>
-      <p className="rhythm-intro">Repeated patterns help the eye move through an interface. Consistent spacing, alignment, shapes, and visual beats create a sense of order without making everything feel identical.</p>
-      <div className="rhythm-principles">
-        <div><span>01</span><strong>REPETITION</strong><p>Repeat useful visual elements so the interface feels connected.</p></div>
-        <div><span>02</span><strong>CONSISTENCY</strong><p>Keep spacing, sizing, alignment, and patterns predictable.</p></div>
-        <div><span>03</span><strong>FLOW</strong><p>Let each section naturally lead the eye toward the next.</p></div>
-      </div>
-    </div>
-  </section>;
-}
-
-function DesignLibrary({ onBack }) {
-  return <main className="library-page">
-    <header className="library-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> DASHBOARD</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div></header>
-    <section className="library-hero"><p className="eyebrow">01 · DESIGN LIBRARY</p><h1>Explore <em>Styles.</em></h1><p>Browse the visual languages inside Design Anatomy. Start with a style, then study the parts that make it feel the way it does.</p></section>
-    <section className="library-grid">
-      {styles.map(({name, icon: Icon, tag, copy}, index) => <article className="library-style-card" key={name}><div className="library-style-top"><span>{tag}</span><Icon size={22}/></div><h2>{name}</h2><p>{copy}</p><StylePreview index={index}/><button className="library-style-action">VIEW STYLE <ArrowRight size={18}/></button></article>)}
-    </section>
-    <section className="library-note"><span>DESIGN LIBRARY</span><b>See the style first. Then understand the decisions behind it.</b></section>
-  </main>;
-}
+function DesignLibrary({ onBack }) { return <main className="library-page"><header className="library-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> DASHBOARD</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div></header><section className="library-hero"><p className="eyebrow">01 · DESIGN LIBRARY</p><h1>Explore <em>Styles.</em></h1><p>Browse the visual languages inside Design Anatomy. Start with a style, then study the parts that make it feel the way it does.</p></section><section className="library-grid">{styles.map(({name, icon: Icon, tag, copy}, index) => <article className="library-style-card" key={name}><div className="library-style-top"><span>{tag}</span><Icon size={22}/></div><h2>{name}</h2><p>{copy}</p><StylePreview index={index}/><button className="library-style-action">VIEW STYLE <ArrowRight size={18}/></button></article>)}</section><section className="library-note"><span>DESIGN LIBRARY</span><b>See the style first. Then understand the decisions behind it.</b></section></main>; }
 
 function Dashboard({ onBack, onLibrary }) {
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const [activeCard, setActiveCard] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false); const [query, setQuery] = useState(""); const [activeCard, setActiveCard] = useState(null);
   useEffect(() => { if (!searchOpen) return; const onKey = event => { if (event.key === "Escape") { setSearchOpen(false); setQuery(""); } }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [searchOpen]);
   const filteredCards = useMemo(() => { const term = query.trim().toLowerCase(); if (!term) return dashboardCards; return dashboardCards.filter(card => `${card.tag} ${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term)); }, [query]);
   const activateCard = tag => { if (tag === "01") { onLibrary(); return; } setActiveCard(tag); window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850); };
-  return <main className="dashboard-page">
-    <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header>
-    <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
-    {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
-    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/><ContrastVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
-    <section className="dashboard-note">
-      <span>01</span>
-      <div className="start-here-content">
-        <strong>START HERE</strong>
-        <p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p>
-        <div className="start-here-principles">
-          <div className="start-here-principles-title">PRINCIPLES</div>
-          <div className="start-here-principle"><span>01.01</span><strong>ORIENTATION</strong><p>Know where you are before deciding where to go. Clear labels, navigation and structure give the interface a sense of direction.</p></div>
-          <div className="start-here-principle"><span>01.02</span><strong>DISCOVERY</strong><p>Make useful concepts easy to find. Search, categories and visual cues should help people discover what they need without hunting.</p></div>
-          <div className="start-here-principle"><span>01.03</span><strong>INTERACTION</strong><p>Let the interface respond to curiosity. Cards, buttons, previews and transitions should make exploration feel natural.</p></div>
-          <div className="start-here-principle"><span>01.04</span><strong>FEEDBACK</strong><p>Every action should communicate a result. A change in colour, motion, state or position can reassure the user that something happened.</p></div>
-          <div className="start-here-principle"><span>01.05</span><strong>CONTINUITY</strong><p>Keep the experience connected from one section to the next. Familiar patterns reduce friction and help the user stay oriented.</p></div>
-        </div>
-      </div>
-    </section>
-  </main>;
-}
+  return <main className="dashboard-page"><header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header><section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>{searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}<section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/><ContrastVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section><section className="dashboard-note"><span>01</span><div className="start-here-content"><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p><div className="start-here-principles"><div className="start-here-principles-title">PRINCIPLES</div><div className="start-here-principle"><span>01.01</span><strong>ORIENTATION</strong><p>Know where you are before deciding where to go. Clear labels, navigation and structure give the interface a sense of direction.</p></div><div className="start-here-principle"><span>01.02</span><strong>DISCOVERY</strong><p>Make useful concepts easy to find. Search, categories and visual cues should help people discover what they need without hunting.</p></div><div className="start-here-principle"><span>01.03</span><strong>INTERACTION</strong><p>Let the interface respond to curiosity. Cards, buttons, previews and transitions should make exploration feel natural.</p></div><div className="start-here-principle"><span>01.04</span><strong>FEEDBACK</strong><p>Every action should communicate a result. A change in colour, motion, state or position can reassure the user that something happened.</p></div><div className="start-here-principle"><span>01.05</span><strong>CONTINUITY</strong><p>Keep the experience connected from one section to the next. Familiar patterns reduce friction and help the user stay oriented.</p></div></div></div></section></main>; }
 
-function App() {
-  const [view, setView] = useState(() => window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home");
-  const go = next => { window.location.hash = next === "home" ? "" : next; setView(next); window.scrollTo(0,0); };
-  useEffect(() => { const onHash = () => setView(window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []);
-  if (view === "library") return <DesignLibrary onBack={() => go("dashboard")} />;
-  if (view === "dashboard") return <Dashboard onBack={() => go("home")} onLibrary={() => go("library")} />;
-  return <Home onEnter={() => go("dashboard")} />;
-}
-
+function App() { const [view, setView] = useState(() => window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home"); const go = next => { window.location.hash = next === "home" ? "" : next; setView(next); window.scrollTo(0,0); }; useEffect(() => { const onHash = () => setView(window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []); if (view === "library") return <DesignLibrary onBack={() => go("dashboard")} />; if (view === "dashboard") return <Dashboard onBack={() => go("home")} onLibrary={() => go("library")} />; return <Home onEnter={() => go("dashboard")} />; }
 createRoot(document.getElementById("root")).render(<App />);
