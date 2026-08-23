@@ -21,17 +21,16 @@ export default function Glassmorphism({ onBack }) {
 
       <section className="glass-demo-section">
         <div className="glass-demo-scene">
-          <div className="glass-orb orb-a" /><div className="glass-orb orb-b" />
-          <div className="glass-orb orb-c" /><div className="glass-orb orb-d" />
-          <div className="glass-orb orb-e" /><div className="glass-orb orb-f" />
-          <div className="glass-orb orb-g" />
-
-          <div className="glass-human" aria-hidden="true">
-            <div className="glass-human-head" />
-            <div className="glass-human-visor" />
-            <div className="glass-human-neck" />
-            <div className="glass-human-body" />
-            <div className="glass-human-rim" />
+          <div className="glass-environment" aria-hidden="true">
+            <div className="environment-glow glow-cyan" />
+            <div className="environment-glow glow-violet" />
+            <div className="environment-glow glow-pink" />
+            <div className="environment-orb orb-left" />
+            <div className="environment-orb orb-right" />
+            <div className="glass-ribbon ribbon-one" />
+            <div className="glass-ribbon ribbon-two" />
+            <div className="glass-ribbon ribbon-three" />
+            <div className="glass-ribbon ribbon-four" />
           </div>
 
           <div className="glass-demo-card">
@@ -45,11 +44,11 @@ export default function Glassmorphism({ onBack }) {
             </div>
             <div className="glass-card-bottom">
               <span>Premium Design Asset</span>
-              <span>Editable PSD</span>
+              <span>Editable Example</span>
             </div>
           </div>
         </div>
-        <p className="glass-demo-caption">The background remains visible through a translucent surface while blur, highlights and soft shadows create depth between layers.</p>
+        <p className="glass-demo-caption">The background remains visible through a translucent surface while blur, highlights, refraction and soft shadows create depth between layers.</p>
       </section>
 
       <section className="glass-principles">
