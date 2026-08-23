@@ -1,7 +1,8 @@
-// Safe navigation layer: keeps routing separate from the existing React dashboard.
-// Capture the click before the card's React handler runs.
+// Safe navigation layer for the existing React app.
+// The dashboard already uses hash-based routing, so keep navigation inside
+// the same deployed application instead of requesting a separate HTML page.
 const openLibrary = () => {
-  window.location.assign("/library.html");
+  window.location.hash = "#library";
 };
 
 document.addEventListener("click", (event) => {
