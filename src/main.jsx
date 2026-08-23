@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { createRoot } from "react-dom/client";
 import { ArrowRight, Compass, Eye, Lightbulb, Search, ArrowLeft, X } from "lucide-react";
 import Minimalism from "./Minimalism.jsx";
 import Glassmorphism from "./Glassmorphism.jsx";
