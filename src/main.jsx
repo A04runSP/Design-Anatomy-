@@ -127,6 +127,15 @@ function ContrastVisual() {
       <div><span>03</span><strong>RESTRAINT</strong><p>Too much contrast everywhere removes the sense of priority.</p></div>
     </div>
     <div className="contrast-takeaway"><span>CONTRAST</span><b>Good contrast tells the eye where to look first.</b></div>
+    <div className="rhythm-section" aria-label="03.07 Rhythm">
+      <div className="rhythm-heading"><span>03.07</span><strong>RHYTHM</strong></div>
+      <p className="rhythm-intro">Repeated patterns help the eye move through an interface. Consistent spacing, alignment, shapes, and visual beats create a sense of order without making everything feel identical.</p>
+      <div className="rhythm-principles">
+        <div><span>01</span><strong>REPETITION</strong><p>Repeat useful visual elements so the interface feels connected.</p></div>
+        <div><span>02</span><strong>CONSISTENCY</strong><p>Keep spacing, sizing, alignment, and patterns predictable.</p></div>
+        <div><span>03</span><strong>FLOW</strong><p>Let each section naturally lead the eye toward the next.</p></div>
+      </div>
+    </div>
   </section>;
 }
 
