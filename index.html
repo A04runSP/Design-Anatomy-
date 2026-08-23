@@ -11,6 +11,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Compatibility guard: older navigation may still request /library.html.
+      // Keep the route inside the React application instead of requiring a page file.
+      if (window.location.pathname === "/library.html") {
+        window.location.replace("/#library");
+      }
+    </script>
+    <script type="module" src="/src/navigation.js"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
