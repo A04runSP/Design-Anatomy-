@@ -81,5 +81,12 @@ document.addEventListener("keydown", (event) => {
 
 const observer = new MutationObserver(injectModernDigitalStyles);
 observer.observe(document.body, { childList: true, subtree: true });
-window.addEventListener("hashchange", () => window.setTimeout(injectModernDigitalStyles, 50));
-window.setTimeout(injectModernDigitalStyles, 50);
+window.addEventListener("hashchange", () => {
+  if (window.location.hash === "#flat-design") openFlatDesign();
+  window.setTimeout(injectModernDigitalStyles, 50);
+});
+
+window.setTimeout(() => {
+  if (window.location.hash === "#flat-design") openFlatDesign();
+  injectModernDigitalStyles();
+}, 50);
