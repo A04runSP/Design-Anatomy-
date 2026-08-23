@@ -140,48 +140,35 @@ function ContrastVisual() {
   </section>;
 }
 
-function Dashboard({ onBack, onOpenLibrary }) {
+function Dashboard({ onBack }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeCard, setActiveCard] = useState(null);
   useEffect(() => { if (!searchOpen) return; const onKey = event => { if (event.key === "Escape") { setSearchOpen(false); setQuery(""); } }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [searchOpen]);
-  const filteredCards = useMemo(() => { const term = query.trim().toLowerCase(); if (!term) return dashboardCards; return dashboardCards.filter(card => `${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term)); }, [query]);
+  const filteredCards = useMemo(() => { const term = query.trim().toLowerCase(); if (!term) return dashboardCards; return dashboardCards.filter(card => `${card.tag} ${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term)); }, [query]);
   const activateCard = tag => { setActiveCard(tag); window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850); };
   return <main className="dashboard-page">
     <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header>
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
-    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/><ContrastVisual/></div>}<button onClick={event => { event.stopPropagation(); if (tag === "01") { onOpenLibrary(); return; } activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
+    <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/><ContrastVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
     <section className="dashboard-note">
-      <span>04</span>
+      <span>01</span>
       <div className="start-here-content">
         <strong>START HERE</strong>
         <p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p>
         <div className="start-here-principles">
           <div className="start-here-principles-title">PRINCIPLES</div>
-          <div className="start-here-principle"><span>04.01</span><strong>ORIENTATION</strong><p>Know where you are before deciding where to go. Clear labels, navigation and structure give the interface a sense of direction.</p></div>
-          <div className="start-here-principle"><span>04.02</span><strong>DISCOVERY</strong><p>Make useful concepts easy to find. Search, categories and visual cues should help people discover what they need without hunting.</p></div>
-          <div className="start-here-principle"><span>04.03</span><strong>INTERACTION</strong><p>Let the interface respond to curiosity. Cards, buttons, previews and transitions should make exploration feel natural.</p></div>
-          <div className="start-here-principle"><span>04.04</span><strong>FEEDBACK</strong><p>Every action should communicate a result. A change in colour, motion, state or position can reassure the user that something happened.</p></div>
-          <div className="start-here-principle"><span>04.05</span><strong>CONTINUITY</strong><p>Keep the experience connected from one section to the next. Familiar patterns reduce friction and help the user stay oriented.</p></div>
+          <div className="start-here-principle"><span>01.01</span><strong>ORIENTATION</strong><p>Know where you are before deciding where to go. Clear labels, navigation and structure give the interface a sense of direction.</p></div>
+          <div className="start-here-principle"><span>01.02</span><strong>DISCOVERY</strong><p>Make useful concepts easy to find. Search, categories and visual cues should help people discover what they need without hunting.</p></div>
+          <div className="start-here-principle"><span>01.03</span><strong>INTERACTION</strong><p>Let the interface respond to curiosity. Cards, buttons, previews and transitions should make exploration feel natural.</p></div>
+          <div className="start-here-principle"><span>01.04</span><strong>FEEDBACK</strong><p>Every action should communicate a result. A change in colour, motion, state or position can reassure the user that something happened.</p></div>
+          <div className="start-here-principle"><span>01.05</span><strong>CONTINUITY</strong><p>Keep the experience connected from one section to the next. Familiar patterns reduce friction and help the user stay oriented.</p></div>
         </div>
       </div>
     </section>
   </main>;
 }
 
-function Library({ onBack }) {
-  return <main className="dashboard-page library-page">
-    <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> DASHBOARD</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div></header>
-    <section className="dashboard-hero"><p className="eyebrow">STYLE LIBRARY</p><h1>Explore styles<br/><em>visually.</em></h1><p>The library is ready for the style collections.</p></section>
-  </main>;
-}
-
-function App() {
-  const [page, setPage] = useState(() => window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home");
-  const go = nextPage => { window.location.hash = nextPage === "home" ? "" : nextPage; setPage(nextPage); window.scrollTo(0, 0); };
-  useEffect(() => { const onHash = () => { const hash = window.location.hash; setPage(hash === "#dashboard" ? "dashboard" : hash === "#library" ? "library" : "home"); window.scrollTo(0,0); }; window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []);
-  return page === "dashboard" ? <Dashboard onBack={() => go("home")} onOpenLibrary={() => go("library")} /> : page === "library" ? <Library onBack={() => go("dashboard")} /> : <Home onEnter={() => go("dashboard")} />;
-}
-
+function App() { const [dashboard, setDashboard] = useState(() => window.location.hash === "#dashboard"); const enter = () => { window.location.hash = "dashboard"; setDashboard(true); window.scrollTo(0,0); }; const back = () => { window.location.hash = ""; setDashboard(false); window.scrollTo(0,0); }; useEffect(() => { const onHash = () => setDashboard(window.location.hash === "#dashboard"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []); return dashboard ? <Dashboard onBack={back}/> : <Home onEnter={enter}/>; }
 createRoot(document.getElementById("root")).render(<App />);
