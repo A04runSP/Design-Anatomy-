@@ -1,23 +1,10 @@
-import { mountMinimalism } from "./Minimalism.jsx";
 import { mountFlatDesign } from "./FlatDesign.jsx";
 import "./flat-library.css";
 
-// Navigation bridge for the existing React application.
-// Dashboard and library remain on the existing hash routes.
+// Small navigation bridge for modular style pages that are added without
+// changing the existing React library structure.
 const openLibrary = () => {
   window.location.hash = "#library";
-};
-
-const openMinimalism = () => {
-  const root = document.getElementById("root");
-  if (!root) return;
-
-  window.location.hash = "#minimalism";
-  mountMinimalism(root, () => {
-    window.location.hash = "#library";
-    window.location.reload();
-  });
-  window.scrollTo(0, 0);
 };
 
 const openFlatDesign = () => {
@@ -75,13 +62,6 @@ const handleNavigation = (event) => {
     event.preventDefault();
     event.stopPropagation();
     openFlatDesign();
-    return;
-  }
-
-  if (button.classList.contains("library-style-action")) {
-    event.preventDefault();
-    event.stopPropagation();
-    openMinimalism();
     return;
   }
 
