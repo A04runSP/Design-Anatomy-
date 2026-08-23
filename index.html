@@ -12,6 +12,20 @@
   <body>
     <div id="root"></div>
     <script>
+      // Direct page navigation for Design Library styles.
+      // This intentionally bypasses the React click handlers for the style detail page.
+      document.addEventListener("click", function (event) {
+        const button = event.target.closest(".library-style-action");
+        if (!button) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        const card = button.closest(".library-style-card");
+        const number = card?.querySelector(".library-style-top span")?.textContent?.trim();
+        if (number === "01") {
+          window.location.assign("/minimalism.html");
+        }
+      }, true);
+
       // Compatibility guard: older navigation may still request /library.html.
       // Keep the route inside the React application instead of requiring a page file.
       if (window.location.pathname === "/library.html") {
