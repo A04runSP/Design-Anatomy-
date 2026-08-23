@@ -3,16 +3,19 @@
 .glassmorphism-page:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 45% 30% at 8% 25%,rgba(0,190,220,.72),transparent 70%),radial-gradient(ellipse 42% 32% at 88% 20%,rgba(255,105,190,.62),transparent 68%),radial-gradient(ellipse 42% 30% at 76% 58%,rgba(105,65,255,.62),transparent 70%),radial-gradient(ellipse 35% 28% at 20% 78%,rgba(70,150,255,.42),transparent 70%),linear-gradient(135deg,#eceeed 0%,#d9dada 48%,#d1d3d4 100%)}
 .glassmorphism-page:after{content:"GLASS";position:fixed;z-index:1;pointer-events:none;left:30%;top:7%;width:46%;height:88%;border:1px solid rgba(255,255,255,.72);border-radius:90px 90px 140px 140px;background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.12));box-shadow:inset 1px 1px 0 rgba(255,255,255,.8),inset -22px -25px 60px rgba(90,95,105,.12),0 35px 90px rgba(80,80,90,.12);color:rgba(85,87,92,.18);font-size:clamp(7rem,22vw,16rem);font-weight:900;letter-spacing:-.1em;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;text-shadow:0 1px rgba(255,255,255,.7)}
 .glassmorphism-header,.glass-hero,.glass-demo-section,.glass-principles,.glass-takeaway,.glass-bottom-back{z-index:3}
-/* Keep decorative layers behind the hero typography. */
-.glass-hero{position:relative;z-index:10!important;isolation:isolate}
-.glass-hero::before,.glass-hero::after{display:none!important;content:none!important}
-.glass-hero .glass-eyebrow,.glass-hero h1,.glass-hero>p:last-child{position:relative;z-index:11!important}
+
+/* HERO LAYER FIX: the hero must be clean; no decorative pseudo-elements or blocks may cover its text. */
+.glass-hero{position:relative;z-index:20!important;isolation:isolate;overflow:visible!important}
+.glass-hero::before,.glass-hero::after,.glass-hero h1::before,.glass-hero h1::after,.glass-hero h1 em::before,.glass-hero h1 em::after,.glass-hero .glass-eyebrow::before,.glass-hero .glass-eyebrow::after,.glass-hero>p:last-child::before,.glass-hero>p:last-child::after{content:none!important;display:none!important;background:none!important;box-shadow:none!important}
+.glass-hero .glass-eyebrow,.glass-hero h1,.glass-hero h1 em,.glass-hero>p:last-child{position:relative;z-index:21!important}
+.glass-hero h1{background:none!important;box-shadow:none!important}
+.glass-hero h1 em{background:linear-gradient(100deg,#22252b,#4c68d8 42%,#9a49d8 70%,#ef62a7)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+
 .glassmorphism-header{background:rgba(255,255,255,.28)!important;border-color:rgba(255,255,255,.65)!important;box-shadow:inset 0 1px rgba(255,255,255,.8),0 20px 50px rgba(70,75,85,.12)!important;backdrop-filter:blur(24px) saturate(125%);-webkit-backdrop-filter:blur(24px) saturate(125%)}
 .glass-back-button,.glass-bottom-back{color:#33363d!important;background:rgba(255,255,255,.35)!important;border-color:rgba(255,255,255,.7)!important;box-shadow:inset 0 1px rgba(255,255,255,.8),0 10px 28px rgba(70,75,85,.12)!important}
 .glass-brand{color:#303238!important}
 .glass-eyebrow,.glass-section-heading span,.glass-takeaway span{color:#6356a8!important}
 .glass-hero h1{color:#25272c!important;text-shadow:0 10px 35px rgba(255,255,255,.5)!important}
-.glass-hero h1 em{background:linear-gradient(100deg,#22252b,#4c68d8 42%,#9a49d8 70%,#ef62a7)!important;-webkit-background-clip:text;background-clip:text;color:transparent}
 .glass-hero>p:last-child{color:rgba(43,46,53,.68)!important}
 .glass-demo-scene{background:linear-gradient(145deg,#e7e8e8,#d4d6d7)!important;border-color:rgba(255,255,255,.72)!important;box-shadow:0 35px 90px rgba(65,70,80,.2),inset 0 1px rgba(255,255,255,.9)!important}
 .glass-environment{background:radial-gradient(ellipse 55% 35% at 8% 52%,rgba(0,190,220,.62),transparent 65%),radial-gradient(ellipse 55% 40% at 92% 38%,rgba(255,105,190,.48),transparent 68%),radial-gradient(ellipse 50% 38% at 75% 72%,rgba(105,65,255,.55),transparent 68%),linear-gradient(145deg,#ededed,#d3d5d6)!important}
