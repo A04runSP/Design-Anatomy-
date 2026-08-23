@@ -140,13 +140,24 @@ function ContrastVisual() {
   </section>;
 }
 
-function Dashboard({ onBack }) {
+function DesignLibrary({ onBack }) {
+  return <main className="library-page">
+    <header className="library-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> DASHBOARD</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div></header>
+    <section className="library-hero"><p className="eyebrow">01 · DESIGN LIBRARY</p><h1>Explore <em>Styles.</em></h1><p>Browse the visual languages inside Design Anatomy. Start with a style, then study the parts that make it feel the way it does.</p></section>
+    <section className="library-grid">
+      {styles.map(({name, icon: Icon, tag, copy}, index) => <article className="library-style-card" key={name}><div className="library-style-top"><span>{tag}</span><Icon size={22}/></div><h2>{name}</h2><p>{copy}</p><StylePreview index={index}/><button className="library-style-action">VIEW STYLE <ArrowRight size={18}/></button></article>)}
+    </section>
+    <section className="library-note"><span>DESIGN LIBRARY</span><b>See the style first. Then understand the decisions behind it.</b></section>
+  </main>;
+}
+
+function Dashboard({ onBack, onLibrary }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeCard, setActiveCard] = useState(null);
   useEffect(() => { if (!searchOpen) return; const onKey = event => { if (event.key === "Escape") { setSearchOpen(false); setQuery(""); } }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [searchOpen]);
   const filteredCards = useMemo(() => { const term = query.trim().toLowerCase(); if (!term) return dashboardCards; return dashboardCards.filter(card => `${card.tag} ${card.title} ${card.copy} ${card.action}`.toLowerCase().includes(term)); }, [query]);
-  const activateCard = tag => { setActiveCard(tag); window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850); };
+  const activateCard = tag => { if (tag === "01") { onLibrary(); return; } setActiveCard(tag); window.setTimeout(() => setActiveCard(current => current === tag ? null : current), 850); };
   return <main className="dashboard-page">
     <header className="dash-header"><button className="back-button" onClick={onBack}><ArrowLeft size={19}/> HOME</button><div className="brand dash-brand"><span className="brand-star">✦</span><span>DESIGN ANATOMY</span></div><div className={`search-wrap ${searchOpen ? "open" : ""}`}>{searchOpen && <input autoFocus value={query} onChange={event => setQuery(event.target.value)} placeholder="Search styles, design, concepts..." aria-label="Search design library" />}<button className="search-button" aria-label={searchOpen ? "Close search" : "Search design library"} onClick={() => { setSearchOpen(value => !value); if (searchOpen) setQuery(""); }}>{searchOpen ? <X size={20}/> : <Search size={20}/>}<span className="search-label">SEARCH</span></button></div></header>
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
@@ -170,5 +181,13 @@ function Dashboard({ onBack }) {
   </main>;
 }
 
-function App() { const [dashboard, setDashboard] = useState(() => window.location.hash === "#dashboard"); const enter = () => { window.location.hash = "dashboard"; setDashboard(true); window.scrollTo(0,0); }; const back = () => { window.location.hash = ""; setDashboard(false); window.scrollTo(0,0); }; useEffect(() => { const onHash = () => setDashboard(window.location.hash === "#dashboard"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []); return dashboard ? <Dashboard onBack={back}/> : <Home onEnter={enter}/>; }
+function App() {
+  const [view, setView] = useState(() => window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home");
+  const go = next => { window.location.hash = next === "home" ? "" : next; setView(next); window.scrollTo(0,0); };
+  useEffect(() => { const onHash = () => setView(window.location.hash === "#dashboard" ? "dashboard" : window.location.hash === "#library" ? "library" : "home"); window.addEventListener("hashchange", onHash); return () => window.removeEventListener("hashchange", onHash); }, []);
+  if (view === "library") return <DesignLibrary onBack={() => go("dashboard")} />;
+  if (view === "dashboard") return <Dashboard onBack={() => go("home")} onLibrary={() => go("library")} />;
+  return <Home onEnter={() => go("dashboard")} />;
+}
+
 createRoot(document.getElementById("root")).render(<App />);
