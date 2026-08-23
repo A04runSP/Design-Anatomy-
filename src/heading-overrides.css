@@ -1,0 +1,14 @@
+/* Heading accent system — keep principle titles and the dashboard guide heading cyan. */
+.spacing-principles strong,
+.light-material-principles strong,
+.contrast-principles strong,
+.colour-principles strong{
+  color:var(--cyan) !important;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+.dashboard-note strong{
+  color:var(--cyan) !important;
+  font-weight:900;
+  letter-spacing:.16em;
+}
