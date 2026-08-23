@@ -43,3 +43,22 @@
 .rhythm-principles p{margin:0;color:rgba(230,245,247,.78);font-size:.95rem;line-height:1.75}
 @media (max-width:700px){.rhythm-section{margin-top:2.5rem;padding:1.8rem 1.35rem 2rem}.rhythm-heading span{font-size:.98rem}.rhythm-heading strong{font-size:1rem}.rhythm-intro{font-size:1rem;line-height:1.8}.rhythm-principles{gap:1.3rem}.rhythm-principles p{font-size:.95rem;line-height:1.75}}
 @media (min-width:700px){.contrast-showcase{grid-template-columns:repeat(3,1fr)}.contrast-principles{grid-template-columns:repeat(3,1fr)}.contrast-principles>div{border-left:0;border-top:2px solid rgba(22,225,239,.55);border-radius:0 0 .9rem .9rem}.contrast-takeaway{max-width:42rem}.rhythm-section{max-width:42rem;padding:2.2rem 2rem 2.2rem}.rhythm-principles{grid-template-columns:repeat(3,1fr)}.rhythm-principles>div{border-top:0;border-left:2px solid rgba(22,225,239,.18);padding:0 0 0 1rem}}
+
+/* Neumorphism home preview — keep the library card visually consistent with the detail page */
+.style-stage:has(.neo-preview){background:#ece9df}
+.style-stage:has(.neo-preview) .stage-smoke{background-image:url('./neumorphism-pattern.svg');background-size:520px 520px;background-position:center;opacity:.10;filter:none;inset:0;animation:none}
+.style-stage:has(.neo-preview) .stage-orb{display:none}
+.style-stage:has(.neo-preview) .style-card{border:1px solid rgba(65,61,53,.12);background:#ece9df;box-shadow:18px 18px 42px #d0cdc3,-16px -16px 38px #fffdf7;backdrop-filter:none;color:#171717}
+.style-stage:has(.neo-preview) .style-card:after{background:none}
+.style-stage:has(.neo-preview) .style-icon{border-color:rgba(65,61,53,.18);color:#171717;box-shadow:7px 7px 14px #d0cdc3,-7px -7px 14px #fffdf7}
+.style-stage:has(.neo-preview) .card-number{color:#a66f2b}
+.style-stage:has(.neo-preview) .style-name{color:#171717}
+.style-stage:has(.neo-preview) .style-copy{color:#5f5b54}
+.style-stage:has(.neo-preview) .auto-note{color:#6b675f}
+.style-stage:has(.neo-preview) .pulse-dot{background:#a66f2b;box-shadow:0 0 10px rgba(166,111,43,.35)}
+.style-stage:has(.neo-preview) .neo-preview{background:#ece9df}
+.style-stage:has(.neo-preview) .neo-panel{background:#ece9df;box-shadow:14px 14px 30px #d0cdc3,-14px -14px 30px #fffdf7;color:#5f5b54}
+.style-stage:has(.neo-preview) .neo-knob{box-shadow:7px 7px 14px #d0cdc3,-7px -7px 14px #fffdf7}
+.style-stage:has(.neo-preview) .neo-slider{box-shadow:inset 4px 4px 8px #d0cdc3,inset -4px -4px 8px #fffdf7}
+.style-stage:has(.neo-preview) .neo-row strong{color:#a66f2b}
+@media(max-width:700px){.style-stage:has(.neo-preview){padding-top:45px;background:#ece9df}.style-stage:has(.neo-preview) .stage-smoke{background-size:360px 360px;opacity:.09}.style-stage:has(.neo-preview) .style-card{box-shadow:14px 14px 30px #d0cdc3,-12px -12px 28px #fffdf7}}
