@@ -7,6 +7,7 @@ import "./typography.css";
 import "./spacing.css";
 import "./light-material.css";
 import "./contrast.css";
+import "./start-here.css";
 
 const styles = [
   { name: "MINIMALISM", icon: Compass, tag: "01", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting." },
@@ -151,7 +152,21 @@ function Dashboard({ onBack }) {
     <section className="dashboard-hero"><p className="eyebrow">DESIGN LIBRARY</p><h1>Explore design<br/><em>visually.</em></h1><p>See the style. Understand the parts. Learn why it works.</p></section>
     {searchOpen && query.trim() && <div className="search-status">{filteredCards.length} {filteredCards.length === 1 ? "result" : "results"} for <strong>“{query}”</strong></div>}
     <section className="dashboard-grid">{filteredCards.length > 0 ? filteredCards.map(({tag, icon: CardIcon, title, copy, action}, index) => <article key={tag} className={`dashboard-card ${index === 0 && !query ? "large" : ""} ${activeCard === tag ? "is-active" : ""} ${tag === "02" ? "see-design-card" : ""} ${tag === "03" ? "understand-card" : ""}`} tabIndex="0" onClick={() => activateCard(tag)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") activateCard(tag); }}><span className="dashboard-number">{tag}</span><div className="dashboard-icon"><CardIcon size={24}/></div><h2>{title}</h2><p>{copy}</p>{tag === "02" && <DesignReference/>}{tag === "03" && <div className="depth-section"><div className="depth-heading"><span>01</span><div><strong>DEPTH</strong><small>Hierarchy through distance.</small></div></div><p className="depth-copy">Shadows, layers and contrast create a sense of distance. Good depth guides the eye without making the interface feel heavy.</p><DepthVisual/><TypographyVisual/><ColourVisual/><SpacingVisual/><LightMaterialVisual/><ContrastVisual/></div>}<button onClick={event => { event.stopPropagation(); activateCard(tag); }}>{action} <ArrowRight size={18}/></button></article>) : <div className="no-results"><Search size={28}/><strong>No matching design found</strong><span>Try “style”, “visual”, “depth” or “learn”.</span></div>}</section>
-    <section className="dashboard-note"><span>01</span><div><strong>START HERE</strong><p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p></div></section>
+    <section className="dashboard-note">
+      <span>01</span>
+      <div className="start-here-content">
+        <strong>START HERE</strong>
+        <p>The dashboard is the entry point to the Design Anatomy library. Search above to quickly find a concept, then tap a card to feel the interaction.</p>
+        <div className="start-here-principles">
+          <div className="start-here-principles-title">PRINCIPLES</div>
+          <div className="start-here-principle"><span>01.01</span><strong>ORIENTATION</strong><p>Know where you are before deciding where to go. Clear labels, navigation and structure give the interface a sense of direction.</p></div>
+          <div className="start-here-principle"><span>01.02</span><strong>DISCOVERY</strong><p>Make useful concepts easy to find. Search, categories and visual cues should help people discover what they need without hunting.</p></div>
+          <div className="start-here-principle"><span>01.03</span><strong>INTERACTION</strong><p>Let the interface respond to curiosity. Cards, buttons, previews and transitions should make exploration feel natural.</p></div>
+          <div className="start-here-principle"><span>01.04</span><strong>FEEDBACK</strong><p>Every action should communicate a result. A change in colour, motion, state or position can reassure the user that something happened.</p></div>
+          <div className="start-here-principle"><span>01.05</span><strong>CONTINUITY</strong><p>Keep the experience connected from one section to the next. Familiar patterns reduce friction and help the user stay oriented.</p></div>
+        </div>
+      </div>
+    </section>
   </main>;
 }
 
