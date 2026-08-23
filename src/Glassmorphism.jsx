@@ -1,5 +1,6 @@
 import React from "react";
 import "./glassmorphism.css";
+import "./glass-preview.css";
 import { ArrowLeft } from "lucide-react";
 
 export default function Glassmorphism({ onBack }) {
