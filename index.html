@@ -14,9 +14,8 @@
 
     <!--
       All navigation is handled by the React app in src/main.jsx.
-      Do not redirect style buttons to standalone .html pages.
-      This keeps the Design Library and style detail pages inside
-      the same Vite/React application.
+      The navigation bridge also connects modular style pages such as
+      Flat Design without changing the existing React entry point.
     -->
 
     <!-- Compatibility guard for the old library.html route. -->
@@ -27,5 +26,6 @@
     </script>
 
     <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/navigation.js"></script>
   </body>
 </html>
