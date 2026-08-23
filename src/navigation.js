@@ -1,6 +1,5 @@
 // Safe navigation layer for the existing React app.
-// The dashboard and library use hash routing. This file only adds the
-// individual style-view interaction without creating another HTML page.
+// Dashboard and library stay inside the same React application.
 const openLibrary = () => {
   window.location.hash = "#library";
 };
@@ -22,16 +21,14 @@ const openMinimalism = () => {
   root.innerHTML = `
     <main class="minimalism-page">
       <header class="minimalism-header">
-        <button class="minimalism-back" type="button" data-minimalism-back>← BACK TO LIBRARY</button>
+        <button class="minimalism-back" type="button">← BACK TO LIBRARY</button>
         <div class="minimalism-kicker">01 · DESIGN LIBRARY</div>
       </header>
-
       <section class="minimalism-hero">
         <p class="minimalism-kicker">01 · MINIMALISM</p>
         <h1>Less,<br><em>but better.</em></h1>
         <p>Minimalism is a visual language built around restraint. It removes unnecessary decoration so space, hierarchy, typography and simple form can carry the experience.</p>
       </section>
-
       <section class="minimalism-grid">
         <article class="minimalism-card">
           <div class="minimalism-card-label"><span>SEE THE STYLE</span><span>01</span></div>
@@ -44,7 +41,6 @@ const openMinimalism = () => {
             <div class="spec-meta"><span>SPACE</span><span>HIERARCHY</span><span>RESTRAINT</span></div>
           </div>
         </article>
-
         <article class="minimalism-card">
           <div class="minimalism-card-label"><span>VISUAL DNA</span><span>01</span></div>
           <h2>What makes it minimal?</h2>
@@ -58,67 +54,44 @@ const openMinimalism = () => {
           </div>
         </article>
       </section>
-
       <section class="minimalism-wide">
         <article class="minimalism-card"><div class="minimalism-card-label"><span>FEELS LIKE</span></div><h2>Calm · Focused · Precise</h2><p>The visual rhythm is quiet because the interface isn't competing with itself for attention.</p></article>
         <article class="minimalism-card"><div class="minimalism-card-label"><span>GOOD FOR</span></div><h2>Editorial · Portfolio · Product</h2><p>Especially useful when the content, message or product itself should remain the visual focus.</p></article>
         <article class="minimalism-card"><div class="minimalism-card-label"><span>WATCH OUT</span></div><h2>Empty ≠ Minimal</h2><p>Removing elements without improving hierarchy can create a sparse interface rather than a purposeful one.</p></article>
       </section>
-
       <section class="minimalism-note"><span>THE TAKEAWAY</span><b>Minimalism is not about using less for the sake of less. It is about making what remains matter more.</b></section>
     </main>
   `;
 
-  root.querySelector("[data-minimalism-back]")?.addEventListener("click", () => {
+  root.querySelector(".minimalism-back")?.addEventListener("click", () => {
     window.location.hash = "#library";
     window.location.reload();
   });
   window.scrollTo(0, 0);
 };
 
-document.addEventListener("click", (event) => {
+const handleNavigation = (event) => {
   const target = event.target instanceof Element ? event.target : null;
   const button = target?.closest("button");
   if (!button) return;
+
+  if (button.classList.contains("library-style-action")) {
+    event.preventDefault();
+    event.stopPropagation();
+    openMinimalism();
+    return;
+  }
 
   const label = button.textContent.replace(/\s+/g, " ").trim().toUpperCase();
   if (label.includes("OPEN LIBRARY")) {
     event.preventDefault();
     event.stopPropagation();
     openLibrary();
-    return;
   }
+};
 
-  if (label.includes("VIEW STYLE") && button.closest(".library-style-card")) {
-    const firstCard = button.closest(".library-style-card")?.querySelector(".library-style-top span")?.textContent?.trim();
-    if (firstCard === "01") {
-      event.preventDefault();
-      event.stopPropagation();
-      openMinimalism();
-    }
-  }
-}, true);
-
+document.addEventListener("click", handleNavigation, true);
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Enter" && event.key !== " ") return;
-  const target = event.target instanceof Element ? event.target : null;
-  const button = target?.closest("button");
-  if (!button) return;
-
-  const label = button.textContent.replace(/\s+/g, " ").trim().toUpperCase();
-  if (label.includes("OPEN LIBRARY")) {
-    event.preventDefault();
-    event.stopPropagation();
-    openLibrary();
-    return;
-  }
-
-  if (label.includes("VIEW STYLE") && button.closest(".library-style-card")) {
-    const firstCard = button.closest(".library-style-card")?.querySelector(".library-style-top span")?.textContent?.trim();
-    if (firstCard === "01") {
-      event.preventDefault();
-      event.stopPropagation();
-      openMinimalism();
-    }
-  }
+  handleNavigation(event);
 }, true);
