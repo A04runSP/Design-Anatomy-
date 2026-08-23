@@ -16,10 +16,7 @@ export default function Glassmorphism({ onBack }) {
       <section className="glass-hero">
         <p className="glass-eyebrow">02 · GLASSMORPHISM</p>
         <h1>Glass that <em>feels alive.</em></h1>
-        <p>
-          Translucent surfaces, background blur, soft light and layered depth
-          create the signature glass interface effect.
-        </p>
+        <p>Translucent surfaces, background blur, soft light and layered depth create the signature glass interface effect.</p>
       </section>
 
       <section className="glass-demo-section">
@@ -28,6 +25,14 @@ export default function Glassmorphism({ onBack }) {
           <div className="glass-orb orb-c" /><div className="glass-orb orb-d" />
           <div className="glass-orb orb-e" /><div className="glass-orb orb-f" />
           <div className="glass-orb orb-g" />
+
+          <div className="glass-human" aria-hidden="true">
+            <div className="glass-human-head" />
+            <div className="glass-human-visor" />
+            <div className="glass-human-neck" />
+            <div className="glass-human-body" />
+            <div className="glass-human-rim" />
+          </div>
 
           <div className="glass-demo-card">
             <div className="glass-card-top">
@@ -44,10 +49,7 @@ export default function Glassmorphism({ onBack }) {
             </div>
           </div>
         </div>
-        <p className="glass-demo-caption">
-          The background remains visible through a translucent surface while
-          blur, highlights and soft shadows create depth between layers.
-        </p>
+        <p className="glass-demo-caption">The background remains visible through a translucent surface while blur, highlights and soft shadows create depth between layers.</p>
       </section>
 
       <section className="glass-principles">
