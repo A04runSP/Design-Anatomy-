@@ -10,8 +10,16 @@
 .library-style-top{display:flex;align-items:center;justify-content:space-between;color:var(--cyan,#16e1ef);font-weight:900;letter-spacing:.16em}
 .library-style-card h2{margin:24px 0 12px;font-size:22px;letter-spacing:.12em;color:#eaf8f9}
 .library-style-card>p{min-height:90px;color:var(--body,#b8cacc);line-height:1.7;font-size:14px}
-.library-style-card .preview{height:220px;margin-top:22px;border-radius:18px}
+.library-style-card .preview{height:220px;margin-top:22px}
 .library-style-action{margin-top:20px;border:1px solid rgba(22,225,239,.35);background:rgba(22,225,239,.045);color:var(--cyan,#16e1ef);border-radius:999px;padding:12px 16px;display:flex;align-items:center;gap:8px;font:900 11px/1 "Nunito",system-ui,sans-serif;letter-spacing:.12em;cursor:pointer}
 .library-note{max-width:1080px;margin:34px auto 0;padding:20px 22px;border-left:2px solid var(--cyan,#16e1ef);background:rgba(22,225,239,.035);display:flex;align-items:center;gap:18px;border-radius:0 16px 16px 0}
 .library-note span{color:var(--cyan,#16e1ef);font-size:11px;font-weight:900;letter-spacing:.14em}.library-note b{color:#e5f3f4;font-size:14px}
-@media(max-width:800px){.library-page{padding:22px 5vw 70px}.library-header{margin-bottom:45px}.library-hero{padding-top:30px;margin-bottom:32px}.library-hero h1{font-size:clamp(44px,14vw,70px)}.library-hero>p:last-child{font-size:15px}.library-grid{grid-template-columns:1fr;gap:16px}.library-style-card{padding:22px}.library-style-card>p{min-height:auto}.library-style-card .preview{height:205px}.library-note{align-items:flex-start;flex-direction:column;gap:7px}}
+
+/* Brutalism library preview — compact, deliberate and readable on mobile. */
+.library-style-card .brutal-preview{height:220px;margin-top:22px;padding:18px;background:#f3f0e8;border:3px solid #111;border-radius:0;box-shadow:7px 7px 0 #16e1ef;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr auto;gap:10px 14px;align-items:start;overflow:hidden;color:#111;position:relative}
+.brutal-preview>b{font-size:14px;font-weight:1000;letter-spacing:.08em;background:#111;color:#16e1ef;padding:5px 7px;line-height:1}
+.brutal-preview>strong{grid-column:1/-1;align-self:center;font-size:clamp(32px,5vw,48px);line-height:.82;letter-spacing:-.06em;text-transform:uppercase;font-weight:1000;color:#111}
+.brutal-preview>span{grid-column:1/-1;align-self:end;border-top:3px solid #111;padding-top:9px;font-size:9px;font-weight:1000;letter-spacing:.08em;white-space:nowrap}
+.brutal-preview:after{content:"";position:absolute;right:12px;top:12px;width:42px;height:42px;border:3px solid #111;background:#16e1ef;box-shadow:4px 4px 0 #111}
+
+@media(max-width:800px){.library-page{padding:22px 5vw 70px}.library-header{margin-bottom:45px}.library-hero{padding-top:30px;margin-bottom:32px}.library-hero h1{font-size:clamp(44px,14vw,70px)}.library-hero>p:last-child{font-size:15px}.library-grid{grid-template-columns:1fr;gap:16px}.library-style-card{padding:22px}.library-style-card>p{min-height:auto}.library-style-card .preview{height:205px}.library-style-card .brutal-preview{height:205px;padding:16px;box-shadow:6px 6px 0 #16e1ef}.brutal-preview>strong{font-size:clamp(34px,12vw,50px)}.brutal-preview>span{font-size:8px}.library-note{align-items:flex-start;flex-direction:column;gap:7px}}
