@@ -2,8 +2,6 @@ import React from "react";
 import { ArrowLeft } from "lucide-react";
 import "./flat-design.css";
 
-const FLAT_REFERENCE = "https://cdn.dribbble.com/userupload/46883957/file/e9a35c7196ef9fb838ce926863dee609.png?resize=1200x&vertical=center";
-
 const parts = [
   ["01", "SIMPLICITY", "Remove unnecessary visual decoration and keep the interface focused on its purpose."],
   ["02", "COLOUR", "Use clear, purposeful colour to separate actions, information and hierarchy."],
@@ -16,16 +14,33 @@ const parts = [
 function FlatSpecimen() {
   return (
     <div className="flat-specimen" aria-label="Flat Design visual specimen">
-      <div className="flat-specimen-bar"><span>FLAT / 02.01</span><i></i><i></i><i></i></div>
+      <div className="flat-specimen-bar">
+        <span>FLAT / 02.01</span><b>VECTOR LANGUAGE / COLOUR / FORM</b>
+      </div>
       <div className="flat-specimen-visual">
-        <img src={FLAT_REFERENCE} alt="SurrealDB 3.0 space illustration reference" />
-        <div className="flat-reference-label">REFERENCE / VISUAL LANGUAGE</div>
+        <div className="flat-sky" />
+        <div className="flat-sun" />
+        <div className="flat-mountain flat-mountain-back" />
+        <div className="flat-mountain flat-mountain-front" />
+        <div className="flat-road" />
+        <div className="flat-road-line line-a" />
+        <div className="flat-road-line line-b" />
+        <div className="flat-building building-a"><i /><i /><i /><i /></div>
+        <div className="flat-building building-b"><i /><i /><i /></div>
+        <div className="flat-tree tree-a"><i /><b /></div>
+        <div className="flat-tree tree-b"><i /><b /></div>
+        <div className="flat-card-copy">
+          <span>FLAT / 02.01</span>
+          <strong>COLOUR<br /><em>IN FORM.</em></strong>
+          <small>GEOMETRY · TYPE · SPACE</small>
+        </div>
+        <div className="flat-reference-label">REFERENCE LANGUAGE / VECTOR ILLUSTRATION</div>
       </div>
       <div className="flat-specimen-body">
         <div className="flat-chip">01</div>
         <h3>Clear<br /><b>by design.</b></h3>
-        <p>Colour · Type · Shape</p>
-        <div className="flat-blocks"><i></i><i></i><i></i></div>
+        <p>COLOUR · TYPE · GEOMETRY</p>
+        <div className="flat-blocks"><i /><i /><i /></div>
       </div>
     </div>
   );
@@ -35,7 +50,10 @@ function FlatDesign({ onBack }) {
   return (
     <main className="flat-page">
       <div className="flat-environment" aria-hidden="true">
-        <img src={FLAT_REFERENCE} alt="" />
+        <div className="environment-sun" />
+        <div className="environment-shape environment-shape-a" />
+        <div className="environment-shape environment-shape-b" />
+        <div className="environment-shape environment-shape-c" />
       </div>
       <header className="flat-header">
         <button type="button" className="flat-back" onClick={onBack}>
@@ -44,10 +62,10 @@ function FlatDesign({ onBack }) {
       </header>
       <section className="flat-hero">
         <p className="flat-eyebrow">02.01 · MODERN DIGITAL STYLES</p>
-        <h1><em>Flat Design.</em><br />Clarity. Simplicity.<br />Function.</h1>
-        <p>Flat Design removes unnecessary depth and decoration so the interface can communicate through colour, typography, shape and spacing.</p>
-        <p>Instead of realistic textures, shadows and physical effects, elements stay visually simple and readable. The goal isn't to make the interface empty — it's to make every visual decision intentional.</p>
-        <div className="flat-principle"><span>THE PRINCIPLE</span><b>Less visual noise. More direct communication.</b></div>
+        <h1><em>Flat Design.</em><br />Colour. Shape.<br />Function.</h1>
+        <p>Flat Design communicates through clear colour, bold geometry, simple illustration and strong typography.</p>
+        <p>Instead of realistic texture and depth, the visual language stays graphic, direct and easy to understand.</p>
+        <div className="flat-principle"><span>THE PRINCIPLE</span><b>Simple forms. Strong colour. Clear communication.</b></div>
       </section>
       <section className="flat-feature"><FlatSpecimen /></section>
       <section className="flat-parts">
