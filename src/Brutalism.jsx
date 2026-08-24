@@ -2,6 +2,7 @@ import React from "react";
 import "./brutalism.css";
 import "./brutal-dark.css";
 import "./brutal-architecture.css";
+import "./brutal-secondary.css";
 
 export default function Brutalism({ onBack }) {
   const parts = [
@@ -20,6 +21,24 @@ export default function Brutalism({ onBack }) {
         <strong className="poster-title">BRUTAL<br/><em>FORM</em></strong><div className="poster-red"></div>
         <div className="poster-building" aria-hidden="true"><div className="building-tower"></div><div className="building-slab building-slab-one"></div><div className="building-slab building-slab-two"></div><div className="building-windows"></div><div className="building-shadow"></div></div>
         <div className="poster-crosshair"></div><span className="poster-side">TYPE · IMAGE · GRID · TEXTURE</span><span className="poster-date">09—25<br/>2026</span><span className="poster-stamp">RAW<br/>/ / /</span><div className="poster-lines"></div><span className="poster-label">STRUCTURE IS VISIBLE.<br/><b>CONTROLLED CHAOS.</b></span>
+      </div>
+    </section>
+    <section className="brutal-secondary-wrap" aria-label="Secondary brutalist poster reference">
+      <div className="brutal-secondary-kicker">SECONDARY VISUAL / EDITORIAL POSTER SYSTEM</div>
+      <div className="brutal-secondary-poster">
+        <div className="secondary-grid"></div>
+        <span className="secondary-meta">RAW / STRUCTURE / 0131</span>
+        <span className="secondary-corner" aria-hidden="true"></span>
+        <span className="secondary-bars" aria-hidden="true"></span>
+        <h2 className="secondary-title">BRUTAL<br/><em>FORM</em></h2>
+        <div className="secondary-circle" aria-hidden="true"></div>
+        <div className="secondary-diagonal" aria-hidden="true"></div>
+        <span className="secondary-side">TYPE · IMAGE · GRID · TEXTURE</span>
+        <div className="secondary-structure">STRUCTURE IS VISIBLE.<br/><b>CONTROLLED CHAOS.</b></div>
+        <span className="secondary-note">SYSTEM OVER POLISH</span>
+        <div className="secondary-rule"></div>
+        <span className="secondary-stamp">RAW<br/>/ / /</span>
+        <span className="secondary-date">09—25<br/>2026</span>
       </div>
     </section>
     <section className="brutal-section"><div className="brutal-heading"><span>01</span><h2>THE PARTS OF BRUTALISM</h2></div><div className="brutal-parts">{parts.map(([n,t,d]) => <article key={n}><b>{n}</b><div><h3>{t}</h3><p>{d}</p></div></article>)}</div></section>
