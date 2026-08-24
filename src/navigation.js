@@ -36,8 +36,6 @@ function injectFlatDesignCard() {
   return true;
 }
 
-// React mounts the library after this module loads. Polling prevents a race
-// with React reconciliation and restores the card whenever the library mounts.
 const ensureLibraryCard = () => {
   if (document.querySelector(".library-page .material-family .library-grid")) {
     injectFlatDesignCard();
@@ -55,8 +53,10 @@ function openFlatDesign() {
 
   window.history.pushState({}, "", "#flat-design");
   mountFlatDesign(root, () => {
-    window.location.hash = "library";
-    window.scrollTo(0, 0);
+    // The FlatDesign page is mounted as a separate React root by navigation.js.
+    // Changing only the hash does not remount the original library. Reloading
+    // the app at #library restores the real Design Library safely.
+    window.location.assign(`${window.location.pathname}#library`);
   });
   window.scrollTo(0, 0);
 }
