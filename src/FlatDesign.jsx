@@ -2,6 +2,8 @@ import React from "react";
 import { ArrowLeft } from "lucide-react";
 import "./flat-design.css";
 
+const FLAT_REFERENCE = "https://cdn.dribbble.com/userupload/46883957/file/e9a35c7196ef9fb838ce926863dee609.png?resize=1200x&vertical=center";
+
 const parts = [
   ["01", "SIMPLICITY", "Remove unnecessary visual decoration and keep the interface focused on its purpose."],
   ["02", "COLOUR", "Use clear, purposeful colour to separate actions, information and hierarchy."],
@@ -15,6 +17,10 @@ function FlatSpecimen() {
   return (
     <div className="flat-specimen" aria-label="Flat Design visual specimen">
       <div className="flat-specimen-bar"><span>FLAT / 02.01</span><i></i><i></i><i></i></div>
+      <div className="flat-specimen-visual">
+        <img src={FLAT_REFERENCE} alt="SurrealDB 3.0 space illustration reference" />
+        <div className="flat-reference-label">REFERENCE / VISUAL LANGUAGE</div>
+      </div>
       <div className="flat-specimen-body">
         <div className="flat-chip">01</div>
         <h3>Clear<br /><b>by design.</b></h3>
@@ -28,6 +34,9 @@ function FlatSpecimen() {
 function FlatDesign({ onBack }) {
   return (
     <main className="flat-page">
+      <div className="flat-environment" aria-hidden="true">
+        <img src={FLAT_REFERENCE} alt="" />
+      </div>
       <header className="flat-header">
         <button type="button" className="flat-back" onClick={onBack}>
           <ArrowLeft size={18} /> BACK TO LIBRARY
