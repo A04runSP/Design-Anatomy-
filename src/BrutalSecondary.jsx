@@ -2,8 +2,17 @@ import React from "react";
 import "./brutal-secondary-component.css";
 
 export default function BrutalSecondary({ compact = false }) {
+  const compactStyle = compact ? {
+    width: "212.766%",
+    margin: 0,
+    position: "relative",
+    left: "50%",
+    transform: "translateX(-50%) scale(.47)",
+    transformOrigin: "top center"
+  } : undefined;
+
   return (
-    <section className={`brutal-secondary-component${compact ? " bsc-compact" : ""}`} aria-label="Brutalist editorial poster specimen">
+    <section className={`brutal-secondary-component${compact ? " bsc-compact" : ""}`} style={compactStyle} aria-label="Brutalist editorial poster specimen">
       {!compact && <div className="bsc-label">SECONDARY VISUAL / RAW POSTER SYSTEM</div>}
 
       <article className="bsc-poster">
