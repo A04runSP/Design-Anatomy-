@@ -1,22 +1,178 @@
-/* Glassmorphism preview — compact visual specimen for the Explore Styles card */
-.glass-preview{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 8% 58%,rgba(34,206,239,.96),transparent 28%),radial-gradient(circle at 92% 28%,rgba(255,105,190,.88),transparent 30%),radial-gradient(circle at 76% 86%,rgba(118,72,255,.92),transparent 32%),linear-gradient(145deg,#eef3f3 0%,#dfe5e6 48%,#d5d9dc 100%);border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1px rgba(255,255,255,.95),0 18px 40px rgba(0,0,0,.18)}
-.glass-preview::before{content:"";position:absolute;z-index:0;width:165%;height:62%;left:-32%;top:22%;border-radius:50%;border:20px solid rgba(255,255,255,.42);filter:blur(9px);transform:rotate(-12deg);box-shadow:0 0 42px rgba(72,181,255,.48),170px 68px 0 -6px rgba(190,82,255,.42),-150px 118px 0 -8px rgba(39,215,235,.42);opacity:1}
-.glass-preview::after{content:"";position:absolute;z-index:1;inset:7% 10%;border-radius:25px;background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.16) 48%,rgba(255,255,255,.28)),radial-gradient(circle at 18% 22%,rgba(53,210,239,.28),transparent 30%),radial-gradient(circle at 82% 76%,rgba(135,72,255,.3),transparent 34%);border:1px solid rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(155%);-webkit-backdrop-filter:blur(16px) saturate(155%);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 34px rgba(255,255,255,.22),0 18px 35px rgba(70,75,90,.16)}
-.glass-backdrop,.glass-human{display:none!important}
-.glass-window{z-index:3;position:absolute;inset:11% 14%;width:auto;height:auto;padding:0;background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(255,255,255,.09));border:1px solid rgba(255,255,255,.86);border-radius:21px;box-shadow:inset 0 1px rgba(255,255,255,.96),inset 0 -18px 35px rgba(110,115,130,.08),0 16px 30px rgba(65,70,85,.16);backdrop-filter:blur(12px) saturate(140%);-webkit-backdrop-filter:blur(12px) saturate(140%);pointer-events:none}
-.glass-window::before{content:"";position:absolute;inset:0;pointer-events:none}
-.glass-window::after{content:"Glass\A Morphism";white-space:pre;position:absolute;z-index:8;left:50%;top:55%;transform:translate(-50%,-50%);color:#fff;font-size:clamp(21px,5vw,31px);line-height:.96;font-weight:800;letter-spacing:-.045em;text-align:center;text-shadow:0 3px 14px rgba(50,55,70,.3)}
-.glass-window .glass-dot,.glass-window .glass-label,.glass-window .glass-number,.glass-window .glass-bar,.glass-window .glass-pills{display:block!important;position:absolute;margin:0;padding:0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.94);font-size:6px;line-height:1.2;letter-spacing:.02em;text-shadow:0 1px 4px rgba(40,45,60,.25);z-index:7}
-.glass-window .glass-dot::after,.glass-window .glass-label::after,.glass-window .glass-number::after,.glass-window .glass-bar::after,.glass-window .glass-pills::after{display:block;font:inherit;color:inherit;white-space:nowrap}
-.glass-window .glass-label{top:12px;left:12px;font-size:0}
-.glass-window .glass-label::after{content:"Frosted Glass Effect";font-size:7px}
-.glass-window .glass-dot{top:12px;right:12px;width:auto;height:auto}
-.glass-window .glass-dot::after{content:"Soft blur · Minimal UI";font-size:7px}
-.glass-window .glass-number{top:38%;left:50%;transform:translateX(-50%);font-size:0}
-.glass-window .glass-number::after{content:"UI Background";font-size:6px}
-.glass-window .glass-bar{bottom:12px;left:12px;width:auto;height:auto}
-.glass-window .glass-bar::after{content:"Premium Design Asset";font-size:7px}
-.glass-window .glass-pills{bottom:12px;right:12px;width:auto;height:auto}
-.glass-window .glass-pills::after{content:"Editable Example";font-size:7px}
-.glass-window .glass-number span,.glass-window .glass-bar b,.glass-window .glass-pills i{display:none!important}
-@media(max-width:600px){.glass-preview::after{inset:7% 9%}.glass-window{inset:11% 14%}.glass-window::after{font-size:24px;top:55%}.glass-window .glass-label::after,.glass-window .glass-dot::after,.glass-window .glass-bar::after,.glass-window .glass-pills::after{font-size:6px}.glass-window .glass-number::after{font-size:5.5px}}
+/* Glassmorphism Explore-card preview — miniature of the real Glassmorphism demo */
+.glass-preview{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(145deg,#eef1f2 0%,#d9dcdd 48%,#cfd2d3 100%);
+  border:1px solid rgba(255,255,255,.82);
+  box-shadow:inset 0 1px rgba(255,255,255,.85),0 18px 40px rgba(0,0,0,.18);
+}
+
+/* Recreate the same soft light environment used by the full demo. */
+.glass-preview .glass-backdrop{
+  display:block!important;
+  position:absolute;
+  inset:-20%;
+  opacity:1;
+  filter:none;
+  background:
+    radial-gradient(circle at 9% 58%,rgba(25,200,237,.95) 0,rgba(25,200,237,.72) 11%,rgba(90,135,255,.42) 21%,transparent 31%),
+    radial-gradient(circle at 94% 28%,rgba(195,76,255,.9) 0,rgba(125,82,255,.7) 16%,transparent 31%),
+    radial-gradient(circle at 82% 98%,rgba(255,111,174,.72) 0,rgba(255,136,200,.4) 16%,transparent 32%),
+    linear-gradient(145deg,#edf0f1 0%,#daddde 48%,#cfd2d3 100%);
+  z-index:0;
+}
+
+/* Light ribbons + soft refraction, matching the actual style page. */
+.glass-preview .glass-backdrop::before{
+  content:"";
+  position:absolute;
+  width:145%;
+  height:30%;
+  left:-24%;
+  top:31%;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.4),rgba(255,255,255,.08));
+  box-shadow:
+    inset 0 10px 18px rgba(255,255,255,.46),
+    inset 0 -15px 28px rgba(90,90,110,.1),
+    0 20px 35px rgba(70,80,90,.1),
+    0 0 30px rgba(92,115,255,.24);
+  filter:blur(1px);
+  transform:rotate(-14deg);
+}
+
+.glass-preview .glass-backdrop::after{
+  content:"";
+  position:absolute;
+  width:145%;
+  height:26%;
+  left:-20%;
+  bottom:4%;
+  border:1px solid rgba(255,255,255,.62);
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.34),rgba(255,255,255,.06));
+  box-shadow:inset 0 10px 20px rgba(255,255,255,.38),inset 0 -15px 25px rgba(90,90,110,.08);
+  filter:blur(1px);
+  transform:rotate(7deg);
+}
+
+/* Inner glass panel — proportions follow the full demo, not the old generic card. */
+.glass-preview .glass-window{
+  z-index:3;
+  position:absolute;
+  left:10.5%;
+  top:7.5%;
+  width:79%;
+  height:85%;
+  padding:0;
+  border:1px solid rgba(255,255,255,.84);
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(255,255,255,.12) 48%,rgba(255,255,255,.24));
+  backdrop-filter:blur(18px) saturate(145%);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  box-shadow:inset 0 1px rgba(255,255,255,.9),inset 0 -18px 35px rgba(110,115,130,.08),0 20px 38px rgba(65,70,85,.18);
+  overflow:hidden;
+}
+
+.glass-preview .glass-window::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:
+    linear-gradient(90deg,transparent 0 34%,rgba(255,255,255,.36) 34.2%,transparent 34.5%),
+    linear-gradient(180deg,transparent 0 74%,rgba(255,255,255,.45) 74.2%,transparent 74.5%),
+    linear-gradient(135deg,rgba(255,255,255,.16),transparent 25%,transparent 72%,rgba(255,255,255,.18));
+  pointer-events:none;
+}
+
+.glass-preview .glass-window::after{
+  content:"Glass\\A Morphism";
+  white-space:pre;
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-48%);
+  color:#fff;
+  font-size:clamp(27px,8vw,40px);
+  line-height:.92;
+  font-weight:500;
+  letter-spacing:-.045em;
+  text-align:center;
+  text-shadow:0 5px 18px rgba(50,55,70,.24);
+}
+
+/* Use the existing child nodes for the exact label positions from the real demo. */
+.glass-preview .glass-dot{display:none!important}
+.glass-preview .glass-label{
+  display:block!important;
+  position:absolute;
+  z-index:5;
+  left:12px;
+  top:13px;
+  margin:0;
+  color:rgba(255,255,255,.94);
+  font-size:6px;
+  line-height:1;
+  letter-spacing:0;
+  text-shadow:0 1px 5px rgba(40,45,60,.25);
+}
+.glass-preview .glass-label::after{content:""}
+.glass-preview .glass-number{
+  position:absolute;
+  z-index:5;
+  right:12px;
+  top:13px;
+  width:auto;
+  margin:0;
+  color:rgba(255,255,255,.94);
+  font-size:0;
+  font-weight:700;
+  text-shadow:0 1px 5px rgba(40,45,60,.25);
+}
+.glass-preview .glass-number::before{content:"Soft blur · Minimal UI";font-size:6px;letter-spacing:0;white-space:nowrap}
+.glass-preview .glass-bar{display:none!important}
+.glass-preview .glass-pills{
+  display:block!important;
+  position:absolute;
+  z-index:5;
+  left:50%;
+  top:58%;
+  transform:translate(-50%,-50%);
+  margin:0;
+  width:auto;
+  height:auto;
+}
+.glass-preview .glass-pills::before{
+  content:"UI Background";
+  display:block;
+  padding:5px 10px;
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:999px;
+  color:rgba(255,255,255,.96);
+  background:rgba(255,255,255,.08);
+  box-shadow:inset 0 1px rgba(255,255,255,.25),0 2px 12px rgba(0,0,0,.16);
+  font-size:6px;
+  white-space:nowrap;
+}
+.glass-preview .glass-pills i{display:none!important}
+
+/* Bottom labels */
+.glass-preview .glass-window > .glass-label::before{content:"Frosted Glass Effect"}
+.glass-preview .glass-window > .glass-label{font-size:0}
+.glass-preview .glass-window > .glass-label::before{font-size:6px}
+.glass-preview .glass-window > .glass-number{font-size:0}
+.glass-preview .glass-window > .glass-bar + .glass-pills + *{display:none}
+
+/* Keep the preview faithful on narrow phones too. */
+@media(max-width:600px){
+  .glass-preview .glass-window{left:10%;top:8%;width:80%;height:84%;border-radius:20px}
+  .glass-preview .glass-window::after{font-size:clamp(25px,8vw,34px)}
+  .glass-preview .glass-label,.glass-preview .glass-number{top:12px}
+  .glass-preview .glass-label{left:11px}
+  .glass-preview .glass-number{right:11px}
+  .glass-preview .glass-pills{top:58%}
+}
