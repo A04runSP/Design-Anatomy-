@@ -2,7 +2,7 @@ import React from "react";
 import "./brutalism.css";
 import "./brutal-dark.css";
 import "./brutal-architecture.css";
-import "./brutal-secondary.css";
+import BrutalSecondary from "./BrutalSecondary";
 
 export default function Brutalism({ onBack }) {
   const parts = [
@@ -17,30 +17,12 @@ export default function Brutalism({ onBack }) {
     <section className="brutal-hero">
       <div className="brutal-hero-copy"><p className="brutal-eyebrow">04 · DESIGN STYLE / EDITORIAL BRUTALISM</p><h1><span>Brutalism.</span><br/>Loud type.<br/>Raw composition.</h1><p className="brutal-lead">Brutalism doesn't simply mean ugly or unfinished. The stronger visual language seen in brutalist posters uses oversized typography, hard contrast, visible grids, collage, cropped imagery, texture and deliberate disruption.</p><blockquote>DON'T HIDE THE SYSTEM.<br/><strong>MAKE THE SYSTEM THE IMAGE.</strong></blockquote></div>
       <div className="brutal-poster brutal-architecture-poster" aria-label="Brutalist architectural poster specimen">
-        <div className="poster-grid"></div><span className="poster-kicker">ARCHIVE / 04</span><span className="poster-code">RAW / STRUCTURE / 0131</span>
-        <strong className="poster-title">BRUTAL<br/><em>FORM</em></strong><div className="poster-red"></div>
+        <div className="poster-grid"></div><span className="poster-kicker">ARCHIVE / 04</span><span className="poster-code">RAW / STRUCTURE / 0131</span><strong className="poster-title">BRUTAL<br/><em>FORM</em></strong><div className="poster-red"></div>
         <div className="poster-building" aria-hidden="true"><div className="building-tower"></div><div className="building-slab building-slab-one"></div><div className="building-slab building-slab-two"></div><div className="building-windows"></div><div className="building-shadow"></div></div>
         <div className="poster-crosshair"></div><span className="poster-side">TYPE · IMAGE · GRID · TEXTURE</span><span className="poster-date">09—25<br/>2026</span><span className="poster-stamp">RAW<br/>/ / /</span><div className="poster-lines"></div><span className="poster-label">STRUCTURE IS VISIBLE.<br/><b>CONTROLLED CHAOS.</b></span>
       </div>
     </section>
-    <section className="brutal-secondary-wrap" aria-label="Secondary brutalist poster reference">
-      <div className="brutal-secondary-kicker">SECONDARY VISUAL / EDITORIAL POSTER SYSTEM</div>
-      <div className="brutal-secondary-poster">
-        <div className="secondary-grid"></div>
-        <span className="secondary-meta">RAW / STRUCTURE / 0131</span>
-        <span className="secondary-corner" aria-hidden="true"></span>
-        <span className="secondary-bars" aria-hidden="true"></span>
-        <h2 className="secondary-title">BRUTAL<br/><em>FORM</em></h2>
-        <div className="secondary-circle" aria-hidden="true"></div>
-        <div className="secondary-diagonal" aria-hidden="true"></div>
-        <span className="secondary-side">TYPE · IMAGE · GRID · TEXTURE</span>
-        <div className="secondary-structure">STRUCTURE IS VISIBLE.<br/><b>CONTROLLED CHAOS.</b></div>
-        <span className="secondary-note">SYSTEM OVER POLISH</span>
-        <div className="secondary-rule"></div>
-        <span className="secondary-stamp">RAW<br/>/ / /</span>
-        <span className="secondary-date">09—25<br/>2026</span>
-      </div>
-    </section>
+    <BrutalSecondary />
     <section className="brutal-section"><div className="brutal-heading"><span>01</span><h2>THE PARTS OF BRUTALISM</h2></div><div className="brutal-parts">{parts.map(([n,t,d]) => <article key={n}><b>{n}</b><div><h3>{t}</h3><p>{d}</p></div></article>)}</div></section>
     <section className="brutal-section"><div className="brutal-heading"><span>02</span><h2>THE BRUTALIST TOOLKIT</h2></div><div className="toolkit-grid"><article><b>OVERSIZED TYPE</b><p>Let the headline become a graphic object.</p></article><article><b>HARD FRAMES</b><p>Boxes, rules and borders expose the construction.</p></article><article><b>RED / BLACK / WHITE</b><p>A limited palette can hit harder than a rainbow of effects.</p></article><article><b>VISIBLE GRID</b><p>Columns, coordinates and alignment lines can remain on the surface.</p></article><article><b>RAW IMAGE</b><p>Crop, scale, duplicate or interrupt imagery instead of treating it as decoration.</p></article><article><b>GRAIN + TEXTURE</b><p>Noise and imperfect surfaces add physical, printed character.</p></article></div></section>
     <section className="brutal-section"><div className="brutal-heading"><span>03</span><h2>CONTRAST</h2></div><p className="brutal-intro">The references you found repeatedly use extreme black-and-white foundations with one aggressive accent. Contrast creates the attitude before decoration even enters the frame.</p><div className="contrast-row"><article><b>MONO</b><span>BLACK / WHITE</span></article><article><b>ACCENT</b><span>ONE LOUD COLOUR</span></article><article><b>EXTREME</b><span>SIZE / WEIGHT / SCALE</span></article></div></section>
