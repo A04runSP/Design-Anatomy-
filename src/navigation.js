@@ -1,16 +1,11 @@
 import { mountFlatDesign } from "./FlatDesign.jsx";
 import "./flat-library.css";
 
-// Flat Design is integrated into the existing Modern Digital Styles family.
-// The library is rendered by React, so we wait for that DOM to exist instead
-// of assuming it is available at module-load time.
-const injectFlatDesignCard = () => {
-  const family = document.querySelector(".library-page .material-family");
-  const grid = family?.querySelector(".library-grid");
-  if (!grid || grid.querySelector(".flat-design-card")) return;
+const CARD_CLASS = "flat-design-card";
 
+function makeFlatCard() {
   const card = document.createElement("article");
-  card.className = "library-style-card flat-design-card";
+  card.className = `library-style-card ${CARD_CLASS}`;
   card.innerHTML = `
     <div class="library-style-top">
       <span>02.01</span>
@@ -27,39 +22,48 @@ const injectFlatDesignCard = () => {
         <div><i></i><i></i><i></i></div>
       </div>
     </div>
-    <button class="library-style-action flat-design-action">VIEW STYLE <span>→</span></button>
+    <button type="button" class="library-style-action flat-design-action">VIEW STYLE <span>→</span></button>
   `;
+  return card;
+}
 
-  // Flat Design is the first style in the Modern Digital Styles family.
-  grid.insertBefore(card, grid.firstElementChild);
+function injectFlatDesignCard() {
+  const family = document.querySelector(".library-page .material-family");
+  const grid = family?.querySelector(".library-grid");
+  if (!grid || grid.querySelector(`.${CARD_CLASS}`)) return false;
+
+  grid.insertBefore(makeFlatCard(), grid.firstElementChild || null);
+  return true;
+}
+
+// React mounts the library after this module loads. Polling prevents a race
+// with React reconciliation and restores the card whenever the library mounts.
+const ensureLibraryCard = () => {
+  if (document.querySelector(".library-page .material-family .library-grid")) {
+    injectFlatDesignCard();
+  }
 };
 
-// React may replace the library DOM after navigation, so observe the root.
-const observer = new MutationObserver(() => injectFlatDesignCard());
-observer.observe(document.getElementById("root") || document.body, {
-  childList: true,
-  subtree: true,
-});
+window.setInterval(ensureLibraryCard, 250);
+window.addEventListener("load", ensureLibraryCard);
+window.addEventListener("hashchange", () => window.setTimeout(ensureLibraryCard, 0));
+window.setTimeout(ensureLibraryCard, 0);
 
-window.setTimeout(injectFlatDesignCard, 0);
-
-const openFlatDesign = () => {
+function openFlatDesign() {
   const root = document.getElementById("root");
   if (!root) return;
 
-  // Do not trigger main.jsx's hashchange router. Push the URL silently,
-  // then mount the existing FlatDesign page into the same application root.
   window.history.pushState({}, "", "#flat-design");
   mountFlatDesign(root, () => {
     window.location.hash = "library";
     window.scrollTo(0, 0);
   });
   window.scrollTo(0, 0);
-};
+}
 
 document.addEventListener("click", (event) => {
   const target = event.target instanceof Element ? event.target : null;
-  const button = target?.closest(".flat-design-action");
+  const button = target?.closest(`.${CARD_CLASS} .flat-design-action`);
   if (!button) return;
 
   event.preventDefault();
