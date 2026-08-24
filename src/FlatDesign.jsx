@@ -1,6 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import "./flat-design.css";
 
 const parts = [
@@ -26,23 +25,11 @@ function FlatSpecimen() {
   );
 }
 
-function FlatDesign() {
-  const navigateBackToLibrary = () => {
-    // navigation.js owns the Flat Design host. Removing that host lets the
-    // original React application in #root become visible again.
-    if (typeof window.closeFlatDesign === "function") {
-      window.closeFlatDesign();
-      return;
-    }
-
-    window.location.hash = "library";
-    window.scrollTo(0, 0);
-  };
-
+function FlatDesign({ onBack }) {
   return (
     <main className="flat-page">
       <header className="flat-header">
-        <button type="button" className="flat-back" onClick={navigateBackToLibrary}>
+        <button type="button" className="flat-back" onClick={onBack}>
           <ArrowLeft size={18} /> BACK TO LIBRARY
         </button>
       </header>
@@ -68,10 +55,6 @@ function FlatDesign() {
       <section className="flat-takeaway"><span>FLAT DESIGN</span><b>When decoration gets out of the way, the interface can speak clearly.</b></section>
     </main>
   );
-}
-
-export function mountFlatDesign(root) {
-  return createRoot(root).render(<FlatDesign />);
 }
 
 export default FlatDesign;
