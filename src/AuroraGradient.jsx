@@ -1,5 +1,6 @@
 import React from "react";
 import "./aurora-gradient.css";
+import "./aurora-preview.css";
 
 export default function AuroraGradient({ onBack }) {
   return (
