@@ -26,17 +26,15 @@ function FlatSpecimen() {
   );
 }
 
-function FlatDesign({ onBack }) {
+function FlatDesign() {
   const navigateBackToLibrary = () => {
-    // Primary navigation path supplied by navigation.js.
-    if (typeof onBack === "function") {
-      onBack();
-      return;
-    }
-
-    // Safe fallback so the button is never a dead control.
+    // Return directly to the React library route.
     window.location.hash = "library";
     window.scrollTo(0, 0);
+
+    // Explicitly notify the hash router so navigation works even when this
+    // page was mounted by navigation.js instead of the main React router.
+    window.dispatchEvent(new Event("hashchange"));
   };
 
   return (
@@ -70,8 +68,8 @@ function FlatDesign({ onBack }) {
   );
 }
 
-export function mountFlatDesign(root, onBack) {
-  return createRoot(root).render(<FlatDesign onBack={onBack} />);
+export function mountFlatDesign(root) {
+  return createRoot(root).render(<FlatDesign />);
 }
 
 export default FlatDesign;
