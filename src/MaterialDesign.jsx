@@ -1,5 +1,6 @@
 import React from "react";
 import "./material-design.css";
+import "./material-example-new.css";
 
 export default function MaterialDesign({ onBack }) {
   return <main className="material-page">
