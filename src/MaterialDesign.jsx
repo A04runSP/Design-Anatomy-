@@ -3,13 +3,78 @@ import "./material-design.css";
 import "./earth-material.css";
 
 export default function MaterialDesign({ onBack }) {
-  return <main className="material-page">
-    <header className="material-header"><button onClick={onBack}>← EXPLORE STYLES</button><span>DESIGN ANATOMY · 02.02</span></header>
-    <section className="material-hero"><p>02.02 · MODERN DIGITAL STYLES</p><h1>Material <em>Design.</em></h1><p>Meaningful motion, bold colour, clear hierarchy and physical surfaces shaped by Google's Material design language.</p></section>
-    <section className="material-specimen"><div className="material-appbar"><span>✦</span><strong>Material</strong><small>DESIGN SYSTEM</small></div><div className="material-content"><div className="material-chip">02.02</div><h2>Make it<br/><b>meaningful.</b></h2><p>Surfaces, elevation and motion give digital interfaces a sense of place.</p><button>EXPLORE <span>→</span></button></div><div className="material-fab">+</div><div className="material-nav"><span>HOME</span><span>LAYOUT</span><span>COMPONENTS</span></div></section>
-    <section className="material-example"><div className="material-example-head"><div><span>EXAMPLE 01 · EARTH STUDY</span><h2>Material, inspired by nature.</h2></div><p>Earthy colour, visible layers and small living details turn the reference into a richer visual environment.</p></div>
-      <article className="material-example-card material-earth-card"><div className="material-study-visual material-earth-visual"><div className="earth-sky"></div><div className="earth-moon"></div><div className="earth-sun-glow"></div><div className="earth-mountain mountain-back"></div><div className="earth-mountain mountain-mid"></div><div className="earth-mountain mountain-front"></div><div className="earth-tree tree-left"></div><div className="earth-tree tree-right"></div><div className="earth-tree tree-small"></div><div className="earth-bush bush-one"></div><div className="earth-bush bush-two"></div><div className="earth-bird bird-one">⌁</div><div className="earth-bird bird-two">⌁</div><div className="earth-bird bird-three">⌁</div><div className="earth-deer"><span></span></div><div className="earth-rabbit"><span></span></div><div className="earth-butterfly butterfly-one">✦</div><div className="earth-butterfly butterfly-two">✦</div><div className="earth-leaf leaf-one">❧</div><div className="earth-leaf leaf-two">❧</div><div className="earth-leaf leaf-three">❧</div><div className="earth-poster-copy"><strong>EARTH</strong><em>ONE LIVING SYSTEM</em><small>FROM BIG TO SMALL · WE'RE ALL CONNECTED</small></div><div className="earth-float-chip">NATURAL <b>+01</b></div></div>
-        <div className="material-example-info material-study-info earth-info"><div className="example-meta"><span>02.02</span><span>MATERIAL · EARTH STUDY</span></div><h3>Make it feel<br/><em>alive.</em></h3><p>This example moves away from a generic interface mockup and uses nature as the visual language: layered terrain, warm earth tones, visible atmosphere and tiny living elements distributed through the scene.</p><div className="study-observations"><div><span>01</span><strong>EARTH TONES</strong><p>Moss, clay, sand and forest greens create one visual family.</p></div><div><span>02</span><strong>LIVING DETAILS</strong><p>Birds, animals, leaves and insects act like small UI components.</p></div><div><span>03</span><strong>VISIBLE DEPTH</strong><p>Background layers stay visible while foreground elements create hierarchy.</p></div></div><div className="example-note"><b>WHAT TO NOTICE</b><span>Atmosphere → layers → living details → hierarchy</span></div></div></article></section>
-    <div className="material-source">Reference environment: <span>Earth Day · nature poster studies</span></div><section className="material-principles"><div><span>01</span><strong>DEPTH</strong><p>Elevation and shadows establish a clear spatial hierarchy.</p></div><div><span>02</span><strong>MOTION</strong><p>Movement explains change and keeps interaction understandable.</p></div><div><span>03</span><strong>COLOUR</strong><p>Bold accents create hierarchy without sacrificing readability.</p></div></section>
-  </main>;
+  return (
+    <main className="material-page">
+      <header className="material-header">
+        <button onClick={onBack}>← EXPLORE STYLES</button>
+        <span>DESIGN ANATOMY · 02.02</span>
+      </header>
+
+      <section className="material-hero">
+        <p>02.02 · MODERN DIGITAL STYLES</p>
+        <h1>Material <em>Design.</em></h1>
+        <p>Meaningful motion, bold colour, clear hierarchy and physical surfaces shaped by Material design — reinterpreted through an earthy visual language.</p>
+        <div className="earth-atmosphere">
+          <span className="atmosphere-leaf leaf-a">❧</span><span className="atmosphere-leaf leaf-b">❧</span>
+          <span className="atmosphere-bird bird-a">⌁</span><span className="atmosphere-bird bird-b">⌁</span>
+          <span className="atmosphere-butterfly">✦</span><span className="atmosphere-deer">♞</span>
+        </div>
+      </section>
+
+      <section className="material-specimen earth-material-specimen">
+        <div className="material-appbar"><span>✦</span><strong>Material</strong><small>EARTH SYSTEM</small></div>
+        <div className="material-content">
+          <div className="material-chip">02.02 · EARTH</div>
+          <h2>Make it<br/><b>meaningful.</b></h2>
+          <p>Surfaces, elevation, motion and colour become part of a living visual environment instead of a generic interface.</p>
+          <button>EXPLORE <span>→</span></button>
+        </div>
+        <div className="preview-life life-bird bird-one">⌁</div><div className="preview-life life-bird bird-two">⌁</div>
+        <div className="preview-life life-butterfly butterfly-one">✦</div><div className="preview-life life-leaf leaf-one">❧</div>
+        <div className="preview-animal preview-rabbit"><span>◡</span></div><div className="preview-animal preview-bear"><span>•ᴥ•</span></div>
+        <div className="material-fab">+</div>
+        <div className="material-nav"><span>HOME</span><span>LAYOUT</span><span>COMPONENTS</span></div>
+      </section>
+
+      <section className="material-example">
+        <div className="material-example-head">
+          <div><span>EXAMPLE 01 · EARTH STUDY</span><h2>Material, inspired by nature.</h2></div>
+          <p>Earthy colour, visible layers and small living details turn the reference into a richer visual environment.</p>
+        </div>
+        <article className="material-example-card material-earth-card">
+          <div className="material-study-visual material-earth-visual">
+            <div className="earth-sky"></div><div className="earth-moon"></div><div className="earth-sun-glow"></div>
+            <div className="earth-mountain mountain-back"></div><div className="earth-mountain mountain-mid"></div><div className="earth-mountain mountain-front"></div>
+            <div className="earth-tree tree-left"></div><div className="earth-tree tree-right"></div><div className="earth-tree tree-small"></div>
+            <div className="earth-bush bush-one"></div><div className="earth-bush bush-two"></div>
+            <div className="earth-bird bird-one">⌁</div><div className="earth-bird bird-two">⌁</div><div className="earth-bird bird-three">⌁</div>
+            <div className="earth-deer"><span></span></div><div className="earth-rabbit"><span></span></div><div className="earth-bear"><span>•ᴥ•</span></div>
+            <div className="earth-butterfly butterfly-one">✦</div><div className="earth-butterfly butterfly-two">✦</div>
+            <div className="earth-leaf leaf-one">❧</div><div className="earth-leaf leaf-two">❧</div><div className="earth-leaf leaf-three">❧</div>
+            <div className="earth-poster-copy"><strong>EARTH</strong><em>ONE LIVING SYSTEM</em><small>FROM BIG TO SMALL · WE'RE ALL CONNECTED</small></div>
+            <div className="earth-float-chip">NATURAL <b>+01</b></div>
+          </div>
+          <div className="material-example-info material-study-info earth-info">
+            <div className="example-meta"><span>02.02</span><span>MATERIAL · EARTH STUDY</span></div>
+            <h3>Make it feel<br/><em>alive.</em></h3>
+            <p>This example moves away from a generic interface mockup and uses nature as the visual language: layered terrain, warm earth tones, visible atmosphere and tiny living elements distributed through the scene.</p>
+            <div className="study-observations">
+              <div><span>01</span><strong>EARTH TONES</strong><p>Moss, clay, sand and forest greens create one visual family.</p></div>
+              <div><span>02</span><strong>LIVING DETAILS</strong><p>Birds, animals, leaves and insects act like small UI components.</p></div>
+              <div><span>03</span><strong>VISIBLE DEPTH</strong><p>Background layers stay visible while foreground elements create hierarchy.</p></div>
+            </div>
+            <div className="example-note"><b>WHAT TO NOTICE</b><span>Atmosphere → layers → living details → hierarchy</span></div>
+          </div>
+        </article>
+      </section>
+
+      <div className="material-source">Reference environment: <span>Earth Day · nature poster studies · material surfaces</span></div>
+      <section className="material-principles">
+        <div><span>01</span><strong>SURFACE</strong><p>Every element sits on a tangible surface with warmth, texture and purpose.</p></div>
+        <div><span>02</span><strong>ELEVATION</strong><p>Layered surfaces and shadows establish a clear spatial hierarchy.</p></div>
+        <div><span>03</span><strong>MOTION</strong><p>Small living movements make interaction feel natural and meaningful.</p></div>
+        <div><span>04</span><strong>COLOUR</strong><p>Moss, clay, sand and forest tones guide focus without losing readability.</p></div>
+      </section>
+    </main>
+  );
 }
