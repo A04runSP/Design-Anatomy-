@@ -30,7 +30,7 @@ export default function Minimalism({ onBack }) {
             <nav><span>STUDIO</span><div><span>WORK</span><span>ABOUT</span><span>CONTACT</span></div></nav>
             <div className="spec-copy"><small>VISUAL IDENTITY</small><h3>Less,<br /><b>but better.</b></h3><p>Give the important thing enough space to be understood before adding anything else.</p></div>
             <div className="spec-rule"></div>
-            <div className="spec-meta"><span>SPACE</span><span className="hierarchy">HIERARCHY</span><span>RESTRAINT</span></div>
+            <div className="spec-meta"><span>SPACE</span><span className="hierarchy" style={{ color: "#f0c84b" }}>HIERARCHY</span><span>RESTRAINT</span></div>
           </div>
         </article>
 
