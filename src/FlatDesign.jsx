@@ -28,13 +28,15 @@ function FlatSpecimen() {
 
 function FlatDesign() {
   const navigateBackToLibrary = () => {
-    // Return directly to the React library route.
+    // navigation.js owns the Flat Design host. Removing that host lets the
+    // original React application in #root become visible again.
+    if (typeof window.closeFlatDesign === "function") {
+      window.closeFlatDesign();
+      return;
+    }
+
     window.location.hash = "library";
     window.scrollTo(0, 0);
-
-    // Explicitly notify the hash router so navigation works even when this
-    // page was mounted by navigation.js instead of the main React router.
-    window.dispatchEvent(new Event("hashchange"));
   };
 
   return (
