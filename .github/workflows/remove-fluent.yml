@@ -1,0 +1,37 @@
+name: Remove Fluent Design
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.event.head_commit.message == 'Remove Fluent Design'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove Fluent from app
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('src/main.jsx')
+          s = p.read_text()
+          s = s.replace('import FluentDesign from "./FluentDesign.jsx";\n', '')
+          s = s.replace('  { family: "MODERN DIGITAL STYLES", name: "FLUENT DESIGN", icon: Compass, tag: "02.03", copy: "Light, depth, material and motion create calm, spatial interfaces through Acrylic, Mica and layered surfaces.", route: "fluentdesign", preview: 8 },\n', '')
+          s = s.replace('  if (index === 8) return <div className="preview fluent-preview"><div className="fluent-preview-glow fluent-glow-a"></div><div className="fluent-preview-glow fluent-glow-b"></div><div className="fluent-preview-window"><div className="fluent-preview-bar"><span>✦</span><b>Fluent</b><small>MICA</small><i>•••</i></div><div className="fluent-preview-body"><span>02.03</span><strong>Designed to<br/><em>feel natural.</em></strong><p>LIGHT · MATERIAL · DEPTH</p><div className="fluent-preview-float"><small>ACRYLIC</small><b>01</b></div></div></div></div>;\n', '')
+          s = s.replace(', onFluentDesign', '')
+          s = s.replace(', fluentdesign: onFluentDesign', '')
+          s = s.replace(' : window.location.hash === "#fluentdesign" ? "fluentdesign"', '')
+          s = s.replace(' if (view === "fluentdesign") return <FluentDesign onBack={() => go("library")} />;', '')
+          p.write_text(s)
+          PY
+          rm -f src/FluentDesign.jsx src/fluent-design.css
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/main.jsx src/FluentDesign.jsx src/fluent-design.css
+          git commit -m "Remove Fluent Design from website"
+          git push
