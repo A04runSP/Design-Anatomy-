@@ -1,38 +1,82 @@
-/* Home viewport guard: prevent any specimen, glow, transform or legacy style from creating drag space. */
+/* Home mobile viewport: the document itself must never become wider than the device. */
 html,
 body,
 #root {
   width: 100%;
   max-width: 100%;
-  overflow-x: clip;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 body {
+  margin: 0;
   overscroll-behavior-x: none;
 }
 
 #root > main {
   width: 100%;
   max-width: 100%;
-  overflow-x: clip;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
-/* The homepage preview must stay inside its card and never expand the page. */
-.style-stage,
-.style-card,
-.style-card .preview {
+/* Home hero: contain the decorative glow instead of allowing its 520px
+   desktop size to create horizontal space on narrow screens. */
+.hero {
+  width: 100%;
+  max-width: 1000px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero-glow {
+  left: 50%;
+  transform: translateX(-50%);
   max-width: 100%;
 }
 
+/* Keep the showcase itself inside the viewport. */
+.style-stage,
+.style-card,
+.style-card .preview {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.style-stage,
 .style-card .preview {
   overflow: hidden;
 }
 
-/* Fluent was removed; keep stale cached markup/CSS from ever affecting layout. */
+/* Do not allow oversized decorative children to contribute to page width. */
+.style-stage > *,
+.hero > * {
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* Fluent was removed; stale cached markup must not affect layout. */
 .fluent-page,
 .fluent-preview,
 .fluent-preview-glow,
 .fluent-preview-window,
 .fluent-preview-float {
   display: none !important;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .hero-glow {
+    width: min(520px, 100vw);
+  }
 }
