@@ -1,0 +1,67 @@
+name: Fix Flat Design Routing
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, '[flat-routing-fixed]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Integrate Flat Design into React router
+        shell: python
+        run: |
+          from pathlib import Path
+
+          main = Path('src/main.jsx')
+          text = main.read_text()
+
+          replacements = [
+              ('import MaterialDesign from "./MaterialDesign.jsx";\n', 'import MaterialDesign from "./MaterialDesign.jsx";\nimport FlatDesign from "./FlatDesign.jsx";\n'),
+              ('  { family: "MODERN DIGITAL STYLES", name: "MATERIAL DESIGN", icon: Compass, tag: "02.02", copy: "Clear surfaces, elevation, bold colour and meaningful motion create a practical visual system.", route: "materialdesign", preview: 7 },\n', '  { family: "MODERN DIGITAL STYLES", name: "FLAT DESIGN", icon: Compass, tag: "02.01", copy: "Clarity through colour, typography, geometry and spacing — without unnecessary depth or decoration.", route: "flatdesign", preview: 0 },\n  { family: "MODERN DIGITAL STYLES", name: "MATERIAL DESIGN", icon: Compass, tag: "02.02", copy: "Clear surfaces, elevation, bold colour and meaningful motion create a practical visual system.", route: "materialdesign", preview: 7 },\n'),
+              ('function DesignLibrary({ onBack, onMinimalism, onGlassmorphism, onNeumorphism, onBrutalism, onSkeuomorphism, onClaymorphism, onMaximalism, onMaterialDesign })', 'function DesignLibrary({ onBack, onMinimalism, onGlassmorphism, onNeumorphism, onBrutalism, onSkeuomorphism, onClaymorphism, onMaximalism, onMaterialDesign, onFlatDesign })'),
+              ('materialdesign: onMaterialDesign };', 'materialdesign: onMaterialDesign, flatdesign: onFlatDesign };'),
+              ('window.location.hash === "#materialdesign" ? "materialdesign" : "home"', 'window.location.hash === "#materialdesign" ? "materialdesign" : window.location.hash === "#flatdesign" ? "flatdesign" : "home"'),
+              ('onMaterialDesign={() => go("materialdesign")} onFluentDesign={() => go("fluentdesign")} />;', 'onMaterialDesign={() => go("materialdesign")} onFlatDesign={() => go("flatdesign")} />;'),
+              ('if (view === "materialdesign") return <MaterialDesign onBack={() => go("library")} />;', 'if (view === "flatdesign") return <FlatDesign onBack={() => go("library")} />; if (view === "materialdesign") return <MaterialDesign onBack={() => go("library")} />;'),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Missing expected source pattern: {old[:80]}')
+              text = text.replace(old, new)
+
+          main.write_text(text)
+
+          index = Path('index.html')
+          html = index.read_text()
+          html = html.replace('    <script type="module" src="/src/flat-navigation-v2.js"></script>\n', '')
+          html = html.replace('    <script type="module" src="/src/navigation.js"></script>\n', '')
+          index.write_text(html)
+
+          for old_file in ('src/navigation.js', 'src/flat-navigation-v2.js'):
+              p = Path(old_file)
+              if p.exists():
+                  p.unlink()
+
+      - name: Validate production build
+        run: |
+          npm install
+          npm run build
+
+      - name: Commit routing fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/main.jsx index.html src/navigation.js src/flat-navigation-v2.js
+          git diff --cached --quiet && exit 0
+          git commit -m "Integrate Flat Design into React routing [flat-routing-fixed]"
+          git push
