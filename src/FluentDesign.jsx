@@ -1,27 +1,7 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import "./fluent-design.css";
 
 export default function FluentDesign({ onBack }) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const dragRef = useRef(null);
-
-  const startDrag = (event) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragRef.current = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, originX: position.x, originY: position.y };
-  };
-
-  const moveDrag = (event) => {
-    const drag = dragRef.current;
-    if (!drag || drag.pointerId !== event.pointerId) return;
-    const x = Math.max(-180, Math.min(180, drag.originX + event.clientX - drag.startX));
-    const y = Math.max(-90, Math.min(130, drag.originY + event.clientY - drag.startY));
-    setPosition({ x, y });
-  };
-
-  const stopDrag = (event) => {
-    if (dragRef.current?.pointerId === event.pointerId) dragRef.current = null;
-  };
-
   return (
     <main className="fluent-page">
       <header className="fluent-header">
@@ -30,8 +10,10 @@ export default function FluentDesign({ onBack }) {
       </header>
 
       <section className="fluent-hero">
-        <div className="fluent-aurora aurora-one"></div><div className="fluent-aurora aurora-two"></div>
-        <div className="fluent-orb orb-one"></div><div className="fluent-orb orb-two"></div>
+        <div className="fluent-aurora aurora-one"></div>
+        <div className="fluent-aurora aurora-two"></div>
+        <div className="fluent-orb orb-one"></div>
+        <div className="fluent-orb orb-two"></div>
         <p className="fluent-kicker">02.03 · MODERN DIGITAL STYLES</p>
         <h1>Fluent <em>Design.</em></h1>
         <p className="fluent-lede">Light, depth, motion and material create an interface that feels alive — layered through Acrylic, Mica and soft spatial surfaces.</p>
@@ -46,15 +28,21 @@ export default function FluentDesign({ onBack }) {
       </section>
 
       <section className="fluent-example">
-        <div className="fluent-example-intro"><span>EXAMPLE 01 · ACRYLIC STUDY</span><h2>Make the surface<br/><em>feel alive.</em></h2><p>Instead of treating Fluent as a collection of rounded cards, this environment uses light, blur, transparency and depth across the whole scene.</p></div>
+        <div className="fluent-example-intro">
+          <span>EXAMPLE 01 · ACRYLIC STUDY</span>
+          <h2>Make the surface<br/><em>feel alive.</em></h2>
+          <p>Instead of treating Fluent as a collection of rounded cards, this environment uses light, blur, transparency and depth across the whole scene.</p>
+        </div>
+
         <article className="fluent-scene-card">
           <div className="fluent-scene-bg">
-            <div className="scene-glow scene-glow-a"></div><div className="scene-glow scene-glow-b"></div>
-            <div className="scene-mica-plane plane-back"></div><div className="scene-mica-plane plane-mid"></div><div className="scene-mica-plane plane-front"></div>
-            <div className="scene-window scene-window-main" style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)` }}>
-              <div className="scene-window-head" onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={stopDrag} onPointerCancel={stopDrag} style={{ touchAction: "none", cursor: "grab" }}>
-                <span>✦</span><strong>FLUENT WORKSPACE</strong><small>ACRYLIC</small>
-              </div>
+            <div className="scene-glow scene-glow-a"></div>
+            <div className="scene-glow scene-glow-b"></div>
+            <div className="scene-mica-plane plane-back"></div>
+            <div className="scene-mica-plane plane-mid"></div>
+            <div className="scene-mica-plane plane-front"></div>
+            <div className="scene-window scene-window-main">
+              <div className="scene-window-head"><span>✦</span><strong>FLUENT WORKSPACE</strong><small>ACRYLIC</small></div>
               <div className="scene-window-content"><small>02.03</small><h3>Light finds<br/><em>its way through.</em></h3><p>Soft surfaces, clear hierarchy and gentle motion keep the experience calm.</p><button>OPEN SPACE <b>→</b></button></div>
             </div>
             <div className="scene-floating scene-card-one"><small>FOCUS</small><strong>01</strong><span>Depth</span></div>
