@@ -1,0 +1,38 @@
+/* Home viewport guard: prevent any specimen, glow, transform or legacy style from creating drag space. */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  overscroll-behavior-x: none;
+}
+
+#root > main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* The homepage preview must stay inside its card and never expand the page. */
+.style-stage,
+.style-card,
+.style-card .preview {
+  max-width: 100%;
+}
+
+.style-card .preview {
+  overflow: hidden;
+}
+
+/* Fluent was removed; keep stale cached markup/CSS from ever affecting layout. */
+.fluent-page,
+.fluent-preview,
+.fluent-preview-glow,
+.fluent-preview-window,
+.fluent-preview-float {
+  display: none !important;
+}
