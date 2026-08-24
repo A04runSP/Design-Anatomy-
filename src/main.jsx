@@ -29,7 +29,7 @@ const styles = [
   { family: "LISM FAMILY", name: "BRUTALISM", icon: Compass, tag: "02.01", copy: "Raw structure, bold typography and deliberate visual tension make the interface impossible to ignore.", route: "brutalism", preview: 3 },
   { family: "LISM FAMILY", name: "MINIMALISM", icon: Compass, tag: "02.02", copy: "Clarity through restraint. Space, hierarchy and simple form do the heavy lifting.", route: "minimalism", preview: 0 },
   { family: "LISM FAMILY", name: "MAXIMALISM", icon: Compass, tag: "02.03", copy: "Abundance with intention — colour, typography, imagery, pattern and texture create a rich visual experience.", route: "maximalism", preview: 6 },
-  { family: "MODERN DIGITAL STYLES", name: "FLAT DESIGN", icon: Compass, tag: "02.01", copy: "Clarity through colour, typography, geometry and spacing — without unnecessary depth or decoration.", route: "flatdesign", preview: 0 },
+  { family: "MODERN DIGITAL STYLES", name: "FLAT DESIGN", icon: Compass, tag: "02.01", copy: "Clarity through colour, typography, geometry and spacing — without unnecessary depth or decoration.", route: "flatdesign", preview: 8 },
   { family: "MODERN DIGITAL STYLES", name: "MATERIAL DESIGN", icon: Compass, tag: "02.02", copy: "Clear surfaces, elevation, bold colour and meaningful motion create a practical visual system.", route: "materialdesign", preview: 7 },
 ];
 
@@ -41,6 +41,7 @@ function StylePreview({ index }) {
   if (index === 5) return <div className="preview clay-preview"><div className="clay-orb"></div><div className="clay-mini-card"><span>01.03</span><b>SOFT<br/>FORM</b><i></i></div></div>;
   if (index === 6) return <div className="preview max-preview"><span>02.03</span><b>MORE<br/>IS A<br/>CHOICE.</b><i>TYPE · COLOUR · PATTERN · LAYER</i><em>✦</em></div>;
   if (index === 7) return <div className="preview material-preview"><div className="material-mini-bar"><span>✦</span><b>Material</b><small>EARTH SYSTEM</small></div><div className="material-mini-content"><span>02.02</span><strong>Make it<br/><em>meaningful.</em></strong><small>DEPTH · MOTION · COLOUR</small><button>EXPLORE →</button></div><i className="material-mini-fab">+</i><div className="material-mini-nav"><span>HOME</span><span>LAYOUT</span><span>COMPONENTS</span></div></div>;
+  if (index === 8) return <div className="preview flat-preview"><div className="flat-preview-top"><b>FLAT / 02.01</b><i></i><i></i><i></i></div><div className="flat-preview-body"><span>01</span><strong>Clear<br/><b>by design.</b></strong><small>COLOUR · TYPE · SHAPE</small><div><i></i><i></i><i></i></div></div></div>;
   return <div className="preview brutal-preview"><b>02.01</b><strong>RAW<br/>FORM.</strong><span>TYPE · GRID · CONTRAST</span></div>;
 }
 
