@@ -4,7 +4,19 @@
 .glass-preview::after{content:"";position:absolute;z-index:1;inset:7% 10%;border-radius:25px;background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.16) 48%,rgba(255,255,255,.28)),radial-gradient(circle at 18% 22%,rgba(53,210,239,.28),transparent 30%),radial-gradient(circle at 82% 76%,rgba(135,72,255,.3),transparent 34%);border:1px solid rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(155%);-webkit-backdrop-filter:blur(16px) saturate(155%);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 34px rgba(255,255,255,.22),0 18px 35px rgba(70,75,90,.16)}
 .glass-backdrop,.glass-human{display:none!important}
 .glass-window{z-index:3;position:absolute;inset:11% 14%;width:auto;height:auto;padding:0;background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(255,255,255,.09));border:1px solid rgba(255,255,255,.86);border-radius:21px;box-shadow:inset 0 1px rgba(255,255,255,.96),inset 0 -18px 35px rgba(110,115,130,.08),0 16px 30px rgba(65,70,85,.16);backdrop-filter:blur(12px) saturate(140%);-webkit-backdrop-filter:blur(12px) saturate(140%);pointer-events:none}
-.glass-window::before{content:"Frosted Glass Effect\A Soft blur · Minimal UI\A UI Background\A Premium Design Asset\A Editable Example";white-space:pre;position:absolute;inset:12px;color:rgba(255,255,255,.96);font-size:7px;line-height:1.55;letter-spacing:.02em;text-shadow:0 1px 4px rgba(40,45,60,.25);text-align:center}
-.glass-window::after{content:"Glass\A Morphism";white-space:pre;position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-45%);color:#fff;font-size:clamp(21px,5vw,31px);line-height:.96;font-weight:800;letter-spacing:-.045em;text-align:center;text-shadow:0 3px 14px rgba(50,55,70,.3)}
-.glass-dot,.glass-label,.glass-number,.glass-bar,.glass-pills{display:none!important}
-@media(max-width:600px){.glass-preview::after{inset:7% 9%}.glass-window{inset:11% 14%}.glass-window::after{font-size:24px}.glass-window::before{inset:11px 9px;font-size:6px;line-height:1.7}}
+.glass-window::before{content:"";position:absolute;inset:0;pointer-events:none}
+.glass-window::after{content:"Glass\A Morphism";white-space:pre;position:absolute;z-index:8;left:50%;top:55%;transform:translate(-50%,-50%);color:#fff;font-size:clamp(21px,5vw,31px);line-height:.96;font-weight:800;letter-spacing:-.045em;text-align:center;text-shadow:0 3px 14px rgba(50,55,70,.3)}
+.glass-window .glass-dot,.glass-window .glass-label,.glass-window .glass-number,.glass-window .glass-bar,.glass-window .glass-pills{display:block!important;position:absolute;margin:0;padding:0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.94);font-size:6px;line-height:1.2;letter-spacing:.02em;text-shadow:0 1px 4px rgba(40,45,60,.25);z-index:7}
+.glass-window .glass-dot::after,.glass-window .glass-label::after,.glass-window .glass-number::after,.glass-window .glass-bar::after,.glass-window .glass-pills::after{display:block;font:inherit;color:inherit;white-space:nowrap}
+.glass-window .glass-label{top:12px;left:12px;font-size:0}
+.glass-window .glass-label::after{content:"Frosted Glass Effect";font-size:7px}
+.glass-window .glass-dot{top:12px;right:12px;width:auto;height:auto}
+.glass-window .glass-dot::after{content:"Soft blur · Minimal UI";font-size:7px}
+.glass-window .glass-number{top:38%;left:50%;transform:translateX(-50%);font-size:0}
+.glass-window .glass-number::after{content:"UI Background";font-size:6px}
+.glass-window .glass-bar{bottom:12px;left:12px;width:auto;height:auto}
+.glass-window .glass-bar::after{content:"Premium Design Asset";font-size:7px}
+.glass-window .glass-pills{bottom:12px;right:12px;width:auto;height:auto}
+.glass-window .glass-pills::after{content:"Editable Example";font-size:7px}
+.glass-window .glass-number span,.glass-window .glass-bar b,.glass-window .glass-pills i{display:none!important}
+@media(max-width:600px){.glass-preview::after{inset:7% 9%}.glass-window{inset:11% 14%}.glass-window::after{font-size:24px;top:55%}.glass-window .glass-label::after,.glass-window .glass-dot::after,.glass-window .glass-bar::after,.glass-window .glass-pills::after{font-size:6px}.glass-window .glass-number::after{font-size:5.5px}}
