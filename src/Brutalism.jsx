@@ -1,6 +1,7 @@
 import React from "react";
 import "./brutalism.css";
 import "./brutal-dark.css";
+import "./brutal-architecture.css";
 
 export default function Brutalism({ onBack }) {
   const parts = [
