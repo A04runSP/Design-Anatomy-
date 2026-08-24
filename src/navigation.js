@@ -23,6 +23,10 @@ const openFlatDesign = () => {
  * Flat Design = 02.01
  * Material Design = 02.02
  * Both cards live in the existing material-family grid.
+ *
+ * IMPORTANT: this function is intentionally called only after the library
+ * has rendered. Do not attach a MutationObserver here: changing the DOM
+ * inside an observer would trigger the observer again and freeze the page.
  */
 const structureModernDigitalFamily = () => {
   if (window.location.hash !== "#library") return;
@@ -37,17 +41,17 @@ const structureModernDigitalFamily = () => {
     const number = heading.querySelector("span");
     const title = heading.querySelector("h2");
     const copy = heading.querySelector("p");
-    if (number) number.textContent = "02";
-    if (title) title.textContent = "MODERN DIGITAL STYLES";
-    if (copy) copy.textContent = "Screen-native systems shaped by clarity, usability and contemporary digital interfaces.";
+    if (number && number.textContent !== "02") number.textContent = "02";
+    if (title && title.textContent !== "MODERN DIGITAL STYLES") title.textContent = "MODERN DIGITAL STYLES";
+    if (copy && copy.textContent !== "Screen-native systems shaped by clarity, usability and contemporary digital interfaces.") copy.textContent = "Screen-native systems shaped by clarity, usability and contemporary digital interfaces.";
   }
 
   const materialCard = grid.querySelector(".library-style-card:not(.flat-design-card)");
   if (materialCard) {
     const tag = materialCard.querySelector(".library-style-top > span");
-    if (tag) tag.textContent = "02.02";
+    if (tag && tag.textContent !== "02.02") tag.textContent = "02.02";
     const previewTag = materialCard.querySelector(".material-mini-content > span");
-    if (previewTag) previewTag.textContent = "02.02";
+    if (previewTag && previewTag.textContent !== "02.02") previewTag.textContent = "02.02";
   }
 
   // Insert Flat Design exactly once, directly before Material Design.
@@ -101,14 +105,22 @@ document.addEventListener("keydown", (event) => {
   handleNavigation(event);
 }, true);
 
-const observer = new MutationObserver(structureModernDigitalFamily);
-observer.observe(document.body, { childList: true, subtree: true });
 window.addEventListener("hashchange", () => {
-  if (window.location.hash === "#flat-design") openFlatDesign();
-  window.setTimeout(structureModernDigitalFamily, 50);
+  if (window.location.hash === "#flat-design") {
+    openFlatDesign();
+    return;
+  }
+
+  if (window.location.hash === "#library") {
+    // React renders the library after the hash change.
+    window.setTimeout(structureModernDigitalFamily, 100);
+  }
 });
 
 window.setTimeout(() => {
-  if (window.location.hash === "#flat-design") openFlatDesign();
+  if (window.location.hash === "#flat-design") {
+    openFlatDesign();
+    return;
+  }
   structureModernDigitalFamily();
-}, 50);
+}, 100);
