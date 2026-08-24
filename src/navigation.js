@@ -22,10 +22,7 @@ const openFlatDesign = () => {
  * Modern Digital Styles is ONE family.
  * Flat Design = 02.01
  * Material Design = 02.02
- *
- * Both cards live in the same .material-family grid. This avoids creating
- * a second heading/section and keeps the React library's existing family
- * structure intact.
+ * Both cards live in the existing material-family grid.
  */
 const structureModernDigitalFamily = () => {
   if (window.location.hash !== "#library") return;
@@ -35,8 +32,6 @@ const structureModernDigitalFamily = () => {
   const grid = family?.querySelector(".library-grid");
   if (!family || !grid) return;
 
-  // Make the existing family explicitly represent Modern Digital Styles.
-  family.classList.add("modern-digital-family");
   const heading = family.querySelector(".library-family-heading");
   if (heading) {
     const number = heading.querySelector("span");
@@ -47,7 +42,6 @@ const structureModernDigitalFamily = () => {
     if (copy) copy.textContent = "Screen-native systems shaped by clarity, usability and contemporary digital interfaces.";
   }
 
-  // Material is the second style in this family.
   const materialCard = grid.querySelector(".library-style-card:not(.flat-design-card)");
   if (materialCard) {
     const tag = materialCard.querySelector(".library-style-top > span");
