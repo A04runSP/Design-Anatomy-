@@ -12,3 +12,31 @@
   font-weight:900;
   letter-spacing:.16em;
 }
+
+/* Mobile viewport guard: the homepage must never pan sideways on touch. */
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:clip;
+  overscroll-behavior-x:none;
+}
+
+body{
+  touch-action:pan-y;
+}
+
+#root,
+main{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-x:clip;
+}
+
+img,
+video,
+svg,
+canvas{
+  max-width:100%;
+}
