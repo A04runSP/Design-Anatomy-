@@ -2,6 +2,7 @@ import { mountFlatDesign } from "./FlatDesign.jsx";
 import "./flat-library.css";
 
 const CARD_CLASS = "flat-design-card";
+const FLAT_ROOT_ID = "flat-design-root";
 
 function makeFlatCard() {
   const card = document.createElement("article");
@@ -47,19 +48,39 @@ window.addEventListener("load", ensureLibraryCard);
 window.addEventListener("hashchange", () => window.setTimeout(ensureLibraryCard, 0));
 window.setTimeout(ensureLibraryCard, 0);
 
-function openFlatDesign() {
-  const root = document.getElementById("root");
-  if (!root) return;
+function closeFlatDesign() {
+  const flatRoot = document.getElementById(FLAT_ROOT_ID);
+  if (flatRoot) {
+    flatRoot.remove();
+  }
 
-  window.history.pushState({}, "", "#flat-design");
-  mountFlatDesign(root, () => {
-    // The FlatDesign page is mounted as a separate React root by navigation.js.
-    // Changing only the hash does not remount the original library. Reloading
-    // the app at #library restores the real Design Library safely.
-    window.location.assign(`${window.location.pathname}#library`);
-  });
+  document.documentElement.classList.remove("flat-design-open");
+  document.body.classList.remove("flat-design-open");
+  window.history.replaceState({}, "", `${window.location.pathname}${window.location.search}#library`);
+  window.scrollTo(0, 0);
+  ensureLibraryCard();
+}
+
+function openFlatDesign() {
+  if (document.getElementById(FLAT_ROOT_ID)) return;
+
+  const flatRoot = document.createElement("div");
+  flatRoot.id = FLAT_ROOT_ID;
+  flatRoot.setAttribute("data-route", "flat-design");
+  document.body.appendChild(flatRoot);
+
+  document.documentElement.classList.add("flat-design-open");
+  document.body.classList.add("flat-design-open");
+  window.history.pushState({}, "", `${window.location.pathname}${window.location.search}#flat-design`);
+
+  // IMPORTANT: never mount FlatDesign into #root. #root belongs to the main
+  // React application. A separate host keeps React from immediately removing
+  // the Flat Design page during its next render.
+  mountFlatDesign(flatRoot);
   window.scrollTo(0, 0);
 }
+
+window.closeFlatDesign = closeFlatDesign;
 
 document.addEventListener("click", (event) => {
   const target = event.target instanceof Element ? event.target : null;
@@ -70,3 +91,9 @@ document.addEventListener("click", (event) => {
   event.stopPropagation();
   openFlatDesign();
 }, true);
+
+window.addEventListener("popstate", () => {
+  if (window.location.hash !== "#flat-design") {
+    closeFlatDesign();
+  }
+});
