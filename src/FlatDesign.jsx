@@ -27,10 +27,24 @@ function FlatSpecimen() {
 }
 
 function FlatDesign({ onBack }) {
+  const navigateBackToLibrary = () => {
+    // Primary navigation path supplied by navigation.js.
+    if (typeof onBack === "function") {
+      onBack();
+      return;
+    }
+
+    // Safe fallback so the button is never a dead control.
+    window.location.hash = "library";
+    window.scrollTo(0, 0);
+  };
+
   return (
     <main className="flat-page">
       <header className="flat-header">
-        <button className="flat-back" onClick={onBack}><ArrowLeft size={18} /> BACK TO LIBRARY</button>
+        <button type="button" className="flat-back" onClick={navigateBackToLibrary}>
+          <ArrowLeft size={18} /> BACK TO LIBRARY
+        </button>
       </header>
       <section className="flat-hero">
         <p className="flat-eyebrow">02.01 · MODERN DIGITAL STYLES</p>
