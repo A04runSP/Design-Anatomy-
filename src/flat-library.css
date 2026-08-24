@@ -9,3 +9,9 @@
 .flat-design-card .library-style-action:hover{background:rgba(22,225,239,.12);color:#68f6ff;border-color:rgba(104,246,255,.55)}
 .flat-design-card .flat-library-preview{border-color:#d8dee8}
 @media(max-width:800px){.flat-design-card{padding:22px}.flat-design-card .flat-library-preview{height:205px}}
+
+/* Explicit numbering inside the single Modern Digital Styles family. */
+.library-page>.library-family.material-family .flat-design-card .library-style-top>span:first-child{font-size:0}
+.library-page>.library-family.material-family .flat-design-card .library-style-top>span:first-child:after{content:"02.01";font-size:12px}
+.library-page>.library-family.material-family .library-style-card:not(.flat-design-card) .library-style-top>span:first-child{font-size:0}
+.library-page>.library-family.material-family .library-style-card:not(.flat-design-card) .library-style-top>span:first-child:after{content:"02.02";font-size:12px}
