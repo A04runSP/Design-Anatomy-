@@ -1,5 +1,6 @@
 import React from "react";
 import "./dark-ui-design.css";
+import "./dark-ui-grey-type.css";
 
 export default function DarkUIDesign({ onBack }) {
   return (
@@ -35,6 +36,16 @@ export default function DarkUIDesign({ onBack }) {
         </div>
         <div className="dark-ui-surface surface-one" />
         <div className="dark-ui-surface surface-two" />
+      </section>
+
+      <section className="dark-ui-grey-type">
+        <div className="dark-ui-grey-type-inner">
+          <div className="dark-ui-grey-type-meta"><span>03</span><b>EDITORIAL TEXTURE</b></div>
+          <h2>Secondary text can still carry visual weight.</h2>
+          <p className="dark-ui-grey-type-category">Dark UI / Content hierarchy</p>
+          <p>Not every message needs to be bright white. <strong>Use a deliberate grey for longer descriptions, supporting copy and secondary information</strong> so the interface stays quiet while the content still feels substantial.</p>
+          <div className="dark-ui-grey-type-rule" />
+        </div>
       </section>
 
       <section className="dark-ui-anatomy">
