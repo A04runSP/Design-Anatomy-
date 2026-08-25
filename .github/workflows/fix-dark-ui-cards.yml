@@ -1,0 +1,79 @@
+name: Fix Dark UI cards
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix cards and navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('src/main.jsx')
+          s = p.read_text()
+
+          old = 'function StyleCard({ style, onOpen }) { const Icon = style.icon; return <article className="library-style-card"><div className="library-style-top"><span>{style.tag}</span><Icon size={22}/></div><h2>{style.name}</h2><p>{style.copy}</p><StylePreview index={style.preview}/><button className="library-style-action" onClick={onOpen}>VIEW STYLE <ArrowRight size={18}/></button></article>; }'
+          new = 'function StyleCard({ style, onOpen }) { const Icon = style.icon; const openStyle = () => { if (typeof onOpen === "function") onOpen(); else { window.location.hash = style.route; window.scrollTo(0,0); } }; return <article className="library-style-card"><div className="library-style-top"><span>{style.tag}</span><Icon size={22}/></div><h2>{style.name}</h2><p>{style.copy}</p><StylePreview index={style.preview}/><button type="button" className="library-style-action" onClick={event => { event.stopPropagation(); openStyle(); }}>VIEW STYLE <ArrowRight size={18}/></button></article>; }'
+          if old not in s:
+              raise SystemExit('StyleCard source not found')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+
+          # Append scoped fixes so existing style-specific CSS cannot bleed into the Dark UI specimen.
+          for file in ['src/home-live-preview-fix.css', 'src/library.css']:
+              path = Path(file)
+              css = path.read_text()
+              marker = '/* DARK UI CARD FIX v2 */'
+              if marker not in css:
+                  css += '\n\n' + marker + '\n'
+                  if file.endswith('home-live-preview-fix.css'):
+                      css += r'''
+.style-card .dark-ui-preview{height:220px!important;min-height:220px!important;flex:0 0 220px;position:relative!important;isolation:isolate;overflow:hidden!important;border-radius:24px!important;border:1px solid rgba(42,231,242,.32)!important;background:radial-gradient(circle at 76% 24%,rgba(27,225,239,.34),transparent 25%),radial-gradient(circle at 18% 86%,rgba(117,78,255,.28),transparent 32%),linear-gradient(145deg,#071016,#06181b 55%,#090c16)!important;box-shadow:inset 0 0 55px rgba(22,225,239,.06),0 16px 35px rgba(0,0,0,.24)!important;color:#f5ffff!important}
+.style-card .dark-ui-preview .dark-ui-mini-glow{position:absolute!important;width:150px!important;height:150px!important;right:-30px!important;top:-45px!important;border-radius:50%!important;background:rgba(35,224,238,.34)!important;filter:blur(28px)!important;opacity:1!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel{position:absolute!important;left:7%!important;right:7%!important;top:9%!important;bottom:9%!important;padding:20px!important;border:1px solid rgba(95,239,248,.18)!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(10,24,31,.94),rgba(4,10,15,.98))!important;box-shadow:0 18px 38px rgba(0,0,0,.45),inset 0 0 25px rgba(22,225,239,.035)!important;overflow:hidden!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel span{display:block!important;color:#38e4ef!important;font-size:8px!important;line-height:1!important;letter-spacing:.16em!important;white-space:nowrap!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel strong{display:block!important;margin:28px 0 0!important;color:#f6ffff!important;font-size:34px!important;line-height:.88!important;letter-spacing:-.055em!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel strong em{font-style:normal!important;color:#35e5ef!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel small{display:block!important;margin-top:16px!important;color:#8394a0!important;font-size:7px!important;line-height:1!important;letter-spacing:.12em!important;white-space:nowrap!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel i{display:block!important;margin-top:20px!important;width:68%!important;height:3px!important;background:#17232c!important;border-radius:9px!important;overflow:hidden!important}
+.style-card .dark-ui-preview .dark-ui-mini-panel i b{display:block!important;width:72%!important;height:100%!important;background:linear-gradient(90deg,#19e2eb,#746fff)!important;box-shadow:0 0 12px rgba(28,225,233,.65)!important}
+@media(max-width:700px){.style-card .dark-ui-preview{height:185px!important;min-height:185px!important;flex-basis:185px!important;border-radius:20px!important}.style-card .dark-ui-preview .dark-ui-mini-panel{padding:15px!important;left:6%!important;right:6%!important;top:8%!important;bottom:8%!important}.style-card .dark-ui-preview .dark-ui-mini-panel strong{margin-top:22px!important;font-size:28px!important}.style-card .dark-ui-preview .dark-ui-mini-panel small{margin-top:12px!important;font-size:6px!important}.style-card .dark-ui-preview .dark-ui-mini-panel i{margin-top:15px!important}}
+'''
+                  else:
+                      css += r'''
+.library-page .material-family .library-style-card:nth-child(1) .library-style-top>span,.library-page .material-family .library-style-card:nth-child(2) .library-style-top>span,.library-page .material-family .library-style-card:nth-child(3) .library-style-top>span,.library-page .material-family .library-style-card:nth-child(4) .library-style-top>span{font-size:0!important}
+.library-page .material-family .library-style-card:nth-child(1) .library-style-top>span:after{content:"02.01"!important;font-size:12px!important}
+.library-page .material-family .library-style-card:nth-child(2) .library-style-top>span:after{content:"02.02"!important;font-size:12px!important}
+.library-page .material-family .library-style-card:nth-child(3) .library-style-top>span:after{content:"02.03"!important;font-size:12px!important}
+.library-page .material-family .library-style-card:nth-child(4) .library-style-top>span:after{content:"02.04"!important;font-size:12px!important}
+.library-page .material-family .library-style-card .dark-ui-preview{height:205px!important;min-height:205px!important;margin-top:22px!important}
+.library-page .material-family .library-style-card .dark-ui-preview .dark-ui-mini-panel{overflow:hidden!important}
+.library-style-action{position:relative!important;z-index:20!important;pointer-events:auto!important;cursor:pointer!important;}
+'''
+                  path.write_text(css)
+
+          # Make the Dark UI library card explicitly identifiable for CSS even if family ordering changes.
+          p = Path('src/main.jsx')
+          s = p.read_text()
+          s = s.replace('className="library-style-card"><div className="library-style-top"><span>{style.tag}</span>', 'className={`library-style-card ${style.route === "darkuidesign" ? "dark-ui-library-card" : ""}`}><div className="library-style-top"><span>{style.tag}</span>', 1)
+          p.write_text(s)
+          PY
+
+      - name: Commit fixes and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fix-dark-ui-cards.yml
+          git add src/main.jsx src/home-live-preview-fix.css src/library.css
+          git commit -m 'Fix Dark UI card preview and navigation'
+          git push
