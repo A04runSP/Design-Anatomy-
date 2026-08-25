@@ -24,11 +24,12 @@ jobs:
           s = p.read_text()
           old = 'const homeStyles = styles.filter(style => style.route !== "auroragradient");'
           new = 'const homeStyles = styles;'
-          if old not in s:
-              raise SystemExit('Expected homepage Aurora filter was not found; refusing to modify anything.')
-          if s.count(old) != 1:
-              raise SystemExit('Expected exactly one homepage Aurora filter; refusing to modify anything.')
-          p.write_text(s.replace(old, new, 1))
+          if old in s:
+              if s.count(old) != 1:
+                  raise SystemExit('Expected exactly one homepage Aurora filter; refusing to modify anything.')
+              p.write_text(s.replace(old, new, 1))
+          elif 'const homeStyles = styles;' not in s:
+              raise SystemExit('Neither the blocked nor fixed homepage rotation was found; refusing to modify anything.')
           PY
 
       - name: Commit fix and remove temporary workflow
@@ -38,5 +39,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add src/main.jsx
-          git commit -m 'Fix Aurora gradient homepage preview' || exit 0
+          git rm .github/workflows/fix-home-aurora.yml
+          git commit -m 'Fix Aurora gradient homepage preview'
           git push
