@@ -1,0 +1,42 @@
+name: Restore main and stabilize CSS
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore known-good application shell
+        run: |
+          git checkout b420fe61bdb3002bee98f29329e0ff6ff3bb4abb -- src/main.jsx
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('src/main.jsx')
+          s = p.read_text()
+          marker = 'import "./material-preview.css";'
+          additions = '''\n\n// Home preview and entry-level overrides are part of the Vite CSS graph.\n// Keeping them here makes load order deterministic instead of relying on\n// standalone <link> tags in index.html.\nimport "./home-live-preview-fix.css";\nimport "./minimal-preview.css";\nimport "./minimalism-geometric.css";\nimport "./flat-preview-fix.css";\nimport "./flat-preview-final.css";\nimport "./maximalism-live-override.css";\nimport "./home-viewport.css";\nimport "./heading-overrides.css";'''
+          if 'home-live-preview-fix.css' not in s:
+              s = s.replace(marker, marker + additions, 1)
+          p.write_text(s)
+          PY
+
+      - name: Remove temporary recovery workflow
+        run: rm -f .github/workflows/restore-main-and-stabilize-css.yml
+
+      - name: Commit repaired source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/main.jsx .github/workflows/restore-main-and-stabilize-css.yml
+          git commit -m "Restore app shell and stabilize CSS loading [skip ci]"
+          git push origin HEAD:main
