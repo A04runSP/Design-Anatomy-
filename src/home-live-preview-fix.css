@@ -46,6 +46,9 @@
 .style-card:has(.neo-preview) .neo-preview *{mix-blend-mode:normal!important;filter:none!important}
 .style-card:has(.neo-preview) .neo-panel{background:#dfe5e3!important;background-image:none!important;color:#5e6b69!important;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
 
+/* Home-only Neumorphism text: keep the surrounding card typography white. */
+.style-stage:has(.neo-preview) .style-name,.style-stage:has(.neo-preview) .style-copy{color:#fff!important}
+
 @media(max-width:700px){
   .style-stage{background:linear-gradient(180deg,#010506 0%,#031113 48%,#010607 100%)!important}
   .style-card{background:linear-gradient(145deg,rgba(7,42,45,.84),rgba(2,18,20,.94))!important}
