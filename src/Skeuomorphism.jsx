@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./skeuomorphism.css";
 import "./skeuomorphism-contrast.css";
+import "./skeuomorphism-final.css";
 
 export default function Skeuomorphism({ onBack }) {
   const [switchOn, setSwitchOn] = useState(true);
@@ -45,7 +46,7 @@ export default function Skeuomorphism({ onBack }) {
       <article className="tool-card wood-tool"><div className="tool-object wood-object"><span>WOOD</span></div><b>WOOD GRAIN</b><p>Natural grain gives a surface a strong physical identity.</p></article>
       <article className="tool-card metal-tool"><div className="tool-object metal-object"><span>+</span></div><b>METAL</b><p>Brushed highlights and weight make controls feel engineered.</p></article>
       <article className="tool-card leather-tool"><div className="tool-object leather-object"><span>STITCH</span></div><b>LEATHER</b><p>Soft grain, seams and stitching can make digital surfaces feel crafted.</p></article>
-      <article className="tool-card glass-tool"><div className="tool-object glass-object"><span>HIGHLIGHTS</span></div><b>HIGHLIGHTS</b><p>Reflections and translucent layers explain how a surface catches light.</p></article>
+      <article className="tool-card glass-tool"><div className="tool-object glass-object"><span>HIGHLIGHTS</span></div><b>GLASS</b><p>Reflections and translucent layers explain how a surface catches light.</p></article>
       <article className="tool-card control-tool"><div className="tool-object control-object"><span></span></div><b>PHYSICAL CONTROLS</b><p>Knobs, switches, sliders and buttons communicate interaction through shape.</p></article>
     </div></section>
 
@@ -59,7 +60,7 @@ export default function Skeuomorphism({ onBack }) {
 
     <section className="skeuo-section two-col"><div><div className="skeuo-heading"><span>05</span><h2>WHERE IT WORKS</h2></div><ul><li>Music applications and creative tools</li><li>Educational interfaces and simulations</li><li>Interfaces based on physical equipment</li><li>Products where familiarity matters</li><li>Experiences where material storytelling adds meaning</li></ul></div><div><div className="skeuo-heading"><span>06</span><h2>WHERE IT STRUGGLES</h2></div><ul><li>Dense information systems</li><li>Very small screens</li><li>Interfaces requiring extreme simplicity</li><li>When realistic decoration competes with content</li><li>When metaphor becomes harder to understand than the action</li></ul></div></section>
 
-    <section className="skeuo-section"><div className="skeuo-heading"><span>07</span><h2>SKEUOMORPHISM vs FLAT DESIGN</h2></div><div className="versus"><article className="versus-skeuo" style={{background:"linear-gradient(145deg,#7b5a36 0%,#4a321f 48%,#24180f 100%)",borderColor:"#a67b45"}}><div className="versus-icon raised-button"></div><h3>SKEUOMORPHISM</h3><p>Physical metaphor · texture · depth · detail</p></article><article className="versus-flat"><div className="versus-icon flat-button"></div><h3>FLAT DESIGN</h3><p>Abstract representation · simplicity · clean surfaces · minimal decoration</p></article></div><p className="choice-note">Neither is automatically better. <strong>The right choice depends on the experience you're creating.</strong></p></section>
+    <section className="skeuo-section"><div className="skeuo-heading"><span>07</span><h2>SKEUOMORPHISM vs FLAT DESIGN</h2></div><div className="versus"><article className="versus-skeuo"><div className="versus-icon raised-button"></div><h3>SKEUOMORPHISM</h3><p>Physical metaphor · texture · depth · detail</p></article><article className="versus-flat"><div className="versus-icon flat-button"></div><h3>FLAT DESIGN</h3><p>Abstract representation · simplicity · clean surfaces · minimal decoration</p></article></div><p className="choice-note">Neither is automatically better. <strong>The right choice depends on the experience you're creating.</strong></p></section>
 
     <section className="skeuo-takeaway"><span>FINAL TAKEAWAY</span><h2>MAKE THE DIGITAL FEEL MADE.</h2><p>Skeuomorphism can use objects, material, light, depth and controls as a visual vocabulary — not just as decoration.</p><strong>THE OBJECT BECOMES THE EXPLANATION.</strong></section>
   </main>;
