@@ -9,38 +9,47 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect and integrate Dark UI
+      - name: Wire Dark UI routing
         shell: bash
         run: |
           set -euo pipefail
-          echo '--- ROUTING CANDIDATES ---'
-          grep -n -E 'AuroraGradient|auroragradient|MaterialDesign|materialdesign|StylePage|styleComponents|componentMap|route' src/main.jsx | tail -80 || true
           python - <<'PY'
           from pathlib import Path
           p=Path('src/main.jsx'); s=p.read_text(); original=s
-          if 'const DarkUIDesign = lazy(() => import("./DarkUIDesign.jsx"));' not in s:
-              s=s.replace('const AuroraGradient = lazy(() => import("./AuroraGradient.jsx"));','const AuroraGradient = lazy(() => import("./AuroraGradient.jsx"));\nconst DarkUIDesign = lazy(() => import("./DarkUIDesign.jsx"));',1)
-          if 'import "./dark-ui-design.css";' not in s:
-              s=s.replace('import "./material-preview.css";','import "./material-preview.css";\nimport "./dark-ui-design.css";',1)
-          if 'route: "darkuidesign"' not in s:
-              import re
-              pat=r'(\{ family: "MODERN DIGITAL STYLES", name: "AURORA / GRADIENT DESIGN"[^\n]*route: "auroragradient", preview: 9 \},)'
-              s,n=re.subn(pat,r'\1\n  { family: "MODERN DIGITAL STYLES", name: "DARK UI DESIGN", icon: Compass, tag: "02.04", copy: "Deep surfaces, controlled contrast and luminous accents create an immersive interface where light becomes the visual language.", route: "darkuidesign", preview: 10 },',s,count=1)
-              if n!=1: raise SystemExit('Aurora style entry not found')
-          if 'index === 10' not in s:
-              marker='  if (index === 9) return <div className="preview aurora-preview">'
-              if marker not in s: raise SystemExit('Aurora preview branch not found')
-              branch='  if (index === 10) return <div className="preview dark-ui-preview"><div className="dark-ui-mini-glow"></div><div className="dark-ui-mini-panel"><span>02.04 / DARK UI</span><strong>LIGHT<br/><em>LEADS.</em></strong><small>DARK · CONTRAST · LIGHT</small><i><b></b></i></div></div>;\n'
-              s=s.replace(marker,branch+marker,1)
-          # Route integration is added separately after inspecting the exact structure.
+          # Design Library: accept a Dark UI opener and expose it in the route map.
+          if 'onDarkUIDesign' not in s:
+              old='function DesignLibrary({ onBack, onMinimalism, onGlassmorphism, onNeumorphism, onBrutalism, onSkeuomorphism, onClaymorphism, onMaximalism, onMaterialDesign, onFlatDesign, onAuroraGradient }) {'
+              new='function DesignLibrary({ onBack, onMinimalism, onGlassmorphism, onNeumorphism, onBrutalism, onSkeuomorphism, onClaymorphism, onMaximalism, onMaterialDesign, onFlatDesign, onAuroraGradient, onDarkUIDesign }) {'
+              if old not in s: raise SystemExit('DesignLibrary signature not found')
+              s=s.replace(old,new,1)
+          if 'darkuidesign: onDarkUIDesign' not in s:
+              old='auroragradient: onAuroraGradient };'
+              new='auroragradient: onAuroraGradient, darkuidesign: onDarkUIDesign };'
+              if old not in s: raise SystemExit('DesignLibrary opener map not found')
+              s=s.replace(old,new,1)
+          # App hash routing: add Dark UI after Aurora in both initial state and hashchange handler.
+          marker='window.location.hash === "#auroragradient" ? "auroragradient" : "home"'
+          if s.count(marker) != 2: raise SystemExit(f'Expected 2 Aurora hash routes, found {s.count(marker)}')
+          s=s.replace(marker,'window.location.hash === "#auroragradient" ? "auroragradient" : window.location.hash === "#darkuidesign" ? "darkuidesign" : "home"',2)
+          # Library opener prop.
+          old='onFlatDesign={() => go("flatdesign")} onAuroraGradient={() => go("auroragradient")} />;'
+          new='onFlatDesign={() => go("flatdesign")} onAuroraGradient={() => go("auroragradient")} onDarkUIDesign={() => go("darkuidesign")} />;'
+          if old not in s: raise SystemExit('DesignLibrary App prop tail not found')
+          s=s.replace(old,new,1)
+          # Render the new page after Aurora.
+          old='if (view === "auroragradient") return <Suspense fallback={<StyleLoader />}><AuroraGradient onBack={() => go("library")} /></Suspense>;'
+          new=old+' if (view === "darkuidesign") return <Suspense fallback={<StyleLoader />}><DarkUIDesign onBack={() => go("library")} /></Suspense>;'
+          if old not in s: raise SystemExit('Aurora render branch not found')
+          s=s.replace(old,new,1)
           p.write_text(s)
           PY
-      - name: Commit current integration changes and keep workflow for routing step
+      - name: Commit and remove temporary workflow
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/main.jsx .github/workflows/implement-dark-ui.yml
-          git commit -m 'Add Dark UI to homepage rotation' || exit 0
+          git rm .github/workflows/implement-dark-ui.yml
+          git add src/main.jsx
+          git commit -m 'Wire Dark UI style page and library entry'
           git push
