@@ -38,6 +38,14 @@
 .style-stage:has(.neo-preview),.style-card:has(.neo-preview),.style-card:has(.neo-preview) .card-body,.style-card:has(.neo-preview) .card-head{isolation:isolate;background-color:transparent!important;background-image:none!important;filter:none!important}
 .style-card:has(.neo-preview){overflow:hidden!important}
 
+/* Final Home-only Neo isolation: the showcase remains the dark Home environment; only the specimen is light. */
+.style-stage:has(.neo-preview){background:linear-gradient(180deg,#010506 0%,#031113 48%,#010607 100%)!important;background-image:linear-gradient(180deg,#010506 0%,#031113 48%,#010607 100%)!important;color:#f7ffff!important;overflow:hidden!important;isolation:isolate}
+.style-card:has(.neo-preview){background:linear-gradient(145deg,rgba(7,42,45,.84),rgba(2,18,20,.94))!important;background-image:linear-gradient(145deg,rgba(7,42,45,.84),rgba(2,18,20,.94))!important;color:#f7ffff!important;overflow:hidden!important;isolation:isolate;contain:paint}
+.style-card:has(.neo-preview) .card-head,.style-card:has(.neo-preview) .card-body{background:transparent!important;background-image:none!important;color:inherit!important}
+.style-card:has(.neo-preview) .neo-preview{position:relative!important;z-index:2!important;background:#dfe5e3!important;background-image:none!important;color:#5e6b69!important;box-shadow:none!important;transform:none!important;filter:none!important;opacity:1!important;mix-blend-mode:normal!important}
+.style-card:has(.neo-preview) .neo-preview *{mix-blend-mode:normal!important;filter:none!important}
+.style-card:has(.neo-preview) .neo-panel{background:#dfe5e3!important;background-image:none!important;color:#5e6b69!important;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+
 @media(max-width:700px){
   .style-stage{background:linear-gradient(180deg,#010506 0%,#031113 48%,#010607 100%)!important}
   .style-card{background:linear-gradient(145deg,rgba(7,42,45,.84),rgba(2,18,20,.94))!important}
