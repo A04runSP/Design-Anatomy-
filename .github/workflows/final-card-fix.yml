@@ -1,0 +1,139 @@
+name: Final Design Card Fix
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply card and navigation fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('src/main.jsx')
+          s = p.read_text()
+
+          pattern = re.compile(r'function StyleCard\(\{ style, onOpen \}\) \{.*?\n\nfunction DesignLibrary', re.S)
+          replacement = '''function StyleCard({ style, onOpen }) {
+            const Icon = style.icon;
+            return <article className="library-style-card">
+              <div className="library-style-top"><span>{style.tag}</span><Icon size={22}/></div>
+              <h2>{style.name}</h2>
+              <p>{style.copy}</p>
+              <StylePreview index={style.preview}/>
+              <a
+                className="library-style-action"
+                href={`#${style.route}`}
+                onClick={() => { if (typeof onOpen === "function") onOpen(); }}
+              >VIEW STYLE <ArrowRight size={18}/></a>
+            </article>;
+          }
+
+          function DesignLibrary'''
+          if not pattern.search(s):
+              raise SystemExit('StyleCard block not found')
+          s = pattern.sub(replacement, s, count=1)
+          p.write_text(s)
+
+          p = Path('src/home-live-preview-fix.css')
+          css = p.read_text()
+          css += r'''
+
+          /* FINAL CARD PASS: compact, bright, intentional mobile Home specimen */
+          .style-stage .style-card{
+            height:auto!important;
+            min-height:0!important;
+            padding:20px!important;
+            border-radius:28px!important;
+          }
+          .style-stage .card-body{margin-top:18px!important}
+          .style-stage .style-name{font-size:22px!important;letter-spacing:.11em!important}
+          .style-stage .style-copy{font-size:14px!important;line-height:1.5!important;margin:8px 0 14px!important}
+          .style-stage .style-card .dark-ui-preview{
+            height:185px!important;
+            min-height:185px!important;
+            margin-top:14px!important;
+            border-radius:20px!important;
+            background:
+              radial-gradient(circle at 75% 22%,rgba(20,245,255,.72),transparent 24%),
+              radial-gradient(circle at 18% 85%,rgba(180,35,255,.58),transparent 35%),
+              linear-gradient(145deg,#07131a 0%,#062b32 52%,#090b18 100%)!important;
+            border:1px solid rgba(52,242,255,.7)!important;
+            box-shadow:0 0 30px rgba(25,225,240,.14),inset 0 0 35px rgba(25,225,240,.08)!important;
+          }
+          .style-stage .dark-ui-preview .dark-ui-mini-glow{
+            width:170px!important;height:170px!important;right:-40px!important;top:-60px!important;
+            background:#22f4ff!important;filter:blur(42px)!important;opacity:.5!important;
+          }
+          .style-stage .dark-ui-preview .dark-ui-mini-panel{
+            left:6%!important;right:6%!important;top:7%!important;bottom:7%!important;
+            padding:15px!important;border-radius:16px!important;
+            background:linear-gradient(145deg,rgba(8,31,38,.92),rgba(3,10,17,.97))!important;
+            border:1px solid rgba(104,248,255,.32)!important;
+          }
+          .style-stage .dark-ui-preview .dark-ui-mini-panel span{font-size:7px!important;color:#36f3ff!important}
+          .style-stage .dark-ui-preview .dark-ui-mini-panel strong{margin-top:20px!important;font-size:28px!important;line-height:.84!important}
+          .style-stage .dark-ui-preview .dark-ui-mini-panel small{margin-top:11px!important;font-size:6px!important;color:#a4b9bd!important}
+          .style-stage .dark-ui-preview .dark-ui-mini-panel i{margin-top:13px!important;width:72%!important}
+          .style-stage .dark-ui-preview .dark-ui-mini-panel i b{background:linear-gradient(90deg,#19f5ff,#c04cff)!important}
+          .library-style-action{
+            position:relative!important;z-index:50!important;display:inline-flex!important;
+            align-items:center!important;gap:8px!important;pointer-events:auto!important;
+            text-decoration:none!important;touch-action:manipulation!important;
+          }
+          .library-style-card{position:relative!important;overflow:hidden!important}
+          .library-style-card .preview{position:relative!important;z-index:1!important}
+          .library-style-card .library-style-action{z-index:100!important}
+          @media(max-width:700px){
+            .style-stage{min-height:0!important;padding:38px 18px 45px!important}
+            .style-stage .style-card{width:100%!important}
+            .style-stage .style-icon{width:48px!important;height:48px!important}
+            .style-stage .card-number{font-size:12px!important}
+            .style-stage .auto-note{font-size:9px!important;margin-top:14px!important}
+          }
+          '''
+          p.write_text(css)
+
+          p = Path('src/library.css')
+          css = p.read_text()
+          css += r'''
+
+          /* FINAL LIBRARY CARD PASS */
+          .library-style-card .library-style-action{
+            position:relative!important;z-index:100!important;pointer-events:auto!important;
+            cursor:pointer!important;touch-action:manipulation!important;text-decoration:none!important;
+          }
+          .library-style-card .preview{z-index:1!important}
+          .library-style-card{position:relative!important;overflow:hidden!important}
+          .library-page .library-style-card .dark-ui-preview{
+            height:205px!important;min-height:205px!important;
+            background:
+              radial-gradient(circle at 76% 20%,rgba(25,246,255,.55),transparent 25%),
+              radial-gradient(circle at 18% 82%,rgba(178,42,255,.42),transparent 35%),
+              linear-gradient(145deg,#07131a,#062a31 55%,#090b17)!important;
+            border:1px solid rgba(50,239,255,.6)!important;
+          }
+          .library-page .dark-ui-preview .dark-ui-mini-panel{overflow:hidden!important}
+          @media(max-width:700px){
+            .library-page .library-style-card .dark-ui-preview{height:185px!important;min-height:185px!important}
+          }
+          '''
+          p.write_text(css)
+          PY
+      - name: Commit changes and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/main.jsx src/home-live-preview-fix.css src/library.css
+          git rm .github/workflows/final-card-fix.yml
+          git commit -m 'Final card layout and navigation fix'
+          git push
