@@ -8,7 +8,7 @@ A React + Vite recreation of the Design Anatomy homepage.
 
 ## Live Website
 
-https://design-anatomy-beta.vercel.app/
+https://design-anatomy.vercel.app/
 
 ## Stack
 - Vite
