@@ -27,3 +27,17 @@ body:has(.style-stage .neo-preview)::before{z-index:0!important}
 body:has(.style-stage .neo-preview) main{position:relative!important;z-index:1!important}
 
 @media(max-width:700px){.style-card:has(.neo-preview) .neo-preview{height:185px!important;min-height:185px!important;padding:16px!important;border-radius:20px!important;clip-path:inset(0 round 20px)!important}.style-card:has(.neo-preview) .neo-panel{width:88%!important;height:82%!important;padding:13px 16px!important;border-radius:21px!important}.style-card:has(.neo-preview) .neo-label{font-size:7px!important}.style-card:has(.neo-preview) .neo-knob{width:42px!important;height:42px!important;flex-basis:42px!important;margin:7px auto 9px!important;font-size:18px!important}.style-card:has(.neo-preview) .neo-slider{height:7px!important;flex-basis:7px!important}.style-card:has(.neo-preview) .neo-row{margin-top:9px!important;font-size:7px!important}}
+
+/* FINAL CASCADE GUARD — Home typography only. Keep the actual Neumorphism page unchanged. */
+.style-stage .style-card:has(.neo-preview) .card-body > p.style-name,
+.style-stage .style-card:has(.neo-preview) .card-body > p.style-copy{
+  color:#ffffff!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+}
+.style-stage .style-card:has(.neo-preview) .card-body > p.style-name{position:relative!important;z-index:10!important}
+.style-stage .style-card:has(.neo-preview) .card-body > p.style-copy{position:relative!important;z-index:10!important}
