@@ -1,12 +1,12 @@
 # Design Anatomy — Engineering & Design Audit
 
-**Audit phase:** Phase 1 / CSS ownership + architecture forensic pass
+**Audit phase:** Phase 1 / Phase 2A CSS ownership forensic pass
 **Branch:** main
-**Purpose:** Record verified findings before any destructive cleanup or refactor.
+**Purpose:** Record verified findings before destructive cleanup or broad refactor.
 
 ## Safety rule
 
-No existing runtime file is removed or rewritten merely because it appears old, duplicated, or unusually named. Every candidate must first be traced through imports, references, selectors, and runtime/build ownership.
+No existing runtime file is removed merely because it appears old, duplicated, or unusually named. Every candidate must first be traced through imports, references, selectors, and runtime/build ownership.
 
 ## Current application path
 
@@ -17,47 +17,29 @@ index.html
   -> Home / Dashboard / Library / style environments
 ```
 
-`src/main.jsx` is the current application entry and contains the style registry, Home `StylePreview`, navigation state, and imports for the style environments.
+`src/main.jsx` is the application entry and contains the style registry, Home `StylePreview`, navigation state, and imports for the style environments.
 
 ## Verified findings
 
-### A. Two CSS delivery paths — HIGH
+### A. Two CSS delivery paths — RESOLVED IN PHASE 2A
 
-CSS is loaded both through JavaScript imports in `src/main.jsx` and direct `<link>` tags in `index.html`.
+The repository previously loaded application CSS through both JavaScript imports in `src/main.jsx` and direct `<link>` tags in `index.html`.
 
-Examples from `main.jsx`:
-- style.css
-- enhancements.css
-- typography.css
-- spacing.css
-- light-material.css
-- contrast.css
-- start-here.css
-- library.css
-- material-design.css
-- material-preview.css
+This created ordering and ownership ambiguity, especially for Home preview correction layers.
 
-Examples from `index.html`:
-- heading-overrides.css
-- home-viewport.css
-- home-live-preview-fix.css
-- minimal-preview.css
-- minimalism-geometric.css
-- flat-preview-fix.css
-- flat-preview-final.css
-- maximalism-live-override.css
+**Permanent change made:** application CSS is now imported through the Vite module graph from `src/main.jsx`; `index.html` is responsible only for document metadata and the stable Vite entry.
 
-**Risk:** unclear cascade ownership, ordering dependence, and harder Vite dependency tracing.
+**Expected result:** deterministic CSS loading order, clearer dependency tracing, and fewer browser/deployment differences caused by standalone stylesheet links.
 
-**Decision:** REFRACTOR, but only after selector/import tracing. Do not delete the linked files yet.
+The CSS files themselves were intentionally retained. No style sheet was deleted as part of this change.
 
-### B. Preview correction layers — HIGH
+### B. Preview correction layers — HIGH / STILL UNDER REVIEW
 
 The repository contains explicitly corrective/override styles such as `home-live-preview-fix.css`, `flat-preview-fix.css`, `flat-preview-final.css`, and `maximalism-live-override.css`.
 
 **Risk:** fixes can become permanent cascade dependencies and can mask the original ownership problem.
 
-**Decision:** KEEP temporarily. Consolidate only after each selector is traced to its owning component and visual role.
+**Decision:** KEEP temporarily. Their selectors must be traced before any consolidation or removal.
 
 ### C. Home preview markup is coupled to `main.jsx` — MEDIUM
 
@@ -95,6 +77,24 @@ The repository contains explicitly corrective/override styles such as `home-live
 
 **Decision:** PIN after determining the exact dependency versions used by the currently working application. Do not guess versions.
 
+## Phase 2A change log
+
+### Completed
+
+- Moved the eight Home/preview/entry override styles that were manually linked from `index.html` into the Vite CSS import graph in `src/main.jsx`.
+- Removed the standalone stylesheet `<link>` tags from `index.html`.
+- Kept all existing CSS files and selectors intact.
+- Kept the stable `/src/main.jsx` Vite entry intact.
+- Preserved the existing visual preview implementation.
+
+### Why this is safe
+
+This change alters **how CSS is loaded**, not the CSS rules themselves. It gives Vite one authoritative CSS dependency graph and removes the previous split between module imports and document-level stylesheet links.
+
+### Remaining work
+
+This does **not** mean every override file is now justified. The next forensic step is selector-level tracing to determine which rules overlap and which files have unique ownership.
+
 ## Protected assets / architecture
 
 The following are considered intentional until proven otherwise:
@@ -105,21 +105,22 @@ The following are considered intentional until proven otherwise:
 - existing assets
 - current React application entry
 - current single production Vercel deployment
+- existing preview correction CSS until selector tracing is complete
 
 ## Next safe actions
 
-1. Trace every CSS import and direct stylesheet link.
-2. Identify selector overlap between Home previews and full style environments.
+1. Trace selector overlap among Home preview, library preview, and full style environment CSS.
+2. Identify duplicate declarations and cascade dependencies.
 3. Trace `minimalism.html` references.
 4. Trace `/library.html` references.
 5. Establish the current dependency versions before pinning.
 6. Produce a KEEP / MERGE / REFACTOR / REMOVE decision for each CSS candidate.
-7. Only then implement the smallest permanent architectural changes.
+7. Only then implement the next smallest permanent architectural change.
 
-## Explicitly not done in this phase
+## Explicitly not done
 
-- No CSS files deleted.
-- No design styles removed.
+- No design style deleted.
+- No CSS candidate deleted.
 - No visual redesign.
 - No dependency version guessed or changed.
 - No routing rule removed.
