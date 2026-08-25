@@ -9,65 +9,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Integrate Dark UI into main.jsx
+      - name: Inspect and integrate Dark UI
         shell: bash
         run: |
           set -euo pipefail
+          echo '--- ROUTING CANDIDATES ---'
+          grep -n -E 'AuroraGradient|auroragradient|MaterialDesign|materialdesign|StylePage|styleComponents|componentMap|route' src/main.jsx | tail -80 || true
           python - <<'PY'
           from pathlib import Path
-          import re
-          p=Path('src/main.jsx')
-          s=p.read_text()
-          original=s
+          p=Path('src/main.jsx'); s=p.read_text(); original=s
           if 'const DarkUIDesign = lazy(() => import("./DarkUIDesign.jsx"));' not in s:
-              marker='const AuroraGradient = lazy(() => import("./AuroraGradient.jsx"));'
-              if marker not in s: raise SystemExit('Aurora import marker not found')
-              s=s.replace(marker, marker+'\nconst DarkUIDesign = lazy(() => import("./DarkUIDesign.jsx"));',1)
+              s=s.replace('const AuroraGradient = lazy(() => import("./AuroraGradient.jsx"));','const AuroraGradient = lazy(() => import("./AuroraGradient.jsx"));\nconst DarkUIDesign = lazy(() => import("./DarkUIDesign.jsx"));',1)
           if 'import "./dark-ui-design.css";' not in s:
-              marker='import "./material-preview.css";'
-              if marker not in s: raise SystemExit('CSS import marker not found')
-              s=s.replace(marker, marker+'\nimport "./dark-ui-design.css";',1)
+              s=s.replace('import "./material-preview.css";','import "./material-preview.css";\nimport "./dark-ui-design.css";',1)
           if 'route: "darkuidesign"' not in s:
-              marker='{ family: "MODERN DIGITAL STYLES", name: "AURORA / GRADIENT DESIGN", icon: Compass, tag: "02.03", copy: "Dark atmospheric surfaces, flowing cyan-violet light and soft colour depth create a luminous visual language.", route: "auroragradient", preview: 9 },'
-              if marker not in s: raise SystemExit('Aurora style marker not found')
-              dark='{ family: "MODERN DIGITAL STYLES", name: "DARK UI DESIGN", icon: Compass, tag: "02.04", copy: "Deep surfaces, controlled contrast and luminous accents create an immersive interface where light becomes the visual language.", route: "darkuidesign", preview: 10 },'
-              s=s.replace(marker, marker+'\n  '+dark,1)
+              import re
+              pat=r'(\{ family: "MODERN DIGITAL STYLES", name: "AURORA / GRADIENT DESIGN"[^\n]*route: "auroragradient", preview: 9 \},)'
+              s,n=re.subn(pat,r'\1\n  { family: "MODERN DIGITAL STYLES", name: "DARK UI DESIGN", icon: Compass, tag: "02.04", copy: "Deep surfaces, controlled contrast and luminous accents create an immersive interface where light becomes the visual language.", route: "darkuidesign", preview: 10 },',s,count=1)
+              if n!=1: raise SystemExit('Aurora style entry not found')
           if 'index === 10' not in s:
               marker='  if (index === 9) return <div className="preview aurora-preview">'
-              pos=s.find(marker)
-              if pos<0: raise SystemExit('Aurora preview marker not found')
-              # Insert immediately before the existing Aurora preview branch.
+              if marker not in s: raise SystemExit('Aurora preview branch not found')
               branch='  if (index === 10) return <div className="preview dark-ui-preview"><div className="dark-ui-mini-glow"></div><div className="dark-ui-mini-panel"><span>02.04 / DARK UI</span><strong>LIGHT<br/><em>LEADS.</em></strong><small>DARK · CONTRAST · LIGHT</small><i><b></b></i></div></div>;\n'
-              s=s[:pos]+branch+s[pos:]
-          if 'DarkUIDesign' not in s.split('function Home',1)[-1]:
-              # Try the common route-component conditional patterns used by this project.
-              patterns=[
-                (r'(if\s*\([^\n]*route\s*===\s*["\']auroragradient["\'][^\n]*\)\s*return\s*<AuroraGradient[^\n]*>)', r'\1\n    if (route === "darkuidesign") return <DarkUIDesign onBack={onBack} />;'),
-                (r'(if\s*\([^\n]*auroragradient[^\n]*\)\s*return\s*<AuroraGradient[^\n]*>)', r'\1\n    if (route === "darkuidesign") return <DarkUIDesign onBack={onBack} />;'),
-              ]
-              done=False
-              for pat,repl in patterns:
-                  ns,n=re.subn(pat,repl,s,count=1)
-                  if n:
-                      s=ns; done=True; break
-              if not done:
-                  # Map-style routing fallback.
-                  for key in ['const styleComponents = {','const componentMap = {','const stylePages = {','const styleComponents= {','const componentMap= {']:
-                      if key in s:
-                          s=s.replace(key,key+'\n  darkuidesign: DarkUIDesign,',1); done=True; break
-              if not done:
-                  raise SystemExit('Could not identify the style-page routing map/conditional. No main.jsx changes written.')
-          if s==original:
-              raise SystemExit('No changes needed')
+              s=s.replace(marker,branch+marker,1)
+          # Route integration is added separately after inspecting the exact structure.
           p.write_text(s)
           PY
-      - name: Commit and remove integration workflow
+      - name: Commit current integration changes and keep workflow for routing step
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git rm .github/workflows/implement-dark-ui.yml
-          git add src/main.jsx
-          git commit -m 'Add Dark UI design to library and home preview'
+          git add src/main.jsx .github/workflows/implement-dark-ui.yml
+          git commit -m 'Add Dark UI to homepage rotation' || exit 0
           git push
