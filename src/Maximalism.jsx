@@ -12,6 +12,29 @@ export default function Maximalism({ onBack }) {
         <div className="max-hero-copy"><h1><span>MAXI</span>MALISM</h1><h2>MORE IS<br/><em>MORE.</em></h2><p className="lead">Maximalism embraces abundance. Colour, typography, imagery, pattern, texture and decoration are deliberately layered into a visual language that feels expressive, energetic and unmistakably alive.</p><div className="max-tags"><b>TYPE</b><b>COLOUR</b><b>IMAGE</b><b>PATTERN</b><b>LAYER</b></div></div>
         <div className="max-collage" aria-label="Maximalist visual composition"><span className="collage-grid"/><span className="collage-circle circle-one"/><span className="collage-circle circle-two"/><span className="collage-star">✦</span><span className="collage-ring"/><b className="collage-word word-max">MAX</b><b className="collage-word word-more">MORE</b><span className="collage-vertical">VISUAL / ENERGY / EXPRESSION</span><span className="collage-note">EDITORIAL<br/>DESIGN STUDY<br/>01 / 07</span><span className="collage-scribble">/////</span><div className="collage-panel">BE BOLD.<br/>BE BUSY.<br/><strong>BE CLEAR.</strong></div></div>
       </div>
+
+      <section className="max-example-stage" aria-label="Maximalism visual example card">
+        <div className="max-example-card">
+          <div className="max-example-top"><b>MAXIMALISM</b><span>EDITORIAL / 01.07</span><i>✦</i></div>
+          <div className="max-example-canvas">
+            <div className="example-grid"></div>
+            <div className="example-sun"></div>
+            <div className="example-orb"></div>
+            <div className="example-frame"></div>
+            <div className="example-flower">✿</div>
+            <div className="example-star">✦</div>
+            <div className="example-scribble">〰〰〰</div>
+            <div className="example-vertical">MORE / MORE / MORE</div>
+            <div className="example-title">MORE<br/><em>IS MORE.</em></div>
+            <div className="example-copy">VISUAL HIERARCHY<br/>BOLD TYPE<br/>COLLAGE · CONTRAST · STORY</div>
+            <div className="example-sticker">BE BOLD.<br/><strong>MAKE IT COUNT.</strong></div>
+            <div className="example-number">01<br/><small>07</small></div>
+          </div>
+          <div className="max-example-footer"><span>COLOUR</span><span>TYPE</span><span>IMAGE</span><span>PATTERN</span><span>LAYERS</span></div>
+        </div>
+        <p className="max-example-caption">REFERENCE / VISUAL LANGUAGE</p>
+      </section>
+
       <blockquote>More isn't the goal.<br/><strong>Meaningful more is.</strong></blockquote>
     </section>
     <section className="max-principle"><span>THE PRINCIPLE</span><h2>SIMPLE IDEA.<br/><strong>LOUD EXECUTION.</strong></h2><p>Maximalism is not random clutter. The composition can be dense, but hierarchy still decides where the eye lands first.</p></section>
