@@ -13,6 +13,22 @@
   letter-spacing:.16em;
 }
 
+/* Home-only Neumorphism live-preview typography.
+   This selector is intentionally scoped to the rotating Home showcase card,
+   not the Neumorphism page in the Design Library. */
+.style-card:has(.neo-preview) .style-name{
+  color:#ffffff !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+}
+.style-card:has(.neo-preview) .style-copy{
+  color:#ffffff !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+}
+
 /* Mobile viewport guard: the homepage must never pan sideways on touch. */
 html,
 body{
