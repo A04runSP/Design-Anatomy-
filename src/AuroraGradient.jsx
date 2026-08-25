@@ -66,6 +66,7 @@ export default function AuroraGradient({ onBack }) {
       </section>
 
       <section className="aurora-principles">
+        <div aria-hidden="true" style={{position:"absolute",zIndex:1,pointerEvents:"none",inset:"-120px -18vw -90px",background:"radial-gradient(ellipse 45% 28% at 12% 12%,rgba(255,38,153,.92),transparent 68%),radial-gradient(ellipse 52% 30% at 50% 38%,rgba(255,76,176,.82),transparent 70%),radial-gradient(ellipse 44% 28% at 86% 64%,rgba(177,66,255,.78),transparent 68%),radial-gradient(ellipse 46% 26% at 48% 94%,rgba(28,220,239,.78),transparent 70%)",filter:"blur(34px)"}} />
         <div><span>01</span><strong>COLOUR</strong><p>Cyan and violet form the primary luminous family, with deep blue supporting the transition.</p></div>
         <div><span>02</span><strong>LIGHT</strong><p>Soft glow creates emphasis while large dark areas preserve calm and readability.</p></div>
         <div><span>03</span><strong>DEPTH</strong><p>Overlapping gradients and haze create distance without glass or heavy cards.</p></div>
