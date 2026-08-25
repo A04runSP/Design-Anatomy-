@@ -37,6 +37,8 @@ export default function AuroraGradient({ onBack }) {
         <div className="aurora-specimen-nav"><span>HOME</span><span>LIGHT</span><span>COLOUR</span></div>
       </section>
 
+      <div aria-hidden="true" style={{position:"relative",zIndex:0,height:"180px",margin:"-82px auto -82px",width:"100%",maxWidth:"1200px",pointerEvents:"none",background:"radial-gradient(ellipse 42% 70% at 18% 48%,rgba(20,220,239,.62),transparent 68%),radial-gradient(ellipse 52% 76% at 50% 44%,rgba(64,92,255,.68),transparent 70%),radial-gradient(ellipse 44% 68% at 84% 52%,rgba(128,46,242,.62),transparent 68%),linear-gradient(90deg,transparent 0%,rgba(13,220,234,.12) 22%,rgba(70,82,245,.18) 52%,rgba(137,48,235,.12) 78%,transparent 100%)",filter:"blur(30px)"}} />
+
       <section className="aurora-example">
         <div className="aurora-example-head">
           <div><span>EXAMPLE 01 · AURORA FLOW</span><h2>Light moving through darkness.</h2></div>
