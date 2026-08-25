@@ -32,6 +32,12 @@
 .style-card .flat-preview .flat-preview-body>div{right:11px!important;bottom:8px!important;gap:4px!important}
 .style-card .flat-preview .flat-preview-body>div i{width:22px!important;height:22px!important}
 
+/* Neumorphism is a lazy-loaded page stylesheet. Its fixed-pattern page shell must never bleed into the Home specimen. */
+.style-stage:has(.neo-preview),.style-stage:has(.neo-preview)::before,.style-stage:has(.neo-preview)::after{background-image:none!important}
+.style-stage:has(.neo-preview)::before,.style-stage:has(.neo-preview)::after,.style-card:has(.neo-preview)::before,.style-card:has(.neo-preview)::after,.style-card:has(.neo-preview) .card-body::before,.style-card:has(.neo-preview) .card-body::after,.style-card:has(.neo-preview) .card-head::before,.style-card:has(.neo-preview) .card-head::after{content:none!important;display:none!important;background:none!important;box-shadow:none!important}
+.style-stage:has(.neo-preview),.style-card:has(.neo-preview),.style-card:has(.neo-preview) .card-body,.style-card:has(.neo-preview) .card-head{isolation:isolate;background-color:transparent!important;background-image:none!important;filter:none!important}
+.style-card:has(.neo-preview){overflow:hidden!important}
+
 @media(max-width:700px){
   .style-stage{background:linear-gradient(180deg,#010506 0%,#031113 48%,#010607 100%)!important}
   .style-card{background:linear-gradient(145deg,rgba(7,42,45,.84),rgba(2,18,20,.94))!important}
