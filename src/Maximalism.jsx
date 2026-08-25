@@ -1,5 +1,6 @@
 import React from "react";
 import "./maximalism.css";
+import "./maximalism-example.css";
 
 export default function Maximalism({ onBack }) {
   const parts = [["01","ABUNDANCE","Multiple visual elements work together instead of relying on one dominant element."],["02","LAYERING","Images, typography, shapes, patterns and surfaces overlap to create depth and complexity."],["03","COLOUR","Bold or contrasting colour combinations create energy and visual personality."],["04","TYPOGRAPHY","Multiple type sizes, weights and styles can coexist to create hierarchy and expression."],["05","PATTERN & TEXTURE","Patterns, illustrations and textures add visual richness and prevent large areas from feeling empty."],["06","VISUAL DENSITY","The interface intentionally contains more information and decoration within a given space."]];
