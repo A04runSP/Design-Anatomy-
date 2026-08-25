@@ -1,0 +1,26 @@
+name: Fix Dark UI navigation
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make style buttons navigate reliably
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -c 'from pathlib import Path; p=Path("src/main.jsx"); s=p.read_text(); old="function StyleCard({ style, onOpen }) { const Icon = style.icon; return <article className=\\"library-style-card\\"><div className=\\"library-style-top\\"><span>{style.tag}</span><Icon size={22}/></div><h2>{style.name}</h2><p>{style.copy}</p><StylePreview index={style.preview}/><button className=\\"library-style-action\\" onClick={onOpen}>VIEW STYLE <ArrowRight size={18}/></button></article>; }"; new="function StyleCard({ style, onOpen }) { const Icon = style.icon; const openStyle = () => { if (typeof onOpen === \\"function\\") onOpen(); else { window.location.hash = style.route; window.scrollTo(0,0); } }; return <article className={`library-style-card ${style.route === \\"darkuidesign\\" ? \\"dark-ui-library-card\\" : \\"\\"}`}><div className=\\"library-style-top\\"><span>{style.tag}</span><Icon size={22}/></div><h2>{style.name}</h2><p>{style.copy}</p><StylePreview index={style.preview}/><button type=\\"button\\" className=\\"library-style-action\\" onClick={event => { event.stopPropagation(); openStyle(); }}>VIEW STYLE <ArrowRight size={18}/></button></article>; }"; assert old in s, "StyleCard source not found"; p.write_text(s.replace(old,new,1))'
+      - name: Commit and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fix-dark-ui-navigation.yml
+          git add src/main.jsx
+          git commit -m 'Fix style card navigation'
+          git push
