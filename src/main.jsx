@@ -12,6 +12,7 @@ const Maximalism = lazy(() => import("./Maximalism.jsx"));
 const MaterialDesign = lazy(() => import("./MaterialDesign.jsx"));
 const FlatDesign = lazy(() => import("./FlatDesign.jsx"));
 const AuroraGradient = lazy(() => import("./AuroraGradient.jsx"));
+const DarkUIDesign = lazy(() => import("./DarkUIDesign.jsx"));
 import "./style.css";
 import "./enhancements.css";
 import "./typography.css";
@@ -22,6 +23,7 @@ import "./start-here.css";
 import "./library.css";
 import "./material-design.css";
 import "./material-preview.css";
+import "./dark-ui-design.css";
 
 // Home preview and entry-level overrides are part of the Vite CSS graph.
 // Keeping them here makes load order deterministic instead of relying on
@@ -46,6 +48,7 @@ const styles = [
   { family: "MODERN DIGITAL STYLES", name: "FLAT DESIGN", icon: Compass, tag: "02.01", copy: "Clarity through colour, typography, geometry and spacing — without unnecessary depth or decoration.", route: "flatdesign", preview: 8 },
   { family: "MODERN DIGITAL STYLES", name: "MATERIAL DESIGN", icon: Compass, tag: "02.02", copy: "Clear surfaces, elevation, bold colour and meaningful motion create a practical visual system.", route: "materialdesign", preview: 7 },
   { family: "MODERN DIGITAL STYLES", name: "AURORA / GRADIENT DESIGN", icon: Compass, tag: "02.03", copy: "Dark atmospheric surfaces, flowing cyan-violet light and soft colour depth create a luminous visual language.", route: "auroragradient", preview: 9 },
+  { family: "MODERN DIGITAL STYLES", name: "DARK UI DESIGN", icon: Compass, tag: "02.04", copy: "Deep surfaces, controlled contrast and luminous accents create an immersive interface where light becomes the visual language.", route: "darkuidesign", preview: 10 },
 ];
 
 function StylePreview({ index }) {
@@ -58,6 +61,7 @@ function StylePreview({ index }) {
   if (index === 6) return <div className="preview max-preview"><span>02.03</span><b>MORE<br/>IS A<br/>CHOICE.</b><i>TYPE · COLOUR · PATTERN · LAYER</i><em>✦</em></div>;
   if (index === 7) return <div className="preview material-preview"><div className="material-mini-bar"><span>✦</span><b>Material</b><small>EARTH SYSTEM</small></div><div className="material-mini-content"><span>02.02</span><strong>Make it<br/><em>meaningful.</em></strong><small>DEPTH · MOTION · COLOUR</small><button>EXPLORE →</button></div><i className="material-mini-fab">+</i><div className="material-mini-nav"><span>HOME</span><span>LAYOUT</span><span>COMPONENTS</span></div></div>;
   if (index === 8) return <div className="preview flat-preview"><div className="flat-preview-top"><b>FLAT / 02.01</b><i></i><i></i><i></i></div><div className="flat-preview-body"><span>01</span><strong>Clear<br/><b>by design.</b></strong><small>COLOUR · TYPE · SHAPE</small><div><i></i><i></i><i></i></div></div></div>;
+  if (index === 10) return <div className="preview dark-ui-preview"><div className="dark-ui-mini-glow"></div><div className="dark-ui-mini-panel"><span>02.04 / DARK UI</span><strong>LIGHT<br/><em>LEADS.</em></strong><small>DARK · CONTRAST · LIGHT</small><i><b></b></i></div></div>;
   if (index === 9) return <div className="preview aurora-preview"><span className="aurora-preview-wave wave-one"></span><span className="aurora-preview-wave wave-two"></span><span className="aurora-preview-glow"></span><div><small>02.03</small><strong>AURORA<br/><em>FLOW.</em></strong><b>COLOUR · LIGHT · MOTION</b></div></div>;
   return <div className="preview brutal-preview"><b>02.01</b><strong>RAW<br/>FORM.</strong><span>TYPE · GRID · CONTRAST</span></div>;
 }
