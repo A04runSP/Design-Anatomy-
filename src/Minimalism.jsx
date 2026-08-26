@@ -6,31 +6,31 @@ export default function Minimalism({ onBack }) {
   return (
     <main className="minimalism-page">
       <header className="minimalism-header">
-        <button className="minimalism-back" type="button" onClick={onBack}>
-          ← BACK TO LIBRARY
-        </button>
-        <div className="minimalism-kicker">01 · DESIGN LIBRARY</div>
+        <button className="minimalism-back" type="button" onClick={onBack}>← BACK TO LIBRARY</button>
+        <div className="minimalism-kicker">FOUNDATIONS · STRUCTURE & RESTRAINT</div>
       </header>
 
       <section className="minimalism-hero">
-        <p className="minimalism-kicker">01 · MINIMALISM</p>
+        <div className="minimalism-taxonomy"><span>01</span><span>FOUNDATIONS</span><i></i><span>STRUCTURE & RESTRAINT</span></div>
+        <p className="minimalism-kicker">01.01 · FOUNDATION STYLE</p>
         <h1>Less,<br /><em>but better.</em></h1>
-        <p>
-          Minimalism is a visual language built around restraint. It removes unnecessary
-          decoration so space, hierarchy, typography and simple form can carry the experience.
-        </p>
+        <p>Minimalism is a visual language built around restraint. It removes unnecessary decoration so space, hierarchy, typography and simple form can carry the experience.</p>
+        <div className="minimalism-ui-float ui-float-one"><span></span><b>01</b></div>
+        <div className="minimalism-ui-float ui-float-two"><i></i><i></i><i></i></div>
       </section>
 
       <section className="minimalism-grid">
-        <article className="minimalism-card">
+        <article className="minimalism-card minimalism-primary-card">
           <div className="minimalism-card-label"><span>SEE THE STYLE</span><span>01</span></div>
           <h2>Clarity through restraint.</h2>
           <p>The goal is not to make a screen empty. The goal is to make every remaining element purposeful.</p>
           <div className="minimalism-specimen" aria-label="Minimalism interface example">
             <nav><span>STUDIO</span><div><span>WORK</span><span>ABOUT</span><span>CONTACT</span></div></nav>
+            <div className="spec-ui"><span>01 / EDITORIAL SYSTEM</span><i></i><i></i></div>
             <div className="spec-copy"><small>VISUAL IDENTITY</small><h3>Less,<br /><b>but better.</b></h3><p>Give the important thing enough space to be understood before adding anything else.</p></div>
             <div className="spec-rule"></div>
-            <div className="spec-meta"><span>SPACE</span><span className="hierarchy" style={{ color: "#f0c84b" }}>HIERARCHY</span><span>RESTRAINT</span></div>
+            <div className="spec-meta"><span>SPACE</span><span>HIERARCHY</span><span>RESTRAINT</span></div>
+            <button className="spec-button" type="button">VIEW SYSTEM →</button>
           </div>
         </article>
 
@@ -54,7 +54,7 @@ export default function Minimalism({ onBack }) {
         <article className="minimalism-card"><div className="minimalism-card-label"><span>WATCH OUT</span></div><h2>Empty ≠ Minimal</h2><p>Removing elements without improving hierarchy can create a sparse interface rather than a purposeful one.</p></article>
       </section>
 
-      <section className="minimalism-note"><span>THE TAKEAWAY</span><b>Minimalism is not about using less for the sake of less. It is about making what remains matter more.</b></section>
+      <section className="minimalism-note"><span>FOUNDATION TAKEAWAY</span><b>Minimalism is not about using less for the sake of less. It is about making what remains matter more.</b></section>
     </main>
   );
 }
