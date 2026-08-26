@@ -1,6 +1,7 @@
 import React from "react";
 import "./dark-ui-design.css";
 import "./dark-ui-grey-type.css";
+import "./dark-ui-components.css";
 
 export default function DarkUIDesign({ onBack }) {
   return (
@@ -36,6 +37,21 @@ export default function DarkUIDesign({ onBack }) {
         </div>
         <div className="dark-ui-surface surface-one" />
         <div className="dark-ui-surface surface-two" />
+
+        <div className="dark-ui-component-field" aria-hidden="true">
+          <div className="dark-ui-component toggle-component">
+            <span className="component-pill" /><span className="component-dot" />
+          </div>
+          <div className="dark-ui-component notification-component">
+            <span className="notification-dot" /><span className="notification-line line-long" /><span className="notification-line" />
+          </div>
+          <div className="dark-ui-component chart-component">
+            <span className="chart-bar bar-one" /><span className="chart-bar bar-two" /><span className="chart-bar bar-three" /><span className="chart-bar bar-four" /><span className="chart-bar bar-five" />
+          </div>
+          <div className="dark-ui-component control-component">
+            <span className="control-cell active" /><span className="control-cell" /><span className="control-cell" />
+          </div>
+        </div>
       </section>
 
       <section className="dark-ui-grey-type">
