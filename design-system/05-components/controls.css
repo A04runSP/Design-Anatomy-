@@ -1,0 +1,85 @@
+/* Design Anatomy — Interactive Controls
+   Extracted from the existing website UI. Reference layer only.
+*/
+:root {
+  --da-control-height: 46px;
+  --da-control-radius: 12px;
+  --da-control-padding-x: 14px;
+  --da-control-bg: rgba(2, 18, 20, .86);
+  --da-control-border: rgba(22, 225, 239, .22);
+  --da-control-border-focus: rgba(22, 225, 239, .58);
+  --da-control-text: #f7ffff;
+  --da-control-muted: #a9babc;
+  --da-control-accent: #16e1ef;
+}
+
+.da-control {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--da-control-height);
+  padding: 10px var(--da-control-padding-x);
+  border: 1px solid var(--da-control-border);
+  border-radius: var(--da-control-radius);
+  background: var(--da-control-bg);
+  color: var(--da-control-text);
+  font: 600 15px/1.4 "Nunito", system-ui, sans-serif;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.da-control::placeholder {
+  color: var(--da-control-muted);
+}
+
+.da-control:hover {
+  border-color: rgba(22, 225, 239, .38);
+}
+
+.da-control:focus,
+.da-control:focus-visible {
+  border-color: var(--da-control-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 225, 239, .10), 0 0 24px rgba(22, 225, 239, .07);
+}
+
+select.da-control {
+  cursor: pointer;
+}
+
+textarea.da-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.da-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+  border: 1px solid var(--da-control-border);
+  border-radius: 999px;
+  background: rgba(2, 18, 20, .86);
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.da-toggle::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--da-control-muted);
+  transition: transform .2s ease, background .2s ease;
+}
+
+.da-toggle.is-active {
+  border-color: rgba(22, 225, 239, .55);
+  background: rgba(22, 225, 239, .10);
+}
+
+.da-toggle.is-active::after {
+  transform: translateX(20px);
+  background: var(--da-control-accent);
+  box-shadow: 0 0 14px rgba(22, 225, 239, .35);
+}
