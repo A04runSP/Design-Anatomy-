@@ -11,7 +11,9 @@
   <body>
     <div id="root"></div>
 
-    <!-- Stable Vite entry. Fluent is mounted as an isolated route layer so the existing app routing remains untouched. -->
+    <!-- Main application owns the single React root. -->
+    <script type="module" src="/src/main.jsx"></script>
+    <!-- Fluent is an isolated secondary route bridge; it does not mount main.jsx again. -->
     <script type="module" src="/src/app-entry.jsx"></script>
     <!-- Taxonomy presentation layer: reorganizes the existing library by the research-grounded taxonomy. -->
     <script type="module" src="/src/taxonomy-library.js"></script>
