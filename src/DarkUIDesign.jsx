@@ -5,7 +5,7 @@ import "./dark-ui-components.css";
 
 export default function DarkUIDesign({ onBack }) {
   return (
-    <main className="dark-ui-page">
+    <main className="dark-ui-page" style={{ position: "relative", zIndex: 21, isolation: "isolate", background: "linear-gradient(180deg, #020307 0%, #05070b 48%, #010205 100%)" }}>
       <header className="dark-ui-header">
         <button onClick={onBack}>← EXPLORE STYLES</button>
         <span>DESIGN ANATOMY · 02.04</span>
