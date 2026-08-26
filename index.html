@@ -10,11 +10,54 @@
   </head>
   <body>
     <div id="root"></div>
+    <div id="fluent-root" aria-live="polite"></div>
 
-    <!-- Main application owns the single React root. -->
+    <!-- Main application owns #root. -->
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Fluent is an isolated secondary route bridge; it does not mount main.jsx again. -->
-    <script type="module" src="/src/app-entry.jsx"></script>
+
+    <!-- Fluent owns a separate static mount. This avoids a second dynamic root and keeps the existing app isolated. -->
+    <script type="module">
+      import React from "/node_modules/react/index.js";
+      import { createRoot } from "/node_modules/react-dom/client.js";
+      import Fluent from "/src/Fluent.jsx";
+      import "/src/fluent.css";
+      import "/src/fluent-entry.css";
+
+      const appRoot = document.getElementById("root");
+      const fluentRoot = document.getElementById("fluent-root");
+      const fluentReactRoot = createRoot(fluentRoot);
+
+      const isFluent = () => window.location.hash.replace(/^#/, "").toLowerCase() === "fluent";
+
+      function syncFluent() {
+        const active = isFluent();
+        appRoot.classList.toggle("app-root-hidden-for-fluent", active);
+        fluentRoot.classList.toggle("fluent-route-visible", active);
+        fluentRoot.style.setProperty("display", active ? "block" : "none", "important");
+        fluentRoot.style.setProperty("min-height", "100vh", "important");
+        if (active) {
+          fluentReactRoot.render(<Fluent onBack={() => { window.location.hash = "library"; }} />);
+          window.scrollTo(0, 0);
+        } else {
+          fluentReactRoot.render(null);
+        }
+      }
+
+      document.addEventListener("click", event => {
+        const target = event.target instanceof Element ? event.target.closest('[data-route="fluent"]') : null;
+        if (!target) return;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        window.location.hash = "fluent";
+        syncFluent();
+      }, true);
+
+      window.addEventListener("hashchange", syncFluent);
+      window.addEventListener("DOMContentLoaded", syncFluent);
+      syncFluent();
+    </script>
+
     <!-- Taxonomy presentation layer: reorganizes the existing library by the research-grounded taxonomy. -->
     <script type="module" src="/src/taxonomy-library.js"></script>
   </body>
