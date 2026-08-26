@@ -10,7 +10,7 @@
     ]},
     { number:'03', id:'digital-interface', name:'DIGITAL INTERFACE', description:'Interface-specific visual languages, systems and UI strategies.', groups:[
       {name:'FLAT / REDUCED DEPTH', styles:[['flatdesign','FLAT DESIGN','Colour, typography, geometry and spacing without unnecessary depth.','flatdesign']]},
-      {name:'SYSTEMIC INTERFACES', styles:[['materialdesign','MATERIAL DESIGN','Surfaces, elevation, colour and meaningful motion form a practical system.','materialdesign']]},
+      {name:'SYSTEMIC INTERFACES', styles:[['materialdesign','MATERIAL DESIGN','Surfaces, elevation, colour and meaningful motion form a practical system.','materialdesign'],['fluent','FLUENT DESIGN','Clear, expressive and adaptable digital experiences built from surfaces, depth, motion and responsive design language.','fluent']]},
       {name:'INTERFACE MODES', styles:[['darkuidesign','DARK UI DESIGN','Deep surfaces, controlled contrast and luminous accents.','darkuidesign']]}
     ]},
     { number:'04', id:'expressive-creative', name:'EXPRESSIVE & CREATIVE', description:'Expressive visual languages driven by colour, culture, decoration and experimentation.', groups:[
