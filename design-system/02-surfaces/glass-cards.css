@@ -1,0 +1,50 @@
+/* Design Anatomy — Surface / Glass Card System
+   Extracted from the existing website UI. Reference layer only.
+*/
+:root {
+  --da-card-border: rgba(22, 225, 239, .18);
+  --da-card-border-strong: rgba(22, 225, 239, .42);
+  --da-card-radius: 30px;
+  --da-card-radius-large: 34px;
+  --da-card-surface: linear-gradient(145deg, rgba(7, 42, 45, .50), rgba(2, 16, 18, .82));
+  --da-card-surface-deep: linear-gradient(145deg, rgba(7, 42, 45, .84), rgba(2, 18, 20, .94));
+  --da-card-inset: inset 0 0 55px rgba(20, 220, 230, .025);
+  --da-card-shadow: 0 25px 70px rgba(0, 0, 0, .22);
+  --da-card-shadow-deep: 0 30px 100px rgba(0, 0, 0, .52), 0 0 45px rgba(22, 225, 239, .08);
+  --da-card-blur: 16px;
+}
+
+.da-glass-card {
+  position: relative;
+  border: 1px solid var(--da-card-border);
+  border-radius: var(--da-card-radius);
+  background: var(--da-card-surface);
+  box-shadow: var(--da-card-inset), var(--da-card-shadow);
+}
+
+.da-glass-card--hero {
+  border-color: var(--da-card-border-strong);
+  border-radius: var(--da-card-radius-large);
+  background: var(--da-card-surface-deep);
+  backdrop-filter: blur(var(--da-card-blur));
+  box-shadow: var(--da-card-shadow-deep);
+  overflow: hidden;
+}
+
+.da-glass-card--hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 70% 18%, rgba(22, 225, 239, .08), transparent 35%);
+}
+
+/* Hover treatment used by the existing reusable cards. */
+.da-glass-card--interactive {
+  transition: transform .3s ease, border-color .3s ease;
+}
+
+.da-glass-card--interactive:hover {
+  transform: translateY(-4px);
+  border-color: var(--da-card-border-strong);
+}
