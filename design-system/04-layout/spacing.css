@@ -1,0 +1,46 @@
+/* Design Anatomy — Spacing System
+   Extracted from the existing website UI. Reference layer only.
+*/
+:root {
+  --da-space-1: 8px;
+  --da-space-2: 12px;
+  --da-space-3: 16px;
+  --da-space-4: 18px;
+  --da-space-5: 20px;
+  --da-space-6: 24px;
+  --da-space-7: 30px;
+  --da-space-8: 34px;
+  --da-space-9: 38px;
+  --da-space-10: 40px;
+  --da-space-11: 48px;
+  --da-space-12: 55px;
+  --da-space-13: 65px;
+  --da-space-14: 70px;
+  --da-space-15: 75px;
+  --da-space-16: 85px;
+  --da-space-17: 90px;
+  --da-space-18: 105px;
+  --da-space-19: 110px;
+
+  --da-page-gutter: 6vw;
+  --da-content-width: 1080px;
+  --da-hero-width: 1000px;
+  --da-copy-width: 790px;
+}
+
+.da-page-gutter {
+  padding-inline: var(--da-page-gutter);
+}
+
+.da-content {
+  width: min(var(--da-content-width), calc(100% - 12vw));
+  margin-inline: auto;
+}
+
+.da-hero-width {
+  max-width: var(--da-hero-width);
+}
+
+.da-copy-width {
+  max-width: var(--da-copy-width);
+}
