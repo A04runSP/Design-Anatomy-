@@ -1,0 +1,41 @@
+/* Design Anatomy — Responsive System
+   Extracted from the existing website UI. Reference layer only.
+*/
+:root {
+  --da-breakpoint-wide: 1200px;
+  --da-breakpoint-tablet: 900px;
+  --da-breakpoint-mobile: 620px;
+  --da-breakpoint-small: 480px;
+  --da-mobile-gutter: 5vw;
+}
+
+.da-responsive {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .da-responsive {
+    --da-page-gutter: 5vw;
+  }
+}
+
+@media (max-width: 620px) {
+  .da-responsive {
+    --da-page-gutter: var(--da-mobile-gutter);
+  }
+
+  .da-hide-mobile {
+    display: none !important;
+  }
+
+  .da-stack-mobile {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .da-responsive {
+    --da-page-gutter: 18px;
+  }
+}
