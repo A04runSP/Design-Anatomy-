@@ -15,7 +15,7 @@ export default function Glassmorphism({ onBack }) {
         <div className="glass-brand">✦ DESIGN ANATOMY</div>
       </header>
       <section className="glass-hero">
-        <p className="glass-eyebrow">02 · GLASSMORPHISM</p>
+        <p className="glass-eyebrow">02.03 · SURFACE & MATERIAL / MORPHIC / PHYSICAL</p>
         <h1>Glass that <em>feels alive.</em></h1>
         <p>Translucent surfaces, background blur, soft light and layered depth create the signature glass interface effect.</p>
       </section>
