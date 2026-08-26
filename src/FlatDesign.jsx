@@ -15,7 +15,7 @@ function FlatSpecimen() {
   return (
     <div className="flat-specimen" aria-label="Flat Design visual specimen">
       <div className="flat-specimen-bar">
-        <span>FLAT / 02.01</span><b>VECTOR LANGUAGE / COLOUR / FORM</b>
+        <span>FLAT / 03.01</span><b>DIGITAL INTERFACE / REDUCED DEPTH</b>
       </div>
       <div className="flat-specimen-visual">
         <div className="flat-sky" />
@@ -30,11 +30,11 @@ function FlatSpecimen() {
         <div className="flat-tree tree-a"><i /><b /></div>
         <div className="flat-tree tree-b"><i /><b /></div>
         <div className="flat-card-copy">
-          <span>FLAT / 02.01</span>
+          <span>03.01 / FLAT</span>
           <strong>COLOUR<br /><em>IN FORM.</em></strong>
           <small>GEOMETRY · TYPE · SPACE</small>
         </div>
-        <div className="flat-reference-label">REFERENCE LANGUAGE / VECTOR ILLUSTRATION</div>
+        <div className="flat-reference-label">REFERENCE LANGUAGE / VECTOR INTERFACE</div>
       </div>
       <div className="flat-specimen-body">
         <div className="flat-chip">01</div>
@@ -59,25 +59,28 @@ function FlatDesign({ onBack }) {
         <button type="button" className="flat-back" onClick={onBack}>
           <ArrowLeft size={18} /> BACK TO LIBRARY
         </button>
+        <span className="flat-header-index">03 / DIGITAL INTERFACE</span>
       </header>
       <section className="flat-hero">
-        <p className="flat-eyebrow">02.01 · MODERN DIGITAL STYLES</p>
+        <p className="flat-eyebrow">03.01 · DIGITAL INTERFACE / FLAT / REDUCED DEPTH</p>
         <h1><em>Flat Design.</em><br />Colour. Shape.<br />Function.</h1>
         <p>Flat Design communicates through clear colour, bold geometry, simple illustration and strong typography.</p>
-        <p>Instead of realistic texture and depth, the visual language stays graphic, direct and easy to understand.</p>
+        <p>Instead of realistic texture and unnecessary depth, the visual language stays graphic, direct and easy to understand.</p>
         <div className="flat-principle"><span>THE PRINCIPLE</span><b>Simple forms. Strong colour. Clear communication.</b></div>
       </section>
       <section className="flat-feature"><FlatSpecimen /></section>
       <section className="flat-parts">
         <div className="flat-section-heading"><span>01</span><h2>THE PARTS OF FLAT DESIGN</h2></div>
         <div className="flat-parts-grid">
-          {parts.map(([number, title, copy]) => <article key={number} className="flat-part"><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}
+          {parts.map(([number, title, copy]) => (
+            <article key={number} className="flat-part"><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>
+          ))}
         </div>
       </section>
       <section className="flat-comparison">
-        <div><span>DEPTH</span><b>FLAT</b><p>No visual depth is required to communicate hierarchy.</p></div>
-        <div><span>DETAIL</span><b>REDUCED</b><p>Visual detail is simplified so the message stays direct.</p></div>
-        <div><span>FOCUS</span><b>FUNCTION</b><p>Colour, type, shape and spacing carry the interface.</p></div>
+        <div><span>DEPTH</span><b>REDUCED</b><p>Hierarchy does not depend on heavy shadows, gradients or realistic depth.</p></div>
+        <div><span>DETAIL</span><b>SIMPLIFIED</b><p>Visual detail is reduced so the interface remains direct and easy to scan.</p></div>
+        <div><span>FOCUS</span><b>FUNCTION</b><p>Colour, type, shape and spacing carry the interface while controls stay visually clear.</p></div>
       </section>
       <section className="flat-takeaway"><span>FLAT DESIGN</span><b>When decoration gets out of the way, the interface can speak clearly.</b></section>
     </main>
