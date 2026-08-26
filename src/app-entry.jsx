@@ -57,8 +57,9 @@ document.addEventListener("click", event => {
   const card = event.target instanceof Element ? event.target.closest('[data-route="fluent"]') : null;
   if (!card) return;
   event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation();
-  window.location.hash = "fluent";
+  history.pushState(null, "", "#fluent");
   showFluent();
 }, true);
 window.addEventListener("hashchange", showFluent);
+window.addEventListener("popstate", showFluent);
 showFluent();
