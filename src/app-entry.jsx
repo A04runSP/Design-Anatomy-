@@ -37,15 +37,32 @@ function addFluentLibraryEntry() {
   header.appendChild(button);
 }
 
+function bindFluentViewStyle() {
+  document.querySelectorAll('[data-route="fluent"]').forEach(card => {
+    if (card.dataset.fluentBound === "true") return;
+    card.dataset.fluentBound = "true";
+    card.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.location.hash = "fluent";
+    });
+  });
+}
+
 function sync() {
   renderFluentRoute();
+  bindFluentViewStyle();
   if (window.location.hash === "#library") {
-    window.setTimeout(addFluentLibraryEntry, 0);
+    window.setTimeout(() => {
+      addFluentLibraryEntry();
+      bindFluentViewStyle();
+    }, 0);
   }
 }
 
 window.addEventListener("hashchange", sync);
 new MutationObserver(() => {
+  bindFluentViewStyle();
   if (window.location.hash === "#library") addFluentLibraryEntry();
 }).observe(document.getElementById("root"), { childList: true, subtree: true });
 
