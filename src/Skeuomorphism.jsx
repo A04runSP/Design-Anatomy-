@@ -22,7 +22,7 @@ export default function Skeuomorphism({ onBack }) {
     </header>
 
     <section className="skeuo-hero">
-      <p className="skeuo-eyebrow">01.04 · MORPHISM FAMILY</p>
+      <p className="skeuo-eyebrow">02.01 · SURFACE & MATERIAL / MORPHIC / PHYSICAL</p>
       <div className="skeuo-hero-grid">
         <div>
           <h1><span>Skeuomorphism.</span><br/>Digital things.<br/>That feel physical.</h1>
