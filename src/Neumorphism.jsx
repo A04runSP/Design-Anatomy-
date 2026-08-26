@@ -18,7 +18,7 @@ export default function Neumorphism({ onBack }) {
       </header>
 
       <section className="neo-hero">
-        <p className="neo-eyebrow">03 · DESIGN STYLE</p>
+        <p className="neo-eyebrow">02.02 · SURFACE & MATERIAL / MORPHIC / PHYSICAL</p>
         <h1><span>Neumorphism.</span><br />Soft surfaces.<br />Physical depth.</h1>
         <p className="neo-lead">Neumorphism makes interface elements feel pressed into or raised from the same surface. Light, shadow and subtle contrast create the illusion of physical material.</p>
         <div className="neo-hero-demo">
