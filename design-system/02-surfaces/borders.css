@@ -1,0 +1,29 @@
+/* Design Anatomy — Border / Edge System
+   Extracted from the existing website UI. Reference layer only.
+*/
+:root {
+  --da-border-subtle: rgba(22, 225, 239, .18);
+  --da-border-standard: rgba(22, 225, 239, .22);
+  --da-border-visible: rgba(22, 225, 239, .42);
+  --da-border-strong: rgba(104, 246, 255, .55);
+  --da-divider: rgba(255, 255, 255, .08);
+  --da-focus-ring: rgba(22, 225, 239, .55);
+}
+
+.da-border-subtle { border: 1px solid var(--da-border-subtle); }
+.da-border-standard { border: 1px solid var(--da-border-standard); }
+.da-border-visible { border: 1px solid var(--da-border-visible); }
+.da-border-strong { border: 1px solid var(--da-border-strong); }
+
+.da-divider {
+  border-top: 1px solid var(--da-divider);
+}
+
+.da-focus-ring:focus-visible {
+  outline: 2px solid var(--da-focus-ring);
+  outline-offset: 3px;
+}
+
+.da-edge-glow {
+  box-shadow: 0 0 45px rgba(22, 225, 239, .08);
+}
