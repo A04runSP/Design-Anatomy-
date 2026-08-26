@@ -10,14 +10,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <div id="fluent-root" aria-live="polite"></div>
 
-    <!-- Main application owns #root. -->
+    <!-- Main application owns the single React root. -->
     <script type="module" src="/src/main.jsx"></script>
-
-    <!-- Fluent owns a separate static mount and never replaces the main React root. -->
-    <script type="module" src="/src/fluent-entry-main.jsx"></script>
-
+    <!-- Fluent is an isolated secondary route bridge; it does not mount main.jsx again. -->
+    <script type="module" src="/src/app-entry.jsx"></script>
     <!-- Taxonomy presentation layer: reorganizes the existing library by the research-grounded taxonomy. -->
     <script type="module" src="/src/taxonomy-library.js"></script>
   </body>
