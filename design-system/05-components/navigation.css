@@ -1,0 +1,91 @@
+/* Design Anatomy — Navigation System
+   Extracted from the existing website UI. Reference layer only.
+*/
+:root {
+  --da-nav-height: 76px;
+  --da-nav-padding: 6vw;
+  --da-nav-gap: 28px;
+  --da-nav-link: #a9babc;
+  --da-nav-link-active: #f7ffff;
+  --da-nav-accent: #16e1ef;
+  --da-nav-border: rgba(22, 225, 239, .18);
+  --da-nav-surface: rgba(2, 12, 14, .72);
+}
+
+.da-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--da-nav-height);
+  padding-inline: var(--da-nav-padding);
+  gap: var(--da-nav-gap);
+  border-bottom: 1px solid var(--da-nav-border);
+  background: var(--da-nav-surface);
+  backdrop-filter: blur(16px);
+}
+
+.da-nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--da-nav-gap);
+  margin-left: auto;
+}
+
+.da-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--da-nav-link);
+  font: 800 14px/1 "Nunito", system-ui, sans-serif;
+  letter-spacing: .08em;
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.da-nav__link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--da-nav-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .25s ease;
+}
+
+.da-nav__link:hover,
+.da-nav__link[aria-current="page"],
+.da-nav__link.is-active {
+  color: var(--da-nav-link-active);
+}
+
+.da-nav__link:hover::after,
+.da-nav__link[aria-current="page"]::after,
+.da-nav__link.is-active::after {
+  transform: scaleX(1);
+}
+
+.da-nav__brand {
+  color: var(--da-nav-link-active);
+  font: 900 20px/1 "Nunito", system-ui, sans-serif;
+  letter-spacing: -.02em;
+  text-decoration: none;
+}
+
+@media (max-width: 620px) {
+  .da-nav {
+    padding-inline: 5vw;
+  }
+
+  .da-nav__links {
+    gap: 14px;
+  }
+
+  .da-nav__link {
+    font-size: 12px;
+  }
+}
