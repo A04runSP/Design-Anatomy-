@@ -3,28 +3,26 @@ import { createRoot } from "react-dom/client";
 import Fluent from "./Fluent.jsx";
 import "./fluent-entry.css";
 
-// This file is a Fluent-only bridge. main.jsx is loaded separately by index.html
-// so the existing Home/Dashboard/Library router remains the single React app root.
+// Isolated Fluent route. The existing main React app stays untouched.
 const fluentRoot = document.createElement("div");
 fluentRoot.id = "fluent-root";
+fluentRoot.style.display = "none";
+fluentRoot.style.minHeight = "100vh";
 document.body.appendChild(fluentRoot);
 const fluentReactRoot = createRoot(fluentRoot);
 
 function isFluentRoute() {
-  return window.location.hash === "#fluent";
+  return window.location.hash.replace(/^#/, "").toLowerCase() === "fluent";
 }
 
-function renderFluentRoute() {
-  const root = document.getElementById("root");
+function showFluent() {
+  const appRoot = document.getElementById("root");
+  if (!appRoot) return;
   const active = isFluentRoute();
-  if (!root) return;
-  root.classList.toggle("app-root-hidden-for-fluent", active);
-  fluentRoot.classList.toggle("fluent-route-visible", active);
-
+  appRoot.style.display = active ? "none" : "";
+  fluentRoot.style.display = active ? "block" : "none";
   if (active) {
-    fluentReactRoot.render(
-      <Fluent onBack={() => { window.location.hash = "library"; }} />
-    );
+    fluentReactRoot.render(<Fluent onBack={() => { window.location.hash = "library"; }} />);
   } else {
     fluentReactRoot.render(null);
   }
@@ -32,25 +30,25 @@ function renderFluentRoute() {
 
 function bindFluentViewStyle() {
   document.querySelectorAll('[data-route="fluent"]').forEach(card => {
-    if (card.dataset.fluentBound === "true") return;
-    card.dataset.fluentBound = "true";
-    card.addEventListener("click", event => {
+    const target = card.querySelector("button, a") || card;
+    if (target.dataset.fluentBound === "true") return;
+    target.dataset.fluentBound = "true";
+    target.addEventListener("click", event => {
       event.preventDefault();
-      event.stopPropagation();
+      event.stopImmediatePropagation();
       window.location.hash = "fluent";
-    });
+      showFluent();
+    }, true);
   });
 }
 
 function sync() {
-  renderFluentRoute();
+  showFluent();
   bindFluentViewStyle();
 }
 
 window.addEventListener("hashchange", sync);
-new MutationObserver(bindFluentViewStyle).observe(document.getElementById("root"), {
-  childList: true,
-  subtree: true,
-});
-
+window.addEventListener("load", sync);
+const appRoot = document.getElementById("root");
+if (appRoot) new MutationObserver(bindFluentViewStyle).observe(appRoot, { childList: true, subtree: true });
 sync();
