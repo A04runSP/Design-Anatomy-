@@ -1,9 +1,10 @@
-import "./main.jsx";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Fluent from "./Fluent.jsx";
 import "./fluent-entry.css";
 
+// This file is a Fluent-only bridge. main.jsx is loaded separately by index.html
+// so the existing Home/Dashboard/Library router remains the single React app root.
 const fluentRoot = document.createElement("div");
 fluentRoot.id = "fluent-root";
 document.body.appendChild(fluentRoot);
@@ -16,25 +17,17 @@ function isFluentRoute() {
 function renderFluentRoute() {
   const root = document.getElementById("root");
   const active = isFluentRoute();
+  if (!root) return;
   root.classList.toggle("app-root-hidden-for-fluent", active);
   fluentRoot.classList.toggle("fluent-route-visible", active);
 
   if (active) {
-    fluentReactRoot.render(<Fluent onBack={() => { window.location.hash = "library"; }} />);
+    fluentReactRoot.render(
+      <Fluent onBack={() => { window.location.hash = "library"; }} />
+    );
   } else {
     fluentReactRoot.render(null);
   }
-}
-
-function addFluentLibraryEntry() {
-  const header = document.querySelector(".library-page .library-header");
-  if (!header || header.querySelector(".fluent-library-entry")) return;
-
-  const button = document.createElement("a");
-  button.className = "fluent-library-entry";
-  button.href = "#fluent";
-  button.textContent = "FLUENT DESIGN →";
-  header.appendChild(button);
 }
 
 function bindFluentViewStyle() {
@@ -52,18 +45,12 @@ function bindFluentViewStyle() {
 function sync() {
   renderFluentRoute();
   bindFluentViewStyle();
-  if (window.location.hash === "#library") {
-    window.setTimeout(() => {
-      addFluentLibraryEntry();
-      bindFluentViewStyle();
-    }, 0);
-  }
 }
 
 window.addEventListener("hashchange", sync);
-new MutationObserver(() => {
-  bindFluentViewStyle();
-  if (window.location.hash === "#library") addFluentLibraryEntry();
-}).observe(document.getElementById("root"), { childList: true, subtree: true });
+new MutationObserver(bindFluentViewStyle).observe(document.getElementById("root"), {
+  childList: true,
+  subtree: true,
+});
 
 sync();
