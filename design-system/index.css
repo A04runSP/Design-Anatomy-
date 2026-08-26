@@ -1,0 +1,22 @@
+/* Design Anatomy — Master Design System Entry Point
+   Reference layer only. This file does not replace the live app stylesheet.
+*/
+
+@import url('./01-foundation/colors.css');
+@import url('./01-foundation/backgrounds.css');
+
+@import url('./02-surfaces/glass-cards.css');
+@import url('./02-surfaces/depth.css');
+@import url('./02-surfaces/borders.css');
+
+@import url('./03-typography/typography.css');
+
+@import url('./04-layout/spacing.css');
+@import url('./04-layout/grids.css');
+@import url('./04-layout/responsive.css');
+
+@import url('./05-components/buttons.css');
+@import url('./05-components/cards.css');
+@import url('./05-components/navigation.css');
+@import url('./05-components/badges.css');
+@import url('./05-components/controls.css');
