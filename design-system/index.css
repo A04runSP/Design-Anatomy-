@@ -20,3 +20,5 @@
 @import url('./05-components/navigation.css');
 @import url('./05-components/badges.css');
 @import url('./05-components/controls.css');
+
+@import url('./06-motion/motion.css');
