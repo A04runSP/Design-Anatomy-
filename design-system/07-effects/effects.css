@@ -1,0 +1,60 @@
+/* Design Anatomy — Effects System
+   Reusable visual effects. Reference layer only; no existing app selectors overridden.
+*/
+:root {
+  --da-effect-cyan: rgba(22, 225, 239, .18);
+  --da-effect-cyan-soft: rgba(22, 225, 239, .08);
+  --da-effect-white: rgba(247, 255, 255, .08);
+  --da-effect-blur: 24px;
+  --da-effect-blur-deep: 70px;
+}
+
+.da-effect-glow {
+  box-shadow: 0 0 45px var(--da-effect-cyan-soft);
+}
+
+.da-effect-glow-strong {
+  box-shadow: 0 0 70px var(--da-effect-cyan);
+}
+
+.da-effect-blur {
+  backdrop-filter: blur(var(--da-effect-blur));
+  -webkit-backdrop-filter: blur(var(--da-effect-blur));
+}
+
+.da-effect-atmosphere {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(var(--da-effect-blur-deep));
+  opacity: .8;
+}
+
+.da-effect-cyan-wash {
+  background: radial-gradient(circle at 50% 35%, var(--da-effect-cyan-soft), transparent 60%);
+  pointer-events: none;
+}
+
+.da-effect-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.da-effect-highlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 25%, var(--da-effect-white) 50%, transparent 75%);
+  transform: translateX(-100%);
+  transition: transform 700ms cubic-bezier(.2,.8,.2,1);
+}
+
+.da-effect-highlight:hover::after {
+  transform: translateX(100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .da-effect-highlight::after {
+    transition: none;
+  }
+}
