@@ -1,0 +1,25 @@
+/* Design Anatomy — Shared Layout Primitives
+   Structural primitives only. Environment-specific composition stays in place.
+*/
+:root {
+  --da-layout-max: 1080px;
+  --da-layout-hero: 1000px;
+  --da-layout-copy: 790px;
+  --da-layout-columns: 12;
+  --da-layout-gap: var(--da-space-6, 24px);
+}
+
+.da-container { width:min(var(--da-layout-max),calc(100% - 12vw)); margin-inline:auto; }
+.da-container-wide { width:min(var(--da-layout-hero),calc(100% - 12vw)); margin-inline:auto; }
+.da-copy { max-width:var(--da-layout-copy); }
+.da-grid { display:grid; gap:var(--da-layout-gap); }
+.da-grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.da-grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.da-grid-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.da-stack { display:flex; flex-direction:column; gap:var(--da-layout-gap); }
+.da-cluster { display:flex; flex-wrap:wrap; align-items:center; gap:var(--da-space-3,16px); }
+
+@media(max-width:700px) {
+  .da-grid-2,.da-grid-3,.da-grid-4 { grid-template-columns:1fr; }
+  .da-container,.da-container-wide { width:min(100% - 32px,var(--da-layout-max)); }
+}
