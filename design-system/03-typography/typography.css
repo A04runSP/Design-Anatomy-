@@ -1,5 +1,6 @@
 /* Design Anatomy — Typography System
-   Extracted from the existing website UI. Reference layer only.
+   Shared typography tokens extracted from the live website.
+   Environment-specific typography remains in the environment stylesheets.
 */
 :root {
   --da-font-sans: "Nunito", system-ui, sans-serif;
@@ -28,46 +29,27 @@
   --da-track-eyebrow: .34em;
 }
 
-.da-type-body {
-  font-family: var(--da-font-sans);
-  font-weight: var(--da-weight-medium);
-  font-size: var(--da-text-body);
-  line-height: var(--da-leading-body);
+/* Compatibility aliases: legacy pages keep their existing selectors while
+   shared values are sourced from this system. */
+:root {
+  --font-sans: var(--da-font-sans);
+  --font-regular: var(--da-weight-regular);
+  --font-medium: var(--da-weight-medium);
+  --font-semibold: var(--da-weight-semibold);
+  --font-bold: var(--da-weight-bold);
+  --font-heavy: var(--da-weight-heavy);
+  --font-black: var(--da-weight-black);
+  --text-display: var(--da-text-display);
+  --text-title: var(--da-text-title);
+  --text-body: var(--da-text-body);
+  --text-ui: var(--da-text-ui);
+  --text-small: var(--da-text-small);
+  --text-label: var(--da-text-label);
 }
 
-.da-type-display {
-  font-family: var(--da-font-sans);
-  font-weight: var(--da-weight-black);
-  font-size: var(--da-text-display);
-  line-height: var(--da-leading-tight);
-  letter-spacing: var(--da-track-tight);
-}
-
-.da-type-title {
-  font-family: var(--da-font-sans);
-  font-weight: var(--da-weight-black);
-  font-size: var(--da-text-title);
-  line-height: var(--da-leading-display);
-  letter-spacing: var(--da-track-display);
-}
-
-.da-type-ui {
-  font-family: var(--da-font-sans);
-  font-weight: var(--da-weight-heavy);
-  font-size: var(--da-text-ui);
-  letter-spacing: .13em;
-}
-
-.da-type-eyebrow {
-  font-family: var(--da-font-sans);
-  font-weight: var(--da-weight-heavy);
-  font-size: var(--da-text-small);
-  letter-spacing: var(--da-track-eyebrow);
-}
-
-.da-type-label {
-  font-family: var(--da-font-sans);
-  font-weight: var(--da-weight-black);
-  font-size: var(--da-text-label);
-  letter-spacing: var(--da-track-label);
-}
+.da-type-body { font-family:var(--da-font-sans);font-weight:var(--da-weight-medium);font-size:var(--da-text-body);line-height:var(--da-leading-body); }
+.da-type-display { font-family:var(--da-font-sans);font-weight:var(--da-weight-black);font-size:var(--da-text-display);line-height:var(--da-leading-tight);letter-spacing:var(--da-track-tight); }
+.da-type-title { font-family:var(--da-font-sans);font-weight:var(--da-weight-black);font-size:var(--da-text-title);line-height:var(--da-leading-display);letter-spacing:var(--da-track-display); }
+.da-type-ui { font-family:var(--da-font-sans);font-weight:var(--da-weight-heavy);font-size:var(--da-text-ui);letter-spacing:.13em; }
+.da-type-eyebrow { font-family:var(--da-font-sans);font-weight:var(--da-weight-heavy);font-size:var(--da-text-small);letter-spacing:var(--da-track-eyebrow); }
+.da-type-label { font-family:var(--da-font-sans);font-weight:var(--da-weight-black);font-size:var(--da-text-label);letter-spacing:var(--da-track-label); }
