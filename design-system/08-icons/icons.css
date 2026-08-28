@@ -1,6 +1,6 @@
 /* Design Anatomy — Icon System
    Reusable icon sizing, alignment, containers, and interaction states.
-   Reference layer only; no existing app selectors are overridden.
+   Reference layer only; environment-specific icon styling remains local.
 */
 :root {
   --da-icon-xs: 14px;
@@ -10,71 +10,22 @@
   --da-icon-xl: 36px;
   --da-icon-stroke: 1.8;
   --da-icon-color: #a9babc;
-  --da-icon-active: #16e1ef;
+  --da-icon-active: var(--da-cyan, #16e1ef);
   --da-icon-button-size: 44px;
   --da-icon-button-radius: 12px;
 }
 
-.da-icon {
-  display: inline-flex;
-  flex: 0 0 auto;
-  width: var(--da-icon-md);
-  height: var(--da-icon-md);
-  align-items: center;
-  justify-content: center;
-  color: var(--da-icon-color);
-  line-height: 0;
-}
+.da-icon { display:inline-flex; flex:0 0 auto; width:var(--da-icon-md); height:var(--da-icon-md); align-items:center; justify-content:center; color:var(--da-icon-color); line-height:0; }
+.da-icon svg { width:100%; height:100%; display:block; stroke:currentColor; stroke-width:var(--da-icon-stroke); stroke-linecap:round; stroke-linejoin:round; fill:none; }
+.da-icon--xs { width:var(--da-icon-xs); height:var(--da-icon-xs); }
+.da-icon--sm { width:var(--da-icon-sm); height:var(--da-icon-sm); }
+.da-icon--lg { width:var(--da-icon-lg); height:var(--da-icon-lg); }
+.da-icon--xl { width:var(--da-icon-xl); height:var(--da-icon-xl); }
+.da-icon--accent { color:var(--da-icon-active); }
 
-.da-icon svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  stroke: currentColor;
-  stroke-width: var(--da-icon-stroke);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
+.da-icon-button { display:inline-flex; width:var(--da-icon-button-size); height:var(--da-icon-button-size); align-items:center; justify-content:center; padding:0; border:1px solid rgba(22,225,239,.22); border-radius:var(--da-icon-button-radius); background:rgba(2,18,20,.72); color:var(--da-icon-color); cursor:pointer; transition:transform var(--da-motion-fast,160ms) var(--da-ease-standard,ease),color var(--da-motion-fast,160ms) var(--da-ease-standard,ease),border-color var(--da-motion-fast,160ms) var(--da-ease-standard,ease),box-shadow var(--da-motion-fast,160ms) var(--da-ease-standard,ease); }
+.da-icon-button:hover { transform:translateY(-2px); color:var(--da-icon-active); border-color:rgba(22,225,239,.52); box-shadow:0 0 24px rgba(22,225,239,.08); }
+.da-icon-button:focus-visible { outline:2px solid var(--da-icon-active); outline-offset:3px; }
+.da-icon-button:disabled { opacity:.45; cursor:not-allowed; transform:none; }
 
-.da-icon--xs { width: var(--da-icon-xs); height: var(--da-icon-xs); }
-.da-icon--sm { width: var(--da-icon-sm); height: var(--da-icon-sm); }
-.da-icon--lg { width: var(--da-icon-lg); height: var(--da-icon-lg); }
-.da-icon--xl { width: var(--da-icon-xl); height: var(--da-icon-xl); }
-
-.da-icon--accent {
-  color: var(--da-icon-active);
-}
-
-.da-icon-button {
-  display: inline-flex;
-  width: var(--da-icon-button-size);
-  height: var(--da-icon-button-size);
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 1px solid rgba(22, 225, 239, .22);
-  border-radius: var(--da-icon-button-radius);
-  background: rgba(2, 18, 20, .72);
-  color: var(--da-icon-color);
-  cursor: pointer;
-  transition: transform 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-}
-
-.da-icon-button:hover {
-  transform: translateY(-2px);
-  color: var(--da-icon-active);
-  border-color: rgba(22, 225, 239, .52);
-  box-shadow: 0 0 24px rgba(22, 225, 239, .08);
-}
-
-.da-icon-button:focus-visible {
-  outline: 2px solid var(--da-icon-active);
-  outline-offset: 3px;
-}
-
-.da-icon-button:disabled {
-  opacity: .45;
-  cursor: not-allowed;
-  transform: none;
-}
+@media(prefers-reduced-motion:reduce) { .da-icon-button { transition:none; } .da-icon-button:hover { transform:none; } }
