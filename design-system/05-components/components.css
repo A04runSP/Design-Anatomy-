@@ -1,0 +1,58 @@
+/* Design Anatomy — Shared Component Primitives
+   These are deliberately generic. Environment-specific cards, controls and
+   navigation remain in their existing stylesheets.
+*/
+:root {
+  --da-component-radius-sm: 10px;
+  --da-component-radius-md: 16px;
+  --da-component-radius-lg: 22px;
+  --da-component-border: 1px solid var(--da-surface-border, rgba(22,225,239,.18));
+}
+
+.da-card {
+  padding: var(--da-space-6, 24px);
+  border: var(--da-component-border);
+  border-radius: var(--da-component-radius-lg);
+  background: var(--da-surface-2, #071f23);
+  color: var(--da-white, #f7ffff);
+}
+
+.da-card-compact { padding: var(--da-space-5, 20px); border-radius: var(--da-component-radius-md); }
+
+.da-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--da-space-2,12px);
+  min-height:44px;
+  padding:10px 18px;
+  border:1px solid var(--da-cyan, #16e1ef);
+  border-radius:999px;
+  background:transparent;
+  color:var(--da-cyan, #16e1ef);
+  font:inherit;
+  font-weight:800;
+  letter-spacing:.08em;
+  cursor:pointer;
+}
+
+.da-button-primary {
+  background:var(--da-cyan, #16e1ef);
+  color:var(--da-black, #020809);
+}
+
+.da-button:focus-visible,.da-card:focus-visible { outline:2px solid var(--da-cyan-bright,#68f6ff); outline-offset:3px; }
+
+.da-icon-button {
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border:var(--da-component-border);
+  border-radius:50%;
+  background:var(--da-surface-1,#031113);
+  color:var(--da-cyan,#16e1ef);
+  cursor:pointer;
+}
+
+.da-divider { height:1px; width:100%; background:var(--da-line,rgba(22,225,239,.18)); }
