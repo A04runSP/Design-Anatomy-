@@ -1,4 +1,4 @@
-/* Design Anatomy — Motion System
+/* Design Anatomy — Shared Motion System
    Reusable interaction and transition language.
    Reference layer: no existing app selectors are overridden here.
 */
@@ -14,64 +14,27 @@
   --da-motion-scale: scale(1.015);
 }
 
-.da-motion {
-  transition-property: transform, opacity, color, background-color, border-color, box-shadow, filter;
-  transition-duration: var(--da-motion-standard);
-  transition-timing-function: var(--da-ease-standard);
+/* Compatibility aliases for shared timing values. */
+:root {
+  --motion-fast: var(--da-motion-fast);
+  --motion-standard: var(--da-motion-standard);
+  --motion-slow: var(--da-motion-slow);
+  --ease-standard: var(--da-ease-standard);
+  --ease-enter: var(--da-ease-enter);
+  --ease-exit: var(--da-ease-exit);
 }
 
-.da-motion-fast {
-  transition-duration: var(--da-motion-fast);
-  transition-timing-function: var(--da-ease-standard);
-}
-
-.da-motion-slow {
-  transition-duration: var(--da-motion-slow);
-  transition-timing-function: var(--da-ease-enter);
-}
-
-.da-motion-lift:hover {
-  transform: var(--da-motion-lift);
-}
-
-.da-motion-card:hover {
-  transform: var(--da-motion-lift-card);
-}
-
-.da-motion-scale:hover {
-  transform: var(--da-motion-scale);
-}
-
-@keyframes da-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes da-rise-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.da-enter-fade {
-  animation: da-fade-in var(--da-motion-standard) var(--da-ease-enter) both;
-}
-
-.da-enter-rise {
-  animation: da-rise-in var(--da-motion-slow) var(--da-ease-enter) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .da-motion,
-  .da-motion-fast,
-  .da-motion-slow {
-    transition-duration: 1ms;
-    animation-duration: 1ms;
-    scroll-behavior: auto;
-  }
-
-  .da-motion-lift:hover,
-  .da-motion-card:hover,
-  .da-motion-scale:hover {
-    transform: none;
-  }
+.da-motion { transition-property: transform, opacity, color, background-color, border-color, box-shadow, filter; transition-duration:var(--da-motion-standard); transition-timing-function:var(--da-ease-standard); }
+.da-motion-fast { transition-duration:var(--da-motion-fast); transition-timing-function:var(--da-ease-standard); }
+.da-motion-slow { transition-duration:var(--da-motion-slow); transition-timing-function:var(--da-ease-enter); }
+.da-motion-lift:hover { transform:var(--da-motion-lift); }
+.da-motion-card:hover { transform:var(--da-motion-lift-card); }
+.da-motion-scale:hover { transform:var(--da-motion-scale); }
+@keyframes da-fade-in { from { opacity:0; } to { opacity:1; } }
+@keyframes da-rise-in { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+.da-enter-fade { animation:da-fade-in var(--da-motion-standard) var(--da-ease-enter) both; }
+.da-enter-rise { animation:da-rise-in var(--da-motion-slow) var(--da-ease-enter) both; }
+@media(prefers-reduced-motion:reduce) {
+  .da-motion,.da-motion-fast,.da-motion-slow { transition-duration:1ms; animation-duration:1ms; scroll-behavior:auto; }
+  .da-motion-lift:hover,.da-motion-card:hover,.da-motion-scale:hover { transform:none; }
 }
