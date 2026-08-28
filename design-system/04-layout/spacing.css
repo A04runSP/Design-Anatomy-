@@ -1,5 +1,6 @@
-/* Design Anatomy — Spacing System
-   Extracted from the existing website UI. Reference layer only.
+/* Design Anatomy — Shared Spacing System
+   Values extracted from the live website. Environment/page-specific spacing
+   remains in the legacy stylesheets during migration.
 */
 :root {
   --da-space-1: 8px;
@@ -21,26 +22,27 @@
   --da-space-17: 90px;
   --da-space-18: 105px;
   --da-space-19: 110px;
-
   --da-page-gutter: 6vw;
   --da-content-width: 1080px;
   --da-hero-width: 1000px;
   --da-copy-width: 790px;
 }
 
-.da-page-gutter {
-  padding-inline: var(--da-page-gutter);
+/* Compatibility aliases for shared legacy layout values. */
+:root {
+  --space-1: var(--da-space-1);
+  --space-2: var(--da-space-2);
+  --space-3: var(--da-space-3);
+  --space-4: var(--da-space-4);
+  --space-5: var(--da-space-5);
+  --space-6: var(--da-space-6);
+  --space-7: var(--da-space-7);
+  --space-8: var(--da-space-8);
+  --page-gutter: var(--da-page-gutter);
+  --content-width: var(--da-content-width);
 }
 
-.da-content {
-  width: min(var(--da-content-width), calc(100% - 12vw));
-  margin-inline: auto;
-}
-
-.da-hero-width {
-  max-width: var(--da-hero-width);
-}
-
-.da-copy-width {
-  max-width: var(--da-copy-width);
-}
+.da-page-gutter { padding-inline: var(--da-page-gutter); }
+.da-content { width:min(var(--da-content-width),calc(100% - 12vw)); margin-inline:auto; }
+.da-hero-width { max-width:var(--da-hero-width); }
+.da-copy-width { max-width:var(--da-copy-width); }
