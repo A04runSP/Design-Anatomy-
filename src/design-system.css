@@ -1,5 +1,0 @@
-/* Design Anatomy design-system bridge.
-   This bridge connects the new reference system to the Vite CSS graph
-   without removing or replacing any existing application stylesheet.
-*/
-@import "../design-system/index.css";
