@@ -1,4 +1,5 @@
-# Design Anatomy — Master Blueprint
+# RYUMA
+Design Anatomy — Master Blueprint
 
 **Status:** Architecture baseline / v1.0 draft for review  
 **Purpose:** Product, information, visual-boundary, and implementation architecture for the clean rebuild.
