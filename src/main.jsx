@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './styles.css';
 
 const previews = [
@@ -22,7 +22,6 @@ function HomePage() {
   }, []);
 
   const jumpIn = () => {
-    // Dashboard will be wired here when Phase 2 navigation is built.
     window.dispatchEvent(new CustomEvent('ryuma:navigate', { detail: 'dashboard' }));
   };
 
@@ -41,7 +40,6 @@ function HomePage() {
       </nav>
 
       <section className="hero">
-        <div className="eyebrow"><Sparkles size={14} /> D.HOME-PAGE</div>
         <h1>Design has a<br /><span>language.</span></h1>
         <p className="hero-copy">
           Explore the visual systems behind the designs you see — and discover how colour,
