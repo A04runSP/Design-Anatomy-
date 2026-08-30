@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 import './anatomy-fix.css';
 import './anatomy-planet.css';
+import './ryuma-brand.css';
 
 const previews = [
   { name: 'Glassmorphism', className: 'preview-glass', accent: 'Soft surfaces, depth & light' },
@@ -40,7 +41,7 @@ function HomePage() {
   return <main className="home-shell">
     <div className="aurora aurora-one" /><div className="aurora aurora-two" /><div className="aurora aurora-three" /><div className="grain" />
 
-    <nav className="topbar"><div className="brand-lockup"><span className="brand-mark">R</span><span className="brand-name">RYUMA</span></div><span className="product-label">DESIGN ANATOMY</span></nav>
+    <nav className="topbar"><div className="brand-lockup"><span className="brand-mark">R</span><span className="brand-name">リューマ</span></div><span className="product-label">DESIGN ANATOMY</span></nav>
 
     <section className="hero">
       <h1>Design has a<br /><span>language.</span></h1>
