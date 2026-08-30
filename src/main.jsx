@@ -49,7 +49,20 @@ function HomePage() {
       <button className="jump-button" onClick={jumpIn}><span>JUMP IN</span><ArrowRight size={18} /></button>
     </section>
 
-    <section className="anatomy-section" aria-label="What is Design Anatomy">
+    <section className="anatomy-definition" aria-label="What is Design Anatomy">
+      <div className="definition-copy">
+        <span className="section-kicker">WHAT IS DESIGN ANATOMY?</span>
+        <h2>A way to see<br /><span>what makes design work.</span></h2>
+        <p>A design can look simple, complex, beautiful or strange. Underneath, it is built from a series of visual decisions.</p>
+        <p><strong>Design Anatomy breaks those decisions apart, so you can understand what you're looking at — and why it works.</strong></p>
+      </div>
+      <div className="definition-process" aria-label="Design Anatomy process">
+        <span>SEE</span><i>→</i><span>BREAK DOWN</span><i>→</i><span>UNDERSTAND</span><i>→</i><span>CREATE</span>
+      </div>
+      <div className="definition-close"><strong>Don't just look at design.</strong><span>Learn to read it.</span></div>
+    </section>
+
+    <section className="anatomy-section" aria-label="Look closer">
       <div className="anatomy-intro">
         <span className="section-kicker">DESIGN ANATOMY</span>
         <h2>Look closer.</h2>
