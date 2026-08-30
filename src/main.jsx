@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
+import './anatomy-fix.css';
 
 const previews = [
   { name: 'Glassmorphism', className: 'preview-glass', accent: 'Soft surfaces, depth & light' },
