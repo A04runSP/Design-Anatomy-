@@ -1,9 +1,23 @@
-/* Five-card planetary composition: every card has its own circular drift and self-spin. */
-.anatomy-item{animation:cardPlanet 8s linear infinite!important;transform-origin:center center!important}
-.anatomy-colour{left:7%!important;right:auto!important;top:10%!important;--r:9px;--spin:1turn;animation-duration:8s!important}
-.anatomy-type{left:39%!important;right:auto!important;top:20%!important;--r:10px;--spin:-1turn;animation-duration:9s!important}
-.anatomy-form{left:auto!important;right:5%!important;top:11%!important;--r:8px;--spin:1turn;animation-duration:8.5s!important}
-.anatomy-space{left:43%!important;right:auto!important;top:51%!important;--r:9px;--spin:-1turn;animation-duration:7.5s!important}
-.anatomy-motion{left:auto!important;right:5%!important;top:57%!important;--r:11px;--spin:1turn;animation-duration:10s!important}
-@keyframes cardPlanet{0%{transform:translate(0,calc(var(--r) * -1)) rotate(0deg)}25%{transform:translate(var(--r),0) rotate(calc(var(--spin) * .25))}50%{transform:translate(0,var(--r)) rotate(calc(var(--spin) * .5))}75%{transform:translate(calc(var(--r) * -1),0) rotate(calc(var(--spin) * .75))}100%{transform:translate(0,calc(var(--r) * -1)) rotate(var(--spin))}}
-@media(max-width:680px){.anatomy-colour{left:8%!important;right:auto!important;top:7%!important}.anatomy-type{left:auto!important;right:5%!important;top:22%!important}.anatomy-form{left:auto!important;right:5%!important;top:37%!important}.anatomy-space{left:8%!important;right:auto!important;top:52%!important}.anatomy-motion{left:auto!important;right:5%!important;top:67%!important}.anatomy-item{width:74%!important;max-width:74%!important}}
+/* Five independent wave cards — no rotation. Each card follows its own wavelength, amplitude, phase and speed. */
+.anatomy-item{transform-origin:center center!important;animation-timing-function:ease-in-out!important;animation-iteration-count:infinite!important;animation-fill-mode:both!important;will-change:transform!important}
+.anatomy-colour{left:7%!important;right:auto!important;top:10%!important;--wave-y:11px;--wave-x:5px;animation:waveColour 7.2s ease-in-out infinite!important}
+.anatomy-type{left:39%!important;right:auto!important;top:20%!important;--wave-y:15px;--wave-x:7px;animation:waveType 9.4s ease-in-out -2.3s infinite!important}
+.anatomy-form{left:auto!important;right:5%!important;top:11%!important;--wave-y:10px;--wave-x:4px;animation:waveForm 8.1s ease-in-out -4.1s infinite!important}
+.anatomy-space{left:43%!important;right:auto!important;top:51%!important;--wave-y:13px;--wave-x:6px;animation:waveSpace 10.6s ease-in-out -1.7s infinite!important}
+.anatomy-motion{left:auto!important;right:5%!important;top:57%!important;--wave-y:17px;--wave-x:8px;animation:waveMotion 6.8s ease-in-out -3.4s infinite!important}
+
+@keyframes waveColour{0%,100%{transform:translate3d(0,calc(var(--wave-y) * -1),0)}25%{transform:translate3d(var(--wave-x),-3px,0)}50%{transform:translate3d(0,var(--wave-y),0)}75%{transform:translate3d(calc(var(--wave-x) * -1),3px,0)}}
+@keyframes waveType{0%,100%{transform:translate3d(calc(var(--wave-x) * -1),0,0)}25%{transform:translate3d(0,var(--wave-y),0)}50%{transform:translate3d(var(--wave-x),0,0)}75%{transform:translate3d(0,calc(var(--wave-y) * -1),0)}}
+@keyframes waveForm{0%,100%{transform:translate3d(0,var(--wave-y),0)}25%{transform:translate3d(calc(var(--wave-x) * -1),3px,0)}50%{transform:translate3d(0,calc(var(--wave-y) * -1),0)}75%{transform:translate3d(var(--wave-x),-3px,0)}}
+@keyframes waveSpace{0%,100%{transform:translate3d(var(--wave-x),0,0)}25%{transform:translate3d(0,calc(var(--wave-y) * -1),0)}50%{transform:translate3d(calc(var(--wave-x) * -1),0,0)}75%{transform:translate3d(0,var(--wave-y),0)}}
+@keyframes waveMotion{0%,100%{transform:translate3d(0,calc(var(--wave-y) * -1),0)}25%{transform:translate3d(calc(var(--wave-x) * -1),4px,0)}50%{transform:translate3d(0,var(--wave-y),0)}75%{transform:translate3d(var(--wave-x),-4px,0)}}
+
+/* Mobile keeps the intended composition: left / middle / right / left-below / right. */
+@media(max-width:680px){
+ .anatomy-colour{left:8%!important;right:auto!important;top:7%!important}
+ .anatomy-type{left:auto!important;right:5%!important;top:22%!important}
+ .anatomy-form{left:auto!important;right:5%!important;top:37%!important}
+ .anatomy-space{left:8%!important;right:auto!important;top:52%!important}
+ .anatomy-motion{left:auto!important;right:5%!important;top:67%!important}
+ .anatomy-item{width:74%!important;max-width:74%!important}
+}
