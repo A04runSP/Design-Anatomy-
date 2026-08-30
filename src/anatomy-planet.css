@@ -1,0 +1,9 @@
+/* Five-card planetary composition: every card has its own circular drift and self-spin. */
+.anatomy-item{animation:cardPlanet 8s linear infinite!important;transform-origin:center center!important}
+.anatomy-colour{left:7%!important;right:auto!important;top:10%!important;--r:9px;--spin:1turn;animation-duration:8s!important}
+.anatomy-type{left:39%!important;right:auto!important;top:20%!important;--r:10px;--spin:-1turn;animation-duration:9s!important}
+.anatomy-form{left:auto!important;right:5%!important;top:11%!important;--r:8px;--spin:1turn;animation-duration:8.5s!important}
+.anatomy-space{left:43%!important;right:auto!important;top:51%!important;--r:9px;--spin:-1turn;animation-duration:7.5s!important}
+.anatomy-motion{left:auto!important;right:5%!important;top:57%!important;--r:11px;--spin:1turn;animation-duration:10s!important}
+@keyframes cardPlanet{0%{transform:translate(0,calc(var(--r) * -1)) rotate(0deg)}25%{transform:translate(var(--r),0) rotate(calc(var(--spin) * .25))}50%{transform:translate(0,var(--r)) rotate(calc(var(--spin) * .5))}75%{transform:translate(calc(var(--r) * -1),0) rotate(calc(var(--spin) * .75))}100%{transform:translate(0,calc(var(--r) * -1)) rotate(var(--spin))}}
+@media(max-width:680px){.anatomy-colour{left:8%!important;right:auto!important;top:7%!important}.anatomy-type{left:auto!important;right:5%!important;top:22%!important}.anatomy-form{left:auto!important;right:5%!important;top:37%!important}.anatomy-space{left:8%!important;right:auto!important;top:52%!important}.anatomy-motion{left:auto!important;right:5%!important;top:67%!important}.anatomy-item{width:74%!important;max-width:74%!important}}
