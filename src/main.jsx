@@ -5,6 +5,7 @@ import './styles.css';
 import './anatomy-fix.css';
 import './anatomy-planet.css';
 import './ryuma-brand.css';
+import './glass-preview.css';
 
 const previews = [
   { name: 'Glassmorphism', className: 'preview-glass', accent: 'Soft surfaces, depth & light' },
