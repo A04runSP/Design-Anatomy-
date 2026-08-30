@@ -19,6 +19,14 @@ const anatomy = [
   { name: 'Motion', mark: 'MOTION', copy: 'Brings the system alive through movement and response.', className: 'anatomy-motion' },
 ];
 
+function AnatomyVisual({ type }) {
+  if (type === 'anatomy-colour') return <div className="anatomy-visual colour-visual" aria-hidden="true"><i /><i /><i /><i /></div>;
+  if (type === 'anatomy-type') return <div className="anatomy-visual type-visual" aria-hidden="true"><span>Aa</span><b>Aa</b></div>;
+  if (type === 'anatomy-form') return <div className="anatomy-visual form-visual" aria-hidden="true"><i className="form-circle" /><i className="form-square" /><i className="form-triangle" /></div>;
+  if (type === 'anatomy-space') return <div className="anatomy-visual space-visual" aria-hidden="true"><i className="space-orbit" /><i className="space-orbit small" /><b /></div>;
+  return <div className="anatomy-visual motion-visual" aria-hidden="true"><i className="motion-track" /><i className="motion-dot one" /><i className="motion-dot two" /><i className="motion-dot three" /></div>;
+}
+
 function HomePage() {
   const [active, setActive] = useState(0);
   useEffect(() => {
@@ -47,6 +55,7 @@ function HomePage() {
       <div className="anatomy-stage">
         <div className="anatomy-orbit orbit-one" /><div className="anatomy-orbit orbit-two" />
         {anatomy.map((item, index) => <article className={`anatomy-item ${item.className}`} key={item.name} style={{ '--i': index }}>
+          <AnatomyVisual type={item.className} />
           <span className="anatomy-mark">{item.mark}</span>
           <div><h3>{item.name}</h3><p>{item.copy}</p></div>
         </article>)}
