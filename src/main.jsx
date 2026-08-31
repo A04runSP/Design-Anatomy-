@@ -7,7 +7,9 @@ import './anatomy-planet.css';
 import './ryuma-brand.css';
 import './glass-preview.css';
 import './dashboard.css';
+import './library.css';
 import Dashboard from './dashboard.jsx';
+import Library from './library.jsx';
 
 const previews = [
   { name: 'Glassmorphism', className: 'preview-glass', accent: 'Soft surfaces, depth & light' },
@@ -52,7 +54,9 @@ function HomePage({ onNavigate }) {
 function App() {
   const [page, setPage] = useState('home');
   useEffect(() => { const handler = event => setPage(event.detail || 'home'); window.addEventListener('ryuma:navigate', handler); return () => window.removeEventListener('ryuma:navigate', handler); }, []);
-  return page === 'dashboard' ? <Dashboard onNavigate={setPage} /> : <HomePage onNavigate={setPage} />;
+  if (page === 'dashboard') return <Dashboard onNavigate={setPage} />;
+  if (page === 'library') return <Library onNavigate={setPage} />;
+  return <HomePage onNavigate={setPage} />;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
