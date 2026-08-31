@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import './dashboard.css';
 
 const systems = [
@@ -24,13 +24,14 @@ export default function Dashboard({ onNavigate }) {
   const [open, setOpen] = useState(null);
   const [historyOpen, setHistoryOpen] = useState(null);
   const goLibrary = () => onNavigate?.('library');
+  const goHome = () => onNavigate?.('home');
 
   return <main className="dashboard-shell">
     <div className="dashboard-glow glow-a"/><div className="dashboard-glow glow-b"/><div className="dashboard-grain"/>
     <header className="dashboard-nav">
-      <button className="dashboard-brand" onClick={() => onNavigate?.('home')}><span>R</span><b>RYUMA</b><em>リューマ</em></button>
+      <button className="dashboard-brand" onClick={goHome}><span>R</span><b>RYUMA</b><em>リューマ</em></button>
       <div className="dashboard-nav-title">DESIGN ANATOMY</div>
-      <button className="dashboard-library" onClick={goLibrary}>LIBRARY <ArrowRight size={15}/></button>
+      <div className="dashboard-nav-actions"><button className="dashboard-back" onClick={goHome}><ArrowLeft size={15}/> BACK TO HOME</button><button className="dashboard-library" onClick={goLibrary}>LIBRARY <ArrowRight size={15}/></button></div>
     </header>
 
     <section className="dashboard-hero">
