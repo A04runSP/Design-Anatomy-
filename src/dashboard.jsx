@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import './dashboard.css';
+import './dashboard-nav-fix.css';
 
 const systems = [
   { no:'01', name:'Glassmorphism', note:'Transparency · depth · light', className:'dashboard-glass' },
