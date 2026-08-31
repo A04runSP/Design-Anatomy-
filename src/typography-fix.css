@@ -1,33 +1,15 @@
-/* Ryuma typography scale — tighter, more editorial, less oversized */
-.home-shell h1{font-size:clamp(48px,7vw,96px)}
-.home-shell .anatomy-intro h2{font-size:clamp(38px,5vw,62px)}
-.home-shell .preview-section h2{font-size:clamp(28px,3.5vw,42px)}
-.home-shell .preview-caption h3{font-size:clamp(24px,3.4vw,40px)}
-
-.dashboard-hero h1{font-size:clamp(52px,7.2vw,98px)}
-.dashboard-story h2{font-size:clamp(40px,5vw,64px)}
-.dashboard-systems h2,.dashboard-history h2{font-size:clamp(42px,5.2vw,68px)}
-.dashboard-anatomy h2,.dashboard-end h2{font-size:clamp(42px,5.8vw,74px)}
-.system-toggle h3,.history-toggle h3{font-size:clamp(23px,2.5vw,34px)}
-
-.library-hero h1{font-size:clamp(52px,7.5vw,98px)}
-.library-group-head h2{font-size:clamp(38px,5vw,62px)}
-.library-end h2{font-size:clamp(46px,6vw,78px)}
-
+/* Global Ryuma typography scale — restrained and consistent */
+.home-shell h1,.dashboard-hero h1,.library-hero h1{font-size:clamp(44px,6vw,82px)!important;line-height:.98!important}
+.home-shell .anatomy-intro h2,.dashboard-story h2,.dashboard-systems h2,.dashboard-history h2,.dashboard-anatomy h2,.dashboard-end h2,.library-group-head h2,.library-end h2{font-size:clamp(30px,4vw,52px)!important;line-height:1.04!important}
+.home-shell .preview-section h2{font-size:clamp(25px,3vw,38px)!important}
+.home-shell .preview-caption h3{font-size:clamp(22px,3vw,36px)!important}
+.system-toggle h3,.history-toggle h3{font-size:clamp(20px,2vw,28px)!important}
 @media(max-width:680px){
-  .home-shell h1{font-size:clamp(46px,13vw,62px)}
-  .home-shell .anatomy-intro h2{font-size:clamp(36px,10vw,50px)}
-  .home-shell .preview-section h2{font-size:30px}
-  .home-shell .preview-caption h3{font-size:27px}
-
-  .dashboard-hero h1{font-size:clamp(46px,13vw,64px)}
-  .dashboard-story h2,.dashboard-systems h2,.dashboard-history h2{font-size:clamp(38px,10.5vw,54px)}
-  .dashboard-anatomy h2,.dashboard-end h2{font-size:clamp(39px,10.5vw,56px)}
-  .system-toggle h3,.history-toggle h3{font-size:23px}
+.home-shell h1,.dashboard-hero h1,.library-hero h1{font-size:clamp(38px,10vw,54px)!important}
+.home-shell .anatomy-intro h2,.dashboard-story h2,.dashboard-systems h2,.dashboard-history h2,.dashboard-anatomy h2,.dashboard-end h2,.library-group-head h2,.library-end h2{font-size:clamp(28px,8vw,42px)!important}
+.home-shell .preview-section h2{font-size:27px!important}.home-shell .preview-caption h3{font-size:24px!important}.system-toggle h3,.history-toggle h3{font-size:20px!important}
 }
-
 @media(max-width:480px){
-  .library-hero h1{font-size:clamp(48px,13vw,62px)}
-  .library-group-head h2{font-size:clamp(36px,10vw,48px)}
-  .library-end h2{font-size:clamp(42px,11vw,56px)}
+.home-shell h1,.dashboard-hero h1,.library-hero h1{font-size:clamp(36px,9.5vw,48px)!important}
+.home-shell .anatomy-intro h2,.dashboard-story h2,.dashboard-systems h2,.dashboard-history h2,.dashboard-anatomy h2,.dashboard-end h2,.library-group-head h2,.library-end h2{font-size:clamp(26px,7.5vw,38px)!important}
 }
