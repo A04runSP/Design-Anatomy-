@@ -1,0 +1,30 @@
+/* Final anatomy card sizing fix: keeps every card compact on mobile and desktop. */
+.anatomy-item{
+  height:150px!important;
+  min-height:150px!important;
+  max-height:150px!important;
+  overflow:hidden!important;
+  padding:16px 18px!important;
+}
+.anatomy-form,.anatomy-space{
+  height:150px!important;
+  min-height:150px!important;
+  max-height:150px!important;
+}
+@media(max-width:680px){
+  .anatomy-item{
+    width:62%!important;
+    max-width:62%!important;
+    height:145px!important;
+    min-height:145px!important;
+    max-height:145px!important;
+    padding:14px 16px!important;
+  }
+  .anatomy-form,.anatomy-space{
+    height:145px!important;
+    min-height:145px!important;
+    max-height:145px!important;
+  }
+  .anatomy-item h3{font-size:22px!important;line-height:1.05!important}
+  .anatomy-item p{font-size:11px!important;line-height:1.4!important}
+}
