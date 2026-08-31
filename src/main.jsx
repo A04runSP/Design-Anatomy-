@@ -9,6 +9,7 @@ import './glass-preview.css';
 import './dashboard.css';
 import './library.css';
 import './typography-fix.css';
+import './anatomy-card-fix.css';
 import Dashboard from './dashboard.jsx';
 import Library from './library.jsx';
 
