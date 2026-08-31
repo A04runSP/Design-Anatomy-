@@ -19,5 +19,8 @@
  .anatomy-form{left:auto!important;right:5%!important;top:37%!important}
  .anatomy-space{left:8%!important;right:auto!important;top:52%!important}
  .anatomy-motion{left:auto!important;right:5%!important;top:67%!important}
- .anatomy-item{width:74%!important;max-width:74%!important}
+ .anatomy-item{width:62%!important;max-width:62%!important}
+ .anatomy-item h3{font-size:22px!important;line-height:1.05!important}
+ .anatomy-item p{font-size:11px!important;line-height:1.4!important}
+ .anatomy-item{padding:14px 16px!important}
 }
