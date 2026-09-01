@@ -8,9 +8,14 @@
  .brutal-poster,.brutal-collage{width:100%;max-width:100%;overflow:hidden}
  .poster-black,.poster-yellow,.poster-red,.collage-orange,.collage-black,.collage-white{max-width:78%}
  .console-body{min-width:0}
+ /* Tighten the transition between the rule list and the next section. */
+ .brutal-section{padding-top:48px;padding-bottom:48px}
+ .brutal-section + .brutal-section{padding-top:48px}
 }
 @media(max-width:380px){
  .brutal-nav,.brutal-hero,.brutal-demo,.brutal-section,.brutal-footer{width:calc(100% - 24px);max-width:calc(100vw - 24px)}
  .brutal-section h2 .permission-word{font-size:clamp(32px,10.8vw,54px)}
  .brutal-copy h1,.brutal-section h2,.brutal-footer h2{font-size:clamp(46px,15vw,70px)}
+ .brutal-section{padding-top:40px;padding-bottom:40px}
+ .brutal-section + .brutal-section{padding-top:40px}
 }
