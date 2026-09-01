@@ -1,18 +1,20 @@
+.glass-style-page{
+  background:
+    radial-gradient(circle at 10% 12%, #ffd6dc 0, rgba(255,214,220,.72) 18%, transparent 38%),
+    radial-gradient(circle at 88% 22%, #e7d8ff 0, rgba(231,216,255,.72) 20%, transparent 40%),
+    radial-gradient(circle at 18% 58%, #ffe9ee 0, rgba(255,233,238,.65) 18%, transparent 38%),
+    radial-gradient(circle at 82% 72%, #eee5ff 0, rgba(238,229,255,.68) 20%, transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #fffafd 48%, #ffffff 100%);
+  background-attachment: fixed;
+}
+
 .glass-style-page::before{
   content:"";
-  position:fixed;
+  position:absolute;
   inset:0;
   z-index:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 8% 8%,rgba(255,193,202,.42),transparent 28%),
-    radial-gradient(circle at 92% 24%,rgba(215,197,255,.46),transparent 30%),
-    radial-gradient(circle at 22% 56%,rgba(255,216,231,.32),transparent 27%),
-    radial-gradient(circle at 82% 76%,rgba(215,197,255,.34),transparent 30%),
-    radial-gradient(circle at 50% 100%,rgba(255,193,202,.24),transparent 34%);
-  background-color:#fff;
-}
-
-.glass-style-page{
-  background:transparent;
+    radial-gradient(circle at 35% 35%, rgba(255,193,202,.18), transparent 24%),
+    radial-gradient(circle at 65% 58%, rgba(215,197,255,.18), transparent 26%);
 }
