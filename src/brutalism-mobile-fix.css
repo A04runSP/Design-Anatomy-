@@ -8,9 +8,11 @@
  .brutal-poster,.brutal-collage{width:100%;max-width:100%;overflow:hidden}
  .poster-black,.poster-yellow,.poster-red,.collage-orange,.collage-black,.collage-white{max-width:78%}
  .console-body{min-width:0}
- /* Tighten the transition between the rule list and the next section. */
+ /* Keep the rule list tight without creating a floating divider before anatomy. */
  .brutal-section{padding-top:48px;padding-bottom:48px}
  .brutal-section + .brutal-section{padding-top:48px}
+ .brutal-section:has(.brutal-rules){padding-bottom:18px}
+ .brutal-section.anatomy{border-top:0;padding-top:18px}
 }
 @media(max-width:380px){
  .brutal-nav,.brutal-hero,.brutal-demo,.brutal-section,.brutal-footer{width:calc(100% - 24px);max-width:calc(100vw - 24px)}
@@ -18,4 +20,6 @@
  .brutal-copy h1,.brutal-section h2,.brutal-footer h2{font-size:clamp(46px,15vw,70px)}
  .brutal-section{padding-top:40px;padding-bottom:40px}
  .brutal-section + .brutal-section{padding-top:40px}
+ .brutal-section:has(.brutal-rules){padding-bottom:14px}
+ .brutal-section.anatomy{padding-top:14px}
 }
