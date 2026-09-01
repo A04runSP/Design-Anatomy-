@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, Plus, Minus } from 'lucide-react';
 import './brutalism-style.css';
+import './brutalism-mobile-fix.css';
 
 const parts=[
  {n:'01',t:'Colour',d:'Bright orange and yellow collide with black and white. Red acts as a visual signal.'},
