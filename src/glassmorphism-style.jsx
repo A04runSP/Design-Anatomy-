@@ -10,7 +10,16 @@ const layers=[
  {no:'04',title:'Hierarchy',copy:'Opacity, scale and position separate primary content from supporting details.'},
 ];
 
-export default function GlassmorphismStyle({onNavigate}){useEffect(()=>{document.body.classList.add('glass-route-body');return()=>document.body.classList.remove('glass-route-body')},[]);return <main className="glass-style-page">
+export default function GlassmorphismStyle({onNavigate}){
+ useEffect(()=>{
+  document.documentElement.classList.add('glass-route-html');
+  document.body.classList.add('glass-route-body');
+  return()=>{
+   document.documentElement.classList.remove('glass-route-html');
+   document.body.classList.remove('glass-route-body');
+  };
+ },[]);
+ return <main className="glass-style-page">
  <div className="glass-blob blob-red"/><div className="glass-blob blob-purple"/><div className="glass-blob blob-pink"/><div className="glass-dot-grid"/>
  <header className="glass-style-nav"><button onClick={()=>onNavigate?.('library')}><ArrowLeft size={15}/> DESIGN LIBRARY</button><div><b>RYUMA</b><span>リューマ</span></div><span>DESIGN LANGUAGE / 02</span></header>
  <section className="glass-hero"><div className="glass-intro"><span>02 / GLASSMORPHISM</span><h1>Light<br/><em>through glass.</em></h1><p className="glass-lead">A visual language built from transparency, soft light and layered depth.</p><p>The surface stays light and restrained while colour, blur and edges create the sense of a material floating above the background.</p><div className="glass-palette"><i/><i/><i/><i/><i/></div></div>
