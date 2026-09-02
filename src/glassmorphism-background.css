@@ -5,7 +5,7 @@
     radial-gradient(circle at 18% 58%, #ffe9ee 0, rgba(255,233,238,.65) 18%, transparent 38%),
     radial-gradient(circle at 82% 72%, #eee5ff 0, rgba(238,229,255,.68) 20%, transparent 42%),
     linear-gradient(180deg, #ffffff 0%, #fffafd 48%, #ffffff 100%);
-  background-attachment: fixed;
+  background-attachment: scroll;
   padding-bottom: 220px;
 }
 
@@ -20,16 +20,20 @@
     radial-gradient(circle at 65% 58%, rgba(215,197,255,.18), transparent 26%);
 }
 
-/* Glassmorphism owns the full viewport while this page is mounted. */
-html:has(.glass-style-page),
-body:has(.glass-style-page),
-#root:has(.glass-style-page){
+/* Glassmorphism owns the browser environment while this route is mounted. */
+html.glass-route-html,
+body.glass-route-body,
+body.glass-route-body #root{
   background:
     radial-gradient(circle at 10% 12%, #ffd6dc 0, rgba(255,214,220,.72) 18%, transparent 38%),
     radial-gradient(circle at 88% 22%, #e7d8ff 0, rgba(231,216,255,.72) 20%, transparent 40%),
     radial-gradient(circle at 18% 58%, #ffe9ee 0, rgba(255,233,238,.65) 18%, transparent 38%),
     radial-gradient(circle at 82% 72%, #eee5ff 0, rgba(238,229,255,.68) 20%, transparent 42%),
     linear-gradient(180deg, #ffffff 0%, #fffafd 48%, #ffffff 100%) !important;
+}
+
+body.glass-route-body{
+  color:#20202a;
 }
 
 @media(max-width:800px){
