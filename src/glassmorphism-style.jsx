@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import './glassmorphism-style.css';
-import './glassmorphism-background.css';
 
 const layers=[
  {no:'01',title:'Transparency',copy:'A translucent white surface lets the colour and light beneath remain part of the composition.'},
