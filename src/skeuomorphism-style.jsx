@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Minus, Plus, RotateCcw } from 'lucide-react';
 import './skeuomorphism-style.css';
 
@@ -15,6 +15,17 @@ export default function SkeuomorphismStyle({ onNavigate }) {
   const [active, setActive] = useState(false);
   const [value, setValue] = useState(50);
   const [volume, setVolume] = useState(62);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const timer = setInterval(() => {
+      setValue(v => (v >= 100 ? 0 : v + 2));
+    }, 120);
+
+    return () => clearInterval(timer);
+  }, [isPlaying]);
 
   const changeValue = (delta) => {
     if (!active) return;
@@ -71,7 +82,42 @@ export default function SkeuomorphismStyle({ onNavigate }) {
 
     <section className="skeu-section composition">
       <div className="skeu-label">04 / COMPOSITION</div>
-      <div className="skeu-workbench"><div className="leather-card"><small>OBJECT / 05</small><h3>PRESS.<br/><em>TURN.</em><br/>DRAG.</h3><div className="leather-seam"/><span>REAL WORLD / DIGITAL SPACE</span></div><div className="metal-plate"><div className="metal-title">TACTILE INTERFACE</div><div className="metal-row"><button className="metal-button">PLAY</button><button className="metal-button">PAUSE</button></div><div className="metal-meter"><span style={{width:`${value}%`}}/></div></div><div className="glass-note">REALISM<br/><b>≠</b><br/>CLUTTER</div></div>
+      <div className="skeu-workbench">
+        <div className="leather-card">
+          <small>OBJECT / 05</small>
+          <h3>PRESS.<br/><em>TURN.</em><br/>DRAG.</h3>
+          <div className="leather-seam"/>
+          <span>REAL WORLD / DIGITAL SPACE</span>
+        </div>
+
+        <div className="metal-plate">
+          <div className="metal-title">TACTILE INTERFACE</div>
+          <div className="metal-row">
+            <button
+              className={`metal-button ${isPlaying ? 'is-active' : ''}`}
+              onClick={() => setIsPlaying(true)}
+              disabled={isPlaying}
+              aria-pressed={isPlaying}
+            >
+              PLAY
+            </button>
+            <button
+              className={`metal-button ${!isPlaying ? 'is-active' : ''}`}
+              onClick={() => setIsPlaying(false)}
+              disabled={!isPlaying}
+              aria-pressed={!isPlaying}
+            >
+              PAUSE
+            </button>
+          </div>
+          <div className="metal-meter" aria-label={`Playback progress ${value}%`}>
+            <span style={{width:`${value}%`}}/>
+          </div>
+          <div className="metal-status">{isPlaying ? 'PLAYING / LIVE' : 'PAUSED / READY'}</div>
+        </div>
+
+        <div className="glass-note">REALISM<br/><b>≠</b><br/>CLUTTER</div>
+      </div>
     </section>
 
     <section className="skeu-section tradeoff">
