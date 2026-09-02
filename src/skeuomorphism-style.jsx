@@ -1,0 +1,84 @@
+import React, { useState } from 'react';
+import { ArrowLeft, ArrowRight, Minus, Plus, RotateCcw } from 'lucide-react';
+import './skeuomorphism-style.css';
+
+const parts = [
+  { n:'01', t:'Material', d:'Leather, metal, glass and paper create recognizable physical context.' },
+  { n:'02', t:'Light', d:'Highlights and shadows establish a consistent source of light and depth.' },
+  { n:'03', t:'Texture', d:'Subtle surface detail makes digital elements feel tangible rather than synthetic.' },
+  { n:'04', t:'Depth', d:'Bevels, layers and cast shadows separate surfaces and establish hierarchy.' },
+  { n:'05', t:'Affordance', d:'A raised button suggests pressing. A knob suggests turning. A slider suggests dragging.' },
+  { n:'06', t:'Feedback', d:'Controls respond visibly so interaction feels physical, not merely animated.' },
+];
+
+export default function SkeuomorphismStyle({ onNavigate }) {
+  const [active, setActive] = useState(false);
+  const [value, setValue] = useState(50);
+  const [volume, setVolume] = useState(62);
+
+  const changeValue = (delta) => {
+    if (!active) return;
+    setValue(v => Math.max(0, Math.min(100, v + delta)));
+  };
+
+  return <main className="skeu-page">
+    <header className="skeu-nav">
+      <button onClick={()=>onNavigate?.('library')}><ArrowLeft size={16}/> DESIGN LIBRARY</button>
+      <div><b>RYUMA</b><span>リューマ</span></div>
+      <strong>05 / SKEUOMORPHISM</strong>
+    </header>
+
+    <section className="skeu-hero">
+      <div className="skeu-copy">
+        <span>DESIGN LANGUAGE / 05</span>
+        <h1>MAKE IT<br/><i>FEEL REAL.</i></h1>
+        <p>Physical cues. Digital control. Familiar interaction.</p>
+        <div className="skeu-stamp">BUILT<br/>TO FEEL.</div>
+      </div>
+      <div className="skeu-desk">
+        <div className="desk-paper"><small>RYUMA / OBJECT 05</small><h2>FAMILIAR<br/><em>BY DESIGN.</em></h2><div className="paper-line"/><span>TOUCH / TURN / PRESS</span></div>
+        <div className="desk-screw screw-a"/><div className="desk-screw screw-b"/>
+        <div className="desk-knob"><span/><b>VOL</b></div>
+        <div className="desk-switch"><span>POWER</span><button className={active?'on':''} onClick={()=>setActive(v=>!v)}><i/></button></div>
+      </div>
+    </section>
+
+    <section className="skeu-demo">
+      <div className="skeu-label">01 / LIVE SPECIMEN</div>
+      <div className="skeu-console">
+        <div className="skeu-console-top"><b>CONTROL DECK / 05</b><span>STATUS: {active?'ACTIVE':'STANDBY'}</span></div>
+        <div className="skeu-console-body">
+          <div className="skeu-display"><small>MASTER LEVEL</small><strong>{String(volume).padStart(2,'0')}</strong><span>{active?'SYSTEM LIVE':'SYSTEM STANDBY'}</span></div>
+          <div className="skeu-control-group">
+            <div className="skeu-knob-wrap"><div className="skeu-knob-live" style={{'--rotation':`${-135 + volume * 2.7}deg`}}><span/></div><small>VOLUME</small></div>
+            <div className="skeu-slider-wrap"><label>LEVEL</label><div className="skeu-slider" onClick={(e)=>{if(!active)return;const r=e.currentTarget.getBoundingClientRect();setVolume(Math.round(((e.clientX-r.left)/r.width)*100))}}><span style={{width:`${volume}%`}}/><i style={{left:`${volume}%`}}/></div><div className="skeu-slider-labels"><span>MIN</span><span>MAX</span></div></div>
+            <div className="skeu-actions"><button onClick={()=>{if(active)setVolume(v=>Math.max(0,v-5))}}><Minus/></button><button onClick={()=>{if(active)setVolume(v=>Math.min(100,v+5))}}><Plus/></button><button onClick={()=>{if(active)setVolume(50)}} aria-label="Reset"><RotateCcw/></button></div>
+          </div>
+        </div>
+        <div className="skeu-console-bottom"><span>PHYSICAL CUES / DIGITAL RESPONSE</span><button onClick={()=>setActive(v=>!v)}>{active?'ON':'OFF'}</button></div>
+      </div>
+    </section>
+
+    <section className="skeu-section">
+      <div className="skeu-label">02 / THE IDEA</div>
+      <div><h2>DIGITAL,<br/><span>BUT FAMILIAR.</span></h2><p>Skeuomorphism brings the visual language of physical objects into digital interfaces. Texture, depth, lighting and familiar metaphors help users understand what something does before they interact with it.</p><div className="skeu-rules"><div><b>01</b><span>REAL METAPHOR</span></div><div><b>02</b><span>DEPTH</span></div><div><b>03</b><span>AFFORDANCE</span></div><div><b>04</b><span>FAMILIARITY</span></div></div></div>
+    </section>
+
+    <section className="skeu-section anatomy">
+      <div className="skeu-label">03 / DESIGN ANATOMY</div>
+      <div><h2>EVERY DETAIL.<br/><span>HAS A PURPOSE.</span></h2><div className="skeu-parts">{parts.map(x=><article key={x.n}><b>{x.n}</b><h3>{x.t}</h3><p>{x.d}</p></article>)}</div></div>
+    </section>
+
+    <section className="skeu-section composition">
+      <div className="skeu-label">04 / COMPOSITION</div>
+      <div className="skeu-workbench"><div className="leather-card"><small>OBJECT / 05</small><h3>PRESS.<br/><em>TURN.</em><br/>DRAG.</h3><div className="leather-seam"/><span>REAL WORLD / DIGITAL SPACE</span></div><div className="metal-plate"><div className="metal-title">TACTILE INTERFACE</div><div className="metal-row"><button className="metal-button">PLAY</button><button className="metal-button">PAUSE</button></div><div className="metal-meter"><span style={{width:`${value}%`}}/></div></div><div className="glass-note">REALISM<br/><b>≠</b><br/>CLUTTER</div></div>
+    </section>
+
+    <section className="skeu-section tradeoff">
+      <div className="skeu-label">05 / THE TRADE-OFF</div>
+      <div><h2>REALISM<br/><span>HAS A COST.</span></h2><p>Too much detail can become heavy, cluttered and distracting. The strongest skeuomorphic interfaces use realism with purpose — enough physical cues to explain interaction without decorating every surface.</p><div className="skeu-warning"><b>REALISM ≠ CLUTTER</b><span>USE THE METAPHOR. DON'T LET IT BECOME THE TASK.</span></div></div>
+    </section>
+
+    <footer className="skeu-footer"><span>SKEUOMORPHISM / 05</span><h2>TOUCHABLE.<br/><i>FAMILIAR.</i><br/>ALIVE.</h2><p>When digital interfaces borrow the language of the physical world.</p><button onClick={()=>onNavigate?.('library')}>BACK TO DESIGN LIBRARY <ArrowRight size={16}/></button></footer>
+  </main>;
+}
