@@ -6,6 +6,7 @@
     radial-gradient(circle at 82% 72%, #eee5ff 0, rgba(238,229,255,.68) 20%, transparent 42%),
     linear-gradient(180deg, #ffffff 0%, #fffafd 48%, #ffffff 100%);
   background-attachment: fixed;
+  padding-bottom: 220px;
 }
 
 .glass-style-page::before{
@@ -32,6 +33,10 @@ body:has(.glass-style-page),
 }
 
 @media(max-width:800px){
+  .glass-style-page{
+    padding-bottom:220px;
+  }
+
   .glass-style-page .glass-section:last-of-type{
     padding-bottom:0 !important;
     margin-bottom:0 !important;
