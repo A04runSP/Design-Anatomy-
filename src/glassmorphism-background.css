@@ -19,15 +19,26 @@
     radial-gradient(circle at 65% 58%, rgba(215,197,255,.18), transparent 26%);
 }
 
-/* The app shell is dark globally. While Glassmorphism is mounted, its light
-   environment must also own the viewport outside the component's content box. */
+/* Glassmorphism owns the full viewport while this page is mounted. */
 html:has(.glass-style-page),
-body:has(.glass-style-page){
-  background:linear-gradient(180deg,#fffafd 0%,#f7efff 100%) !important;
+body:has(.glass-style-page),
+#root:has(.glass-style-page){
+  background:
+    radial-gradient(circle at 10% 12%, #ffd6dc 0, rgba(255,214,220,.72) 18%, transparent 38%),
+    radial-gradient(circle at 88% 22%, #e7d8ff 0, rgba(231,216,255,.72) 20%, transparent 40%),
+    radial-gradient(circle at 18% 58%, #ffe9ee 0, rgba(255,233,238,.65) 18%, transparent 38%),
+    radial-gradient(circle at 82% 72%, #eee5ff 0, rgba(238,229,255,.68) 20%, transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #fffafd 48%, #ffffff 100%) !important;
 }
 
-/* The last anatomy row should hand off directly to the footer on mobile;
-   don't leave the section's generic bottom padding between them. */
 @media(max-width:800px){
-  .glass-style-page .glass-section:last-of-type{padding-bottom:0}
+  .glass-style-page .glass-section:last-of-type{
+    padding-bottom:0 !important;
+    margin-bottom:0 !important;
+  }
+
+  .glass-style-page .glass-footer{
+    margin-top:0 !important;
+    padding-top:0 !important;
+  }
 }
