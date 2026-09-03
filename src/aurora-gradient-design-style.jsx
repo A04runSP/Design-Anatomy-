@@ -40,9 +40,10 @@ function Ribbon({frames,index,variant,layer='core'}){
  </g>;
 }
 
-function RibbonField({variant='hero',reactive=false}){
+function RibbonField({variant='hero',reactive=false,point={x:50,y:50}}){
  const frames=ribbonSets[variant]||ribbonSets.hero;
- return <svg className={`ag-ribbon-field ag-ribbon-${variant}${reactive?' ag-ribbon-reactive':''}`} viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+ const ribbonStyle=reactive?{'--ribbon-x':`${(point.x-50)*0.11}%`,'--ribbon-y':`${(point.y-50)*0.08}%`}:undefined;
+ return <svg className={`ag-ribbon-field ag-ribbon-${variant}${reactive?' ag-ribbon-reactive':''}`} style={ribbonStyle} viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
   <defs>
    <linearGradient id={`ribbon-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
     <stop offset="0%" stopColor="#19d9ef"/><stop offset="28%" stopColor="#467cf4"/><stop offset="52%" stopColor="#8c5cf5"/><stop offset="76%" stopColor="#d84fdf"/><stop offset="100%" stopColor="#ff62b1"/>
@@ -57,7 +58,7 @@ function RibbonField({variant='hero',reactive=false}){
   <g className="ag-ribbon-atmosphere" filter={`url(#ribbon-soft-${variant})`} opacity=".82">{frames.map((frame,i)=><Ribbon key={`glow-${i}`} frames={frame} index={i} variant={variant} layer="glow"/>)}</g>
   <g className="ag-ribbon-cloud" filter={`url(#ribbon-core-${variant})`} opacity=".72">{frames.map((frame,i)=><Ribbon key={`cloud-${i}`} frames={frame} index={i+3} variant={variant} layer="cloud"/>)}</g>
   <g className="ag-ribbon-wisps" filter={`url(#ribbon-wisp-${variant})`} opacity=".62">{frames.map((frame,i)=><Ribbon key={`wisp-${i}`} frames={frame} index={i+6} variant={variant} layer="wisp"/>)}</g>
-  {reactive&&<g className="ag-ribbon-reactive-haze"><ellipse cx="500" cy="260" rx="260" ry="95"/></g>}
+  {reactive&&<g className="ag-ribbon-reactive-haze"><ellipse cx="500" cy="260" rx="260" ry="95" fill={`url(#ribbon-${variant})`}/></g>}
  </svg>;
 }
 
@@ -75,7 +76,7 @@ export default function AuroraGradientDesignStyle({onNavigate}){
   <section className="ag-section"><div className="ag-label"><span>04</span><b>DESIGN ANATOMY</b></div><div><h2>Five parts.<br/><em>One atmosphere.</em></h2><div className="ag-anatomy">{anatomy.map(([no,title,copy])=><article key={no}><span>{no}</span><div><b>{title}</b><p>{copy}</p></div></article>)}</div></div></section>
   <section className="ag-section"><div className="ag-label"><span>05</span><b>LIGHT</b></div><div><h2>Let colour<br/><em>occupy space.</em></h2><p>Instead of placing a gradient inside a component, Aurora lets colour become a field around the content. The result is soft, luminous and spatial.</p><div className="ag-light-demo"><div className="ag-light-grid"/><RibbonField variant="light"/><div className="ag-light-panel"><span>ATMOSPHERE / 01</span><strong>Glow<br/>without<br/>edges.</strong></div></div></div></section>
   <section className="ag-section"><div className="ag-label"><span>06</span><b>BLEND</b></div><div><h2>Where one colour<br/><em>becomes another.</em></h2><p>Hard boundaries disappear. Colour transitions create visual continuity, giving the interface a more fluid vocabulary.</p><div className="ag-blend-demo"><RibbonField variant="blend"/><span>NO HARD EDGES</span></div></div></section>
-  <section className="ag-section"><div className="ag-label"><span>07</span><b>MOTION</b></div><div><h2>Move the light.<br/><em>Change the mood.</em></h2><p>The signature interaction is contained inside one playground: drag the luminous point and watch the atmosphere follow your hand.</p><div className="ag-playground" ref={playgroundRef} style={{'--px':`${point.x}%`,'--py':`${point.y}%`}}><div className="ag-playground-grid"/><RibbonField variant="hero" reactive/><div className="ag-playground-glow"/><div className="ag-playground-orb"/><div className="ag-playground-content"><span>AURORA PLAYGROUND</span><strong>DRAG<br/>THE LIGHT.</strong><small>{dragging?'MOVING / ATMOSPHERE FOLLOWING':'TOUCH & DRAG THE GLOW'}</small></div><button className={`ag-light-handle ${dragging?'is-dragging':''}`} aria-label="Drag the aurora light" onPointerDown={start} onPointerMove={event=>dragging&&moveLight(event)} onPointerUp={stop} onPointerCancel={stop}><i/></button></div></div></section>
+  <section className="ag-section"><div className="ag-label"><span>07</span><b>MOTION</b></div><div><h2>Move the light.<br/><em>Change the mood.</em></h2><p>The signature interaction is contained inside one playground: drag the luminous point and watch the atmosphere follow your hand.</p><div className="ag-playground" ref={playgroundRef} style={{'--px':`${point.x}%`,'--py':`${point.y}%`}}><div className="ag-playground-grid"/><RibbonField variant="hero" reactive point={point}/><div className="ag-playground-glow"/><div className="ag-playground-orb"/><div className="ag-playground-content"><span>AURORA PLAYGROUND</span><strong>DRAG<br/>THE LIGHT.</strong><small>{dragging?'MOVING / ATMOSPHERE FOLLOWING':'TOUCH & DRAG THE GLOW'}</small></div><button className={`ag-light-handle ${dragging?'is-dragging':''}`} aria-label="Drag the aurora light" onPointerDown={start} onPointerMove={event=>dragging&&moveLight(event)} onPointerUp={stop} onPointerCancel={stop}><i/></button></div></div></section>
   <section className="ag-section"><div className="ag-label"><span>08</span><b>FOCUS</b></div><div><h2>Glow around<br/><em>what matters.</em></h2><p>Atmosphere should support hierarchy. Brighter zones attract attention while quieter areas give content room to breathe.</p><div className="ag-focus-demo"><div><span>01</span><b>PRIMARY</b></div><div><span>02</span><b>SECONDARY</b></div><div><span>03</span><b>QUIET</b></div></div></div></section>
   <footer className="ag-footer"><span>AURORA / GRADIENT DESIGN</span><h2>Light is the<br/><em>material.</em></h2><p>A visual language built from colour, blend, depth, motion and focus.</p><button onClick={()=>onNavigate?.('library')}>BACK TO DESIGN LIBRARY <ArrowLeft size={15}/></button></footer>
  </main>;
