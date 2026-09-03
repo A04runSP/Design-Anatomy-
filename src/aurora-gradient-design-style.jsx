@@ -12,47 +12,52 @@ const anatomy = [
 
 const ribbonSets = {
  hero: [
-  ['M-100 150 C100 45 300 38 505 84 C700 126 850 178 1100 72 L1100 138 C860 260 680 216 500 164 C310 110 120 155 -100 250 Z','M-100 182 C110 62 320 52 520 105 C700 153 865 145 1100 50 L1100 132 C860 255 684 236 500 184 C315 136 110 185 -100 274 Z','M-100 132 C110 32 320 72 510 58 C700 45 870 200 1100 92 L1100 156 C850 278 690 198 505 136 C315 75 120 175 -100 230 Z'],
-  ['M-100 245 C130 160 315 178 500 225 C690 275 850 318 1100 205 L1100 280 C850 405 670 350 492 298 C305 244 125 280 -100 340 Z','M-100 278 C125 185 320 198 510 252 C695 305 855 278 1100 190 L1100 264 C850 375 670 360 500 315 C310 264 120 318 -100 372 Z','M-100 220 C125 145 320 208 505 198 C690 188 860 345 1100 230 L1100 300 C850 420 680 315 495 270 C300 222 120 300 -100 345 Z'],
-  ['M-110 360 C120 285 315 315 500 372 C690 428 865 422 1110 330 L1110 400 C850 520 665 500 490 445 C300 385 105 410 -110 475 Z','M-110 395 C130 310 315 350 505 400 C690 450 855 430 1110 300 L1110 372 C860 500 670 520 490 470 C300 418 115 455 -110 505 Z','M-110 335 C125 260 315 340 495 345 C680 350 860 455 1110 350 L1110 425 C850 530 675 475 485 420 C300 365 110 430 -110 480 Z']
+  ['M-120 170 C70 35 270 40 455 105 C635 168 790 220 1120 70 L1120 190 C820 315 650 260 455 195 C270 132 75 155 -120 290 Z','M-120 220 C70 75 285 58 470 128 C650 196 820 175 1120 45 L1120 165 C815 300 650 285 455 220 C270 155 70 205 -120 335 Z','M-120 135 C85 18 285 72 465 72 C650 72 820 250 1120 95 L1120 210 C815 345 640 240 455 170 C275 100 75 205 -120 270 Z'],
+  ['M-120 300 C85 180 270 205 455 270 C650 338 825 350 1120 205 L1120 330 C830 455 640 405 450 340 C260 275 70 320 -120 405 Z','M-120 345 C85 210 275 220 465 295 C650 370 835 310 1120 185 L1120 305 C830 430 645 420 450 365 C260 310 70 365 -120 445 Z','M-120 270 C90 155 280 235 460 240 C645 245 825 395 1120 245 L1120 360 C825 485 640 375 450 315 C260 255 70 350 -120 420 Z'],
+  ['M-130 425 C65 300 270 330 455 395 C650 463 830 465 1130 320 L1130 445 C825 565 635 525 445 465 C255 405 65 455 -130 520 Z','M-130 470 C75 325 275 350 465 425 C650 500 835 450 1130 285 L1130 410 C835 545 640 555 450 495 C260 435 70 500 -130 555 Z','M-130 390 C70 270 270 355 450 365 C640 375 835 500 1130 340 L1130 465 C825 585 635 490 445 440 C260 390 70 480 -130 535 Z']
  ],
  light: [
-  ['M-100 120 C130 25 340 40 520 92 C700 142 860 150 1100 58 L1100 125 C850 225 675 205 505 155 C320 102 130 120 -100 195 Z','M-100 150 C135 48 330 68 510 105 C700 145 850 120 1100 35 L1100 105 C855 210 680 220 500 170 C320 120 130 155 -100 220 Z','M-100 95 C130 15 335 65 520 65 C700 65 870 180 1100 80 L1100 145 C850 240 680 175 505 120 C315 60 120 145 -100 190 Z'],
-  ['M-100 292 C125 218 315 228 488 274 C675 325 855 355 1100 270 L1100 338 C845 438 660 395 480 345 C300 295 120 310 -100 375 Z','M-100 320 C120 238 315 250 495 300 C675 350 850 325 1100 250 L1100 315 C850 415 665 385 480 365 C300 345 120 350 -100 405 Z','M-100 265 C125 205 315 260 490 255 C670 250 860 380 1100 300 L1100 365 C850 455 660 355 480 315 C300 275 120 355 -100 400 Z']
+  ['M-120 125 C80 15 285 40 465 105 C650 172 825 170 1120 55 L1120 170 C820 295 645 245 455 180 C270 118 70 150 -120 275 Z','M-120 185 C80 48 285 58 475 125 C655 188 830 130 1120 30 L1120 145 C820 275 645 275 455 205 C270 140 70 205 -120 325 Z','M-120 92 C80 5 285 75 465 72 C650 68 835 220 1120 75 L1120 195 C820 320 640 215 450 150 C265 85 65 195 -120 260 Z'],
+  ['M-120 310 C75 220 275 225 455 280 C645 338 835 365 1120 270 L1120 380 C820 480 640 420 450 360 C265 305 70 345 -120 430 Z','M-120 360 C75 235 280 255 465 315 C650 375 830 335 1120 230 L1120 345 C825 460 640 420 450 390 C260 360 70 390 -120 465 Z','M-120 270 C80 190 275 270 455 260 C640 250 835 400 1120 295 L1120 410 C820 505 635 385 450 330 C265 275 70 390 -120 455 Z']
  ],
  blend: [
-  ['M-100 118 C120 42 315 52 495 94 C675 136 850 150 1100 68 L1100 130 C850 220 670 205 485 160 C300 116 120 125 -100 195 Z','M-100 145 C125 55 315 75 500 112 C680 148 855 120 1100 45 L1100 108 C850 210 670 225 490 175 C305 130 120 160 -100 225 Z','M-100 92 C125 30 320 78 500 72 C680 66 860 195 1100 90 L1100 150 C850 255 670 175 490 125 C300 70 120 155 -100 205 Z'],
-  ['M-100 248 C120 188 305 190 480 235 C660 280 850 318 1100 240 L1100 305 C845 398 655 355 470 308 C290 262 120 270 -100 330 Z','M-100 280 C120 205 305 215 485 255 C665 295 855 275 1100 210 L1100 275 C850 370 655 340 475 320 C290 300 120 310 -100 360 Z','M-100 220 C125 170 305 225 485 215 C665 205 855 345 1100 260 L1100 325 C850 420 660 325 475 285 C290 245 120 320 -100 370 Z'],
-  ['M-110 360 C125 304 305 315 478 357 C655 400 845 425 1100 345 L1100 410 C845 500 650 458 468 414 C290 372 115 380 -110 440 Z','M-110 390 C120 325 305 340 485 385 C665 430 850 400 1100 320 L1100 385 C850 480 660 475 475 430 C295 385 120 425 -110 475 Z','M-110 330 C120 280 305 345 475 340 C650 335 850 465 1100 365 L1100 430 C850 525 650 450 470 400 C290 350 120 420 -110 465 Z']
+  ['M-120 125 C75 42 275 55 455 108 C645 164 830 170 1120 70 L1120 185 C825 300 640 245 450 185 C265 125 70 160 -120 275 Z','M-120 175 C80 55 280 72 465 130 C650 188 835 125 1120 45 L1120 155 C825 280 640 285 450 210 C270 145 70 200 -120 330 Z','M-120 92 C80 25 280 78 455 76 C640 74 835 235 1120 88 L1120 200 C820 325 635 215 450 155 C270 95 70 195 -120 285 Z'],
+  ['M-120 285 C80 190 275 205 450 255 C640 310 835 345 1120 245 L1120 360 C820 465 635 405 445 340 C260 280 70 330 -120 430 Z','M-120 335 C80 205 280 225 465 285 C650 345 835 300 1120 215 L1120 330 C820 445 640 420 450 370 C270 320 70 375 -120 460 Z','M-120 245 C80 165 280 235 455 235 C640 235 835 380 1120 275 L1120 395 C820 500 635 370 450 315 C265 260 70 355 -120 445 Z'],
+  ['M-130 430 C70 315 270 325 450 385 C640 448 835 460 1130 345 L1130 455 C825 570 635 520 445 460 C260 400 70 470 -130 545 Z','M-130 475 C70 335 275 350 465 420 C650 490 840 440 1130 305 L1130 420 C825 555 635 555 450 500 C265 445 70 515 -130 570 Z','M-130 395 C70 285 275 350 450 355 C635 360 840 495 1130 365 L1130 480 C820 590 635 500 445 445 C260 390 70 490 -130 555 Z']
  ]
 };
 
-function Ribbon({frames,index,variant}){
- const id=`${variant}-${index}`;
- return <g className="ag-ribbon" style={{'--ribbon-delay':`${index*-1.7}s`}}>
+function Ribbon({frames,index,variant,layer='core'}){
+ const duration=`${11+index*1.4}s`;
+ const values=`${frames[0]};${frames[1]};${frames[2]};${frames[0]}`;
+ return <g className={`ag-ribbon ag-ribbon-${layer}`} style={{'--ribbon-delay':`${index*-1.9}s`}}>
   <path d={frames[0]} fill={`url(#ribbon-${variant})`}>
-   <animate attributeName="d" values={`${frames[0]};${frames[1]};${frames[2]};${frames[0]}`} dur={`${10+index*1.8}s`} repeatCount="indefinite" calcMode="spline" keyTimes="0;.34;.68;1" keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
+   <animate attributeName="d" values={values} dur={duration} repeatCount="indefinite" calcMode="spline" keyTimes="0;.34;.68;1" keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
   </path>
-  <path d={frames[0]} fill={`url(#ribbon-hi-${variant})`} className="ag-ribbon-highlight">
-   <animate attributeName="d" values={`${frames[0]};${frames[1]};${frames[2]};${frames[0]}`} dur={`${10+index*1.8}s`} repeatCount="indefinite" calcMode="spline" keyTimes="0;.34;.68;1" keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
-  </path>
+  {layer!=='glow'&&<path d={frames[0]} fill={`url(#ribbon-hi-${variant})`} className="ag-ribbon-highlight">
+   <animate attributeName="d" values={values} dur={duration} repeatCount="indefinite" calcMode="spline" keyTimes="0;.34;.68;1" keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
+  </path>}
  </g>;
 }
 
-function RibbonField({variant='hero'}){
+function RibbonField({variant='hero',reactive=false}){
  const frames=ribbonSets[variant]||ribbonSets.hero;
- return <svg className={`ag-ribbon-field ag-ribbon-${variant}`} viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+ return <svg className={`ag-ribbon-field ag-ribbon-${variant}${reactive?' ag-ribbon-reactive':''}`} viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
   <defs>
    <linearGradient id={`ribbon-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" stopColor="#22d3ee"/><stop offset="30%" stopColor="#4f46e5"/><stop offset="57%" stopColor="#8b5cf6"/><stop offset="82%" stopColor="#ec4899"/><stop offset="100%" stopColor="#f0abfc"/>
+    <stop offset="0%" stopColor="#19d9ef"/><stop offset="28%" stopColor="#467cf4"/><stop offset="52%" stopColor="#8c5cf5"/><stop offset="76%" stopColor="#d84fdf"/><stop offset="100%" stopColor="#ff62b1"/>
    </linearGradient>
    <linearGradient id={`ribbon-hi-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" stopColor="#fff" stopOpacity="0"/><stop offset="45%" stopColor="#fff" stopOpacity=".08"/><stop offset="55%" stopColor="#fff" stopOpacity=".22"/><stop offset="70%" stopColor="#fff" stopOpacity=".04"/><stop offset="100%" stopColor="#fff" stopOpacity="0"/>
+    <stop offset="0%" stopColor="#fff" stopOpacity="0"/><stop offset="38%" stopColor="#fff" stopOpacity=".04"/><stop offset="54%" stopColor="#fff" stopOpacity=".2"/><stop offset="68%" stopColor="#fff" stopOpacity=".05"/><stop offset="100%" stopColor="#fff" stopOpacity="0"/>
    </linearGradient>
-   <filter id={`ribbon-blur-${variant}`} x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+   <filter id={`ribbon-soft-${variant}`} x="-25%" y="-80%" width="150%" height="260%"><feGaussianBlur stdDeviation="20"/></filter>
+   <filter id={`ribbon-core-${variant}`} x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
+   <filter id={`ribbon-wisp-${variant}`} x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3.5"/></filter>
   </defs>
-  <g className="ag-ribbon-glow" filter={`url(#ribbon-blur-${variant})`} opacity=".5">{frames.map((frame,i)=><Ribbon key={i} frames={frame} index={i} variant={variant}/>)}</g>
-  <g className="ag-ribbon-main">{frames.map((frame,i)=><Ribbon key={`main-${i}`} frames={frame} index={i+3} variant={variant}/>)}</g>
+  <g className="ag-ribbon-atmosphere" filter={`url(#ribbon-soft-${variant})`} opacity=".82">{frames.map((frame,i)=><Ribbon key={`glow-${i}`} frames={frame} index={i} variant={variant} layer="glow"/>)}</g>
+  <g className="ag-ribbon-cloud" filter={`url(#ribbon-core-${variant})`} opacity=".72">{frames.map((frame,i)=><Ribbon key={`cloud-${i}`} frames={frame} index={i+3} variant={variant} layer="cloud"/>)}</g>
+  <g className="ag-ribbon-wisps" filter={`url(#ribbon-wisp-${variant})`} opacity=".62">{frames.map((frame,i)=><Ribbon key={`wisp-${i}`} frames={frame} index={i+6} variant={variant} layer="wisp"/>)}</g>
+  {reactive&&<g className="ag-ribbon-reactive-haze"><ellipse cx="500" cy="260" rx="260" ry="95"/></g>}
  </svg>;
 }
 
@@ -70,7 +75,7 @@ export default function AuroraGradientDesignStyle({onNavigate}){
   <section className="ag-section"><div className="ag-label"><span>04</span><b>DESIGN ANATOMY</b></div><div><h2>Five parts.<br/><em>One atmosphere.</em></h2><div className="ag-anatomy">{anatomy.map(([no,title,copy])=><article key={no}><span>{no}</span><div><b>{title}</b><p>{copy}</p></div></article>)}</div></div></section>
   <section className="ag-section"><div className="ag-label"><span>05</span><b>LIGHT</b></div><div><h2>Let colour<br/><em>occupy space.</em></h2><p>Instead of placing a gradient inside a component, Aurora lets colour become a field around the content. The result is soft, luminous and spatial.</p><div className="ag-light-demo"><div className="ag-light-grid"/><RibbonField variant="light"/><div className="ag-light-panel"><span>ATMOSPHERE / 01</span><strong>Glow<br/>without<br/>edges.</strong></div></div></div></section>
   <section className="ag-section"><div className="ag-label"><span>06</span><b>BLEND</b></div><div><h2>Where one colour<br/><em>becomes another.</em></h2><p>Hard boundaries disappear. Colour transitions create visual continuity, giving the interface a more fluid vocabulary.</p><div className="ag-blend-demo"><RibbonField variant="blend"/><span>NO HARD EDGES</span></div></div></section>
-  <section className="ag-section"><div className="ag-label"><span>07</span><b>MOTION</b></div><div><h2>Move the light.<br/><em>Change the mood.</em></h2><p>The signature interaction is contained inside one playground: drag the luminous point and watch the atmosphere follow your hand.</p><div className="ag-playground" ref={playgroundRef} style={{'--px':`${point.x}%`,'--py':`${point.y}%`}}><div className="ag-playground-grid"/><RibbonField variant="hero"/><div className="ag-playground-glow"/><div className="ag-playground-orb"/><div className="ag-playground-content"><span>AURORA PLAYGROUND</span><strong>DRAG<br/>THE LIGHT.</strong><small>{dragging?'MOVING / ATMOSPHERE FOLLOWING':'TOUCH & DRAG THE GLOW'}</small></div><button className={`ag-light-handle ${dragging?'is-dragging':''}`} aria-label="Drag the aurora light" onPointerDown={start} onPointerMove={event=>dragging&&moveLight(event)} onPointerUp={stop} onPointerCancel={stop}><i/></button></div></div></section>
+  <section className="ag-section"><div className="ag-label"><span>07</span><b>MOTION</b></div><div><h2>Move the light.<br/><em>Change the mood.</em></h2><p>The signature interaction is contained inside one playground: drag the luminous point and watch the atmosphere follow your hand.</p><div className="ag-playground" ref={playgroundRef} style={{'--px':`${point.x}%`,'--py':`${point.y}%`}}><div className="ag-playground-grid"/><RibbonField variant="hero" reactive/><div className="ag-playground-glow"/><div className="ag-playground-orb"/><div className="ag-playground-content"><span>AURORA PLAYGROUND</span><strong>DRAG<br/>THE LIGHT.</strong><small>{dragging?'MOVING / ATMOSPHERE FOLLOWING':'TOUCH & DRAG THE GLOW'}</small></div><button className={`ag-light-handle ${dragging?'is-dragging':''}`} aria-label="Drag the aurora light" onPointerDown={start} onPointerMove={event=>dragging&&moveLight(event)} onPointerUp={stop} onPointerCancel={stop}><i/></button></div></div></section>
   <section className="ag-section"><div className="ag-label"><span>08</span><b>FOCUS</b></div><div><h2>Glow around<br/><em>what matters.</em></h2><p>Atmosphere should support hierarchy. Brighter zones attract attention while quieter areas give content room to breathe.</p><div className="ag-focus-demo"><div><span>01</span><b>PRIMARY</b></div><div><span>02</span><b>SECONDARY</b></div><div><span>03</span><b>QUIET</b></div></div></div></section>
   <footer className="ag-footer"><span>AURORA / GRADIENT DESIGN</span><h2>Light is the<br/><em>material.</em></h2><p>A visual language built from colour, blend, depth, motion and focus.</p><button onClick={()=>onNavigate?.('library')}>BACK TO DESIGN LIBRARY <ArrowLeft size={15}/></button></footer>
  </main>;
