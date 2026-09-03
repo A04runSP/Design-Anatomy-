@@ -9,6 +9,7 @@ import './library.css';
 import './brutalism-style.css';
 import './skeuomorphism-style.css';
 import './aurora-gradient-design-style.css';
+import './aurora-brightness.css';
 import Dashboard from './dashboard.jsx';
 import Library from './library.jsx';
 import ViewStyle from './view-style.jsx';
