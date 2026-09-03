@@ -13,9 +13,14 @@ const anatomy = [
 export default function MaterialDesignStyle({onNavigate}) {
   const [selected, setSelected] = useState('surface');
   const [count, setCount] = useState(2);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [openCard, setOpenCard] = useState(null);
   const modes = {surface:'SURFACE', elevation:'ELEVATION', type:'TYPE'};
-  return <main className="material-style-page">
+  const cardInfo = {
+    depth: { no:'03', title:'DEPTH', copy:'Elevation creates clear relationships between surfaces. Higher layers receive stronger separation so priority is visible at a glance.' },
+    structure: { no:'02', title:'STRUCTURE', copy:'Components follow shared rules for spacing, shape and hierarchy, making the system predictable and easy to navigate.' },
+    component: { no:'01 / COMPONENT', title:'MAKE IT CLEAR.', copy:'Reusable components turn the system into a consistent interface. Each part has a clear role and response.' }
+  };
+  return <main className="material-style-page" onClick={(event)=>{if(openCard && !event.target.closest('.material-card'))setOpenCard(null)}}>
     <header className="material-nav">
       <button onClick={()=>onNavigate?.('library')}><ArrowLeft size={16}/> DESIGN LIBRARY</button>
       <div className="material-brand"><b>RYUMA</b><span>リューマ</span></div>
@@ -30,12 +35,13 @@ export default function MaterialDesignStyle({onNavigate}) {
         <p>Material design turns digital interfaces into a coherent system of components — clear enough to understand, flexible enough to adapt.</p>
         <button className="material-primary" onClick={()=>setSelected('elevation')}>EXPLORE THE SYSTEM <ArrowRight size={17}/></button>
       </div>
-      <div className={`material-stage ${selectedCard ? 'has-selected-card' : ''}`} onClick={()=>selectedCard&&setSelectedCard(null)}>
+      <div className="material-stage">
         <div className="material-backdrop"/>
-        <button className={`material-card card-back ${selectedCard==='depth'?'card-selected':''}`} onClick={(e)=>{e.stopPropagation();setSelectedCard(selectedCard==='depth'?null:'depth')}}><span>03</span><b>DEPTH</b></button>
-        <button className={`material-card card-mid ${selectedCard==='structure'?'card-selected':''}`} onClick={(e)=>{e.stopPropagation();setSelectedCard(selectedCard==='structure'?null:'structure')}}><span>02</span><b>STRUCTURE</b></button>
-        <button className={`material-card card-front ${selectedCard==='component'?'card-selected':''}`} onClick={(e)=>{e.stopPropagation();setSelectedCard(selectedCard==='component'?null:'component')}}><span>01 / COMPONENT</span><strong>MAKE<br/>IT CLEAR.</strong><span className="material-card-action">CONTINUE <ArrowRight size={14}/></span></button>
-        <button className="material-fab" aria-label="Floating action" onClick={(e)=>e.stopPropagation()}>+</button>
+        <button type="button" className={`material-card card-back ${openCard==='depth'?'is-open':''}`} onClick={(event)=>{event.stopPropagation();setOpenCard('depth')}}><span>{cardInfo.depth.no}</span><b>{cardInfo.depth.title}</b>{openCard==='depth'&&<p>{cardInfo.depth.copy}</p>}</button>
+        <button type="button" className={`material-card card-mid ${openCard==='structure'?'is-open':''}`} onClick={(event)=>{event.stopPropagation();setOpenCard('structure')}}><span>{cardInfo.structure.no}</span><b>{cardInfo.structure.title}</b>{openCard==='structure'&&<p>{cardInfo.structure.copy}</p>}</button>
+        <button type="button" className={`material-card card-front ${openCard==='component'?'is-open':''}`} onClick={(event)=>{event.stopPropagation();setOpenCard('component')}}><span>{cardInfo.component.no}</span><strong>{cardInfo.component.title}</strong>{openCard==='component'&&<p>{cardInfo.component.copy}</p>}<span className="card-action">CONTINUE <ArrowRight size={14}/></span></button>
+        <div className="material-fab">+</div>
+        {openCard&&<span className="card-return-hint">TAP OUTSIDE TO RETURN</span>}
       </div>
     </section>
 
