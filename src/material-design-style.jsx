@@ -13,6 +13,7 @@ const anatomy = [
 export default function MaterialDesignStyle({onNavigate}) {
   const [selected, setSelected] = useState('surface');
   const [count, setCount] = useState(2);
+  const [selectedCard, setSelectedCard] = useState(null);
   const modes = {surface:'SURFACE', elevation:'ELEVATION', type:'TYPE'};
   return <main className="material-style-page">
     <header className="material-nav">
@@ -29,12 +30,12 @@ export default function MaterialDesignStyle({onNavigate}) {
         <p>Material design turns digital interfaces into a coherent system of components — clear enough to understand, flexible enough to adapt.</p>
         <button className="material-primary" onClick={()=>setSelected('elevation')}>EXPLORE THE SYSTEM <ArrowRight size={17}/></button>
       </div>
-      <div className="material-stage">
+      <div className={`material-stage ${selectedCard ? 'has-selected-card' : ''}`} onClick={()=>selectedCard&&setSelectedCard(null)}>
         <div className="material-backdrop"/>
-        <div className="material-card card-back"><span>03</span><b>DEPTH</b></div>
-        <div className="material-card card-mid"><span>02</span><b>STRUCTURE</b></div>
-        <div className="material-card card-front"><span>01 / COMPONENT</span><strong>MAKE<br/>IT CLEAR.</strong><button onClick={()=>setSelected('type')}>CONTINUE <ArrowRight size={14}/></button></div>
-        <div className="material-fab">+</div>
+        <button className={`material-card card-back ${selectedCard==='depth'?'card-selected':''}`} onClick={(e)=>{e.stopPropagation();setSelectedCard(selectedCard==='depth'?null:'depth')}}><span>03</span><b>DEPTH</b></button>
+        <button className={`material-card card-mid ${selectedCard==='structure'?'card-selected':''}`} onClick={(e)=>{e.stopPropagation();setSelectedCard(selectedCard==='structure'?null:'structure')}}><span>02</span><b>STRUCTURE</b></button>
+        <button className={`material-card card-front ${selectedCard==='component'?'card-selected':''}`} onClick={(e)=>{e.stopPropagation();setSelectedCard(selectedCard==='component'?null:'component')}}><span>01 / COMPONENT</span><strong>MAKE<br/>IT CLEAR.</strong><span className="material-card-action">CONTINUE <ArrowRight size={14}/></span></button>
+        <button className="material-fab" aria-label="Floating action" onClick={(e)=>e.stopPropagation()}>+</button>
       </div>
     </section>
 
