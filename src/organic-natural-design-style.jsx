@@ -1,14 +1,23 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import './organic-natural-design-style.css';
-import './organic-natural-design-v2.css';
+
+const images = {
+  hero: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1800&q=88',
+  form: 'https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=88',
+  botany: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=88',
+  texture: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1000&q=88',
+  colour: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1000&q=88',
+  rhythm: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=88',
+  practice: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?auto=format&fit=crop&w=1800&q=88'
+};
 
 const anatomy = [
-  { no:'01', title:'Form', copy:'Soft biomorphic shapes replace rigid geometry. Curves, blobs and imperfect edges make the interface feel grown rather than engineered.', image:'/organic/form.svg' },
-  { no:'02', title:'Botany', copy:'Leaves, stems, flowers and hand-drawn marks become part of the visual vocabulary instead of decoration added at the end.', image:'/organic/botany.svg' },
-  { no:'03', title:'Texture', copy:'Paper grain, watercolor washes and subtle print imperfections give digital surfaces a tactile, human quality.', image:'/organic/texture.svg' },
-  { no:'04', title:'Colour', copy:'Earth, plant, clay and sky tones create warmth. Green is important, but it is never the whole palette.', image:'/organic/colour.svg' },
-  { no:'05', title:'Rhythm', copy:'Asymmetry, irregular repetition and natural spacing create movement without making the composition feel mechanical.', image:'/organic/rhythm.svg' }
+  { no:'01', title:'Form', copy:'Soft curves, irregular silhouettes and gentle transitions make the interface feel grown rather than engineered.', image:images.form },
+  { no:'02', title:'Botany', copy:'Leaves, stems and natural photography become part of the visual language instead of decorative stickers.', image:images.botany },
+  { no:'03', title:'Texture', copy:'Paper, bark, stone and grain introduce a physical layer that gives digital surfaces a tactile presence.', image:images.texture },
+  { no:'04', title:'Colour', copy:'Earth, plant, clay and sky tones create warmth. Green matters, but the palette is never only green.', image:images.colour },
+  { no:'05', title:'Rhythm', copy:'Variation in scale, crop and spacing creates a calmer rhythm than rigid repeated components.', image:images.rhythm }
 ];
 
 const palette = [
@@ -17,7 +26,6 @@ const palette = [
 
 export default function OrganicNaturalDesignStyle({onNavigate}) {
   return <main className="organic-page">
-    <div className="organic-grain"/>
     <header className="organic-nav">
       <button onClick={()=>onNavigate?.('library')}><ArrowLeft size={15}/> LIBRARY</button>
       <button className="organic-brand" onClick={()=>onNavigate?.('home')}><b>RYŪMA</b><span>リューマ</span></button>
@@ -32,12 +40,10 @@ export default function OrganicNaturalDesignStyle({onNavigate}) {
         <p>Organic design takes inspiration from nature — its forms, textures and rhythms — to create human, warm and harmonious visual experiences.</p>
         <div className="organic-actions"><button onClick={()=>document.getElementById('organic-elements')?.scrollIntoView({behavior:'smooth'})}>EXPLORE ELEMENTS <ArrowRight size={15}/></button><span>↓ &nbsp; SCROLL TO EXPLORE</span></div>
       </div>
-      <div className="organic-hero-art">
-        <div className="organic-wash wash-one"/><div className="organic-wash wash-two"/><div className="organic-wash wash-three"/>
-        <img className="organic-hero-image" src="/organic/hero-botanical.svg" alt="Abstract botanical illustration"/>
-        <div className="organic-script">Inspired<br/>by nature.</div>
-        <span className="organic-art-note">NATURAL FORMS.<br/>MEANINGFUL DESIGNS.</span>
-      </div>
+      <figure className="organic-hero-image-wrap">
+        <img src={images.hero} alt="Close botanical photograph with layered green leaves"/>
+        <figcaption><span>FIELD STUDY / 01</span><span>BOTANICAL · LIGHT · FORM</span></figcaption>
+      </figure>
     </section>
 
     <section className="organic-intro">
@@ -47,14 +53,16 @@ export default function OrganicNaturalDesignStyle({onNavigate}) {
     </section>
 
     <section className="organic-elements" id="organic-elements">
-      <div className="organic-section-head"><span>01 — THE ANATOMY</span><h2>Key <em>elements.</em></h2><p>Five ingredients turn a rigid digital surface into something warmer and more alive.</p></div>
+      <div className="organic-section-head"><span>01 — THE ANATOMY</span><div><h2>Key <em>elements.</em></h2></div><p>Five ingredients turn a rigid digital surface into something warmer and more alive.</p></div>
       <div className="organic-anatomy-grid">{anatomy.map(item=><article key={item.no}>
-        <span className="organic-no">{item.no}</span><div className="organic-card-art"><img src={item.image} alt={`${item.title} visual`} loading="lazy"/></div><h3>{item.title}</h3><p>{item.copy}</p>
+        <div className="organic-card-meta"><span>{item.no}</span><span>VISUAL STUDY</span></div>
+        <figure className="organic-card-art"><img src={item.image} alt={`${item.title} natural design reference`} loading="lazy"/></figure>
+        <h3>{item.title}</h3><p>{item.copy}</p>
       </article>)}</div>
     </section>
 
     <section className="organic-colour">
-      <div className="organic-section-head"><span>02 — COLOUR SYSTEM</span><h2>Colours from <em>nature.</em></h2><p>Earth, plants, water and sun create a palette that feels calm without becoming dull.</p></div>
+      <div className="organic-section-head"><span>02 — COLOUR SYSTEM</span><div><h2>Colours from <em>nature.</em></h2></div><p>Earth, plants, water and sun create a palette that feels calm without becoming dull.</p></div>
       <div className="organic-palette">{palette.map(([name,hex])=><div key={name} style={{'--swatch':hex}}><span>{name}</span><b>{hex}</b></div>)}</div>
     </section>
 
@@ -67,18 +75,19 @@ export default function OrganicNaturalDesignStyle({onNavigate}) {
     </section>
 
     <section className="organic-practice">
-      <div className="organic-practice-copy"><span className="organic-kicker">04 — IN PRACTICE</span><h2>Nature in<br/><em>every detail.</em></h2><p>Here the visual language becomes a real interface: soft containers, botanical illustration, irregular forms, warm typography and a quiet product hierarchy.</p><button onClick={()=>document.getElementById('organic-rules')?.scrollIntoView({behavior:'smooth'})}>SEE THE SYSTEM <ArrowRight size={15}/></button></div>
-      <div className="organic-product">
-        <div className="product-top"><b>Natura</b><span>Home&nbsp;&nbsp; Story&nbsp;&nbsp; Journal&nbsp;&nbsp; Contact</span><i>◌</i></div>
-        <div className="product-body"><div><span>NATURAL GOODS / 01</span><h3>Good Things<br/><em>Grow Here.</em></h3><p>Natural products for a kinder tomorrow.</p><button>EXPLORE PRODUCTS →</button></div><img className="product-botanical-image" src="/organic/botany.svg" alt="Botanical illustration"/><div className="product-circle pc-one"/><div className="product-circle pc-two"/></div>
-      </div>
+      <div className="organic-practice-copy"><span className="organic-kicker">04 — IN PRACTICE</span><h2>Nature in<br/><em>every detail.</em></h2><p>This is the visual language applied to a real brand interface: photography carries atmosphere, typography carries personality, and spacing lets the content breathe.</p><button onClick={()=>document.getElementById('organic-rules')?.scrollIntoView({behavior:'smooth'})}>SEE THE SYSTEM <ArrowRight size={15}/></button></div>
+      <figure className="organic-practice-image"><img src={images.practice} alt="Natural forest photography used as art direction for a premium organic brand" loading="lazy"/><figcaption><span>NATURAL GOODS / 01</span><b>Good Things<br/><em>Grow Here.</em></b><small>Photography, restrained typography and warm materials work as one system.</small></figcaption></figure>
     </section>
 
     <section className="organic-rules" id="organic-rules">
-      <div className="organic-section-head"><span>05 — THE RULES</span><h2>Let it <em>live.</em></h2></div>
-      <div className="organic-rule-grid"><article><b>01</b><h3>Soften</h3><p>Prefer curves, rounded edges and forms that feel touched rather than manufactured.</p></article><article><b>02</b><h3>Vary</h3><p>Break repetition with small differences. Nature rarely makes two things perfectly identical.</p></article><article><b>03</b><h3>Layer</h3><p>Let illustration, colour washes and forms overlap gently to create depth and discovery.</p></article><article><b>04</b><h3>Ground</h3><p>Use warm neutrals and tactile surfaces so the interface feels connected to something physical.</p></article></div>
+      <div className="organic-section-head"><span>05 — THE RULES</span><div><h2>Let it <em>live.</em></h2></div><p>Organic design is not decoration. These rules keep the visual language intentional.</p></div>
+      <div className="organic-rule-grid"><article><b>01</b><h3>Soften</h3><p>Prefer curves, rounded edges and transitions that feel touched rather than manufactured.</p></article><article><b>02</b><h3>Vary</h3><p>Break repetition with small differences. Nature rarely makes two things perfectly identical.</p></article><article><b>03</b><h3>Layer</h3><p>Let photography, texture and type overlap gently to create depth and discovery.</p></article><article><b>04</b><h3>Ground</h3><p>Use warm neutrals and physical references so the interface feels connected to the real world.</p></article></div>
     </section>
 
-    <footer className="organic-footer"><img className="footer-botanical-image" src="/organic/hero-botanical.svg" alt="Botanical illustration"/><span className="organic-kicker">ORGANIC / NATURAL · EXPRESSIVE</span><h2>Design with<br/><em>a human touch.</em></h2><p>Not a leaf pasted onto a layout. A visual system inspired by the way nature grows.</p><div><span>FORM · BOTANY · TEXTURE · COLOUR · RHYTHM</span><button onClick={()=>onNavigate?.('library')}>BACK TO LIBRARY <ArrowRight size={15}/></button></div></footer>
+    <footer className="organic-footer">
+      <div><span className="organic-kicker">ORGANIC / NATURAL · EXPRESSIVE</span><h2>Design with<br/><em>a human touch.</em></h2><p>Not a leaf pasted onto a layout. A visual system inspired by the way nature grows.</p></div>
+      <figure><img src={images.botany} alt="Botanical detail" loading="lazy"/><figcaption>FORM · BOTANY · TEXTURE · COLOUR · RHYTHM</figcaption></figure>
+      <div className="organic-footer-bottom"><span>RYŪMA / DESIGN ANATOMY</span><button onClick={()=>onNavigate?.('library')}>BACK TO LIBRARY <ArrowRight size={15}/></button></div>
+    </footer>
   </main>;
 }
