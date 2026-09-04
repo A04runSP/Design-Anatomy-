@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import './organic-natural-design-style.css';
+import './organic-natural-design-v2.css';
 
 const anatomy = [
   { no:'01', title:'Form', copy:'Soft biomorphic shapes replace rigid geometry. Curves, blobs and imperfect edges make the interface feel grown rather than engineered.', image:'/organic/form.svg' },
