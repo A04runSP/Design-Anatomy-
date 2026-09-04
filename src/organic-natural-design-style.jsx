@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, ArrowRight, Check, Copy, RotateCcw } from 'lucide-react';
 import './organic-natural-design-style.css';
 import './organic-botanical-details.css';
 
@@ -40,13 +40,7 @@ function BotanicalSprig({className=''}) {
 
 function BotanicalFlower({className=''}) {
   return <svg className={`botanical-flower ${className}`} viewBox="0 0 100 100" aria-hidden="true">
-    <g fill="currentColor">
-      <ellipse cx="50" cy="22" rx="10" ry="22"/>
-      <ellipse cx="78" cy="38" rx="10" ry="22" transform="rotate(55 78 38)"/>
-      <ellipse cx="72" cy="70" rx="10" ry="22" transform="rotate(110 72 70)"/>
-      <ellipse cx="28" cy="70" rx="10" ry="22" transform="rotate(-110 28 70)"/>
-      <ellipse cx="22" cy="38" rx="10" ry="22" transform="rotate(-55 22 38)"/>
-    </g>
+    <g fill="currentColor"><ellipse cx="50" cy="22" rx="10" ry="22"/><ellipse cx="78" cy="38" rx="10" ry="22" transform="rotate(55 78 38)"/><ellipse cx="72" cy="70" rx="10" ry="22" transform="rotate(110 72 70)"/><ellipse cx="28" cy="70" rx="10" ry="22" transform="rotate(-110 28 70)"/><ellipse cx="22" cy="38" rx="10" ry="22" transform="rotate(-55 22 38)"/></g>
     <circle cx="50" cy="50" r="11" fill="#E0B04B"/>
   </svg>;
 }
@@ -54,7 +48,17 @@ function BotanicalFlower({className=''}) {
 const DecorativeBotany = () => <div className="organic-decor" aria-hidden="true"><BotanicalSprig/><BotanicalFlower/><span className="organic-seed seed-one"/><span className="organic-seed seed-two"/></div>;
 
 export default function OrganicNaturalDesignStyle({onNavigate}) {
-  return <main className="organic-page">
+  const [activeElement, setActiveElement] = useState(0);
+  const [selectedColour, setSelectedColour] = useState(palette[0][1]);
+  const [copied, setCopied] = useState(false);
+
+  const copyColour = async () => {
+    try { await navigator.clipboard?.writeText(selectedColour); setCopied(true); setTimeout(() => setCopied(false), 1300); } catch {}
+  };
+
+  const resetLab = () => { setSelectedColour(palette[0][1]); setActiveElement(0); };
+
+  return <main className="organic-page" style={{'--lab-colour':selectedColour}}>
     <header className="organic-nav">
       <button onClick={()=>onNavigate?.('library')}><ArrowLeft size={15}/> LIBRARY</button>
       <button className="organic-brand" onClick={()=>onNavigate?.('home')}><b>RYŪMA</b><span>リューマ</span></button>
@@ -84,27 +88,32 @@ export default function OrganicNaturalDesignStyle({onNavigate}) {
     </section>
 
     <section className="organic-elements" id="organic-elements">
-      <div className="organic-section-head"><span>01 — THE ANATOMY</span><div><h2>Key <em>elements.</em></h2></div><p>Five ingredients turn a rigid digital surface into something warmer and more alive.</p><BotanicalFlower className="section-flower"/></div>
-      <div className="organic-anatomy-grid">{anatomy.map((item,index)=><article key={item.no}>
-        <div className="organic-card-meta"><span>{item.no}</span><span>VISUAL STUDY</span></div>
-        <figure className="organic-card-art"><img src={item.image} alt={`${item.title} natural design reference`} loading="lazy"/>{index===1&&<BotanicalSprig className="card-sprig"/>}</figure>
+      <div className="organic-section-head"><span>01 — THE ANATOMY</span><div><h2>Key <em>elements.</em></h2></div><p>Click a study to bring it forward. The interface should behave like a visual specimen, not a static article.</p><BotanicalFlower className="section-flower"/></div>
+      <div className="organic-anatomy-grid">{anatomy.map((item,index)=><article key={item.no} className={activeElement===index?'is-active':''} tabIndex="0" onClick={()=>setActiveElement(index)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setActiveElement(index)}}}>
+        <div className="organic-card-meta"><span>{item.no}</span><span>{activeElement===index?'SELECTED':'VISUAL STUDY'}</span></div>
+        <figure className="organic-card-art"><img src={item.image} alt={`${item.title} natural design reference`} loading="lazy"/>{index===1&&<BotanicalSprig className="card-sprig"/>}<span className="study-cursor">VIEW</span></figure>
         <h3>{item.title}</h3><p>{item.copy}</p>
       </article>)}</div>
+      <div className="organic-study-panel" aria-live="polite">
+        <span className="organic-kicker">ACTIVE STUDY / {anatomy[activeElement].no}</span>
+        <div><h3>{anatomy[activeElement].title}</h3><p>{anatomy[activeElement].copy}</p></div>
+        <button onClick={()=>setActiveElement((activeElement+1)%anatomy.length)}>NEXT STUDY <ArrowRight size={14}/></button>
+      </div>
     </section>
 
-    <section className="organic-colour">
-      <div className="organic-section-head"><span>02 — COLOUR SYSTEM</span><div><h2>Colours from <em>nature.</em></h2></div><p>Earth, plants, water and sun create a palette that feels calm without becoming dull.</p></div>
-      <div className="organic-palette">{palette.map(([name,hex])=><div key={name} style={{'--swatch':hex}}><span>{name}</span><b>{hex}</b></div>)}</div>
+    <section className="organic-colour" id="colour-lab">
+      <div className="organic-section-head"><span>02 — COLOUR LAB</span><div><h2>Colours from <em>nature.</em></h2></div><p>Don't just read the palette — touch it. Select a colour and watch the specimen surface respond.</p></div>
+      <div className="organic-palette">{palette.map(([name,hex])=><button key={name} className={selectedColour===hex?'is-selected':''} style={{'--swatch':hex}} onClick={()=>setSelectedColour(hex)} aria-label={`Use ${name}, ${hex}`}><span>{name}</span><b>{hex}</b>{selectedColour===hex&&<Check size={14}/>}</button>)}</div>
+      <div className="organic-colour-lab">
+        <div className="lab-preview" style={{backgroundColor:selectedColour}}><span>LIVE SPECIMEN</span><strong>Good things<br/><em>grow slowly.</em></strong><small>{selectedColour}</small></div>
+        <div className="lab-controls"><span className="organic-kicker">MANUAL CONTROL</span><h3>Make it yours.</h3><p>The selected swatch becomes the live accent of this small composition. Try the colours, compare the mood, then copy the exact value.</p><div className="lab-value"><i style={{backgroundColor:selectedColour}}/><b>{selectedColour}</b><button onClick={copyColour}>{copied?<Check size={14}/>:<Copy size={14}/>} {copied?'COPIED':'COPY HEX'}</button></div><button className="lab-reset" onClick={resetLab}><RotateCcw size={13}/> RESET STUDY</button></div>
+      </div>
       <BotanicalSprig className="colour-sprig"/>
     </section>
 
     <section className="organic-type">
       <div className="organic-type-copy"><span className="organic-kicker">03 — TYPOGRAPHY</span><h2>A natural<br/><em>voice.</em></h2><p>A refined serif carries the human, crafted feeling while a clean sans-serif keeps the interface clear and contemporary.</p></div>
-      <div className="organic-type-specimen">
-        <div className="specimen-main">Aa</div><div><span>DISPLAY / SERIF</span><strong>Good things<br/><em>grow slowly.</em></strong></div>
-        <div className="specimen-sans"><span>BODY / UI / SANS</span><p>Clear text should feel as natural as the shapes around it.</p><small>ABCDEFGHIJKLMNOPQRSTUVWXYZ</small></div>
-        <BotanicalFlower className="type-flower"/>
-      </div>
+      <div className="organic-type-specimen"><div className="specimen-main">Aa</div><div><span>DISPLAY / SERIF</span><strong>Good things<br/><em>grow slowly.</em></strong></div><div className="specimen-sans"><span>BODY / UI / SANS</span><p>Clear text should feel as natural as the shapes around it.</p><small>ABCDEFGHIJKLMNOPQRSTUVWXYZ</small></div><BotanicalFlower className="type-flower"/></div>
     </section>
 
     <section className="organic-practice">
