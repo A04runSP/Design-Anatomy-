@@ -2,15 +2,46 @@ import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import './editorial-design-style.css';
 
-const tigerPhoto = 'https://images.unsplash.com/photo-1726688377845-3fd7360ef2dd?auto=format&fit=crop&w=1800&q=88';
-
 const anatomy = [
-  { no:'01', title:'Image', copy:'Editorial design gives photography room to speak. The image becomes a narrative anchor, not decoration.' },
-  { no:'02', title:'Typography', copy:'A refined serif creates voice while a clean sans-serif handles navigation, metadata and rhythm.' },
-  { no:'03', title:'Grid', copy:'Columns, margins and alignment create structure beneath the apparent freedom of the composition.' },
-  { no:'04', title:'Hierarchy', copy:'Scale decides what is read first, second and last. Headlines can become visual objects.' },
-  { no:'05', title:'Rhythm', copy:'Whitespace, rules, captions and image changes create the pacing of a printed spread.' },
+  { no:'01', title:'Grid', copy:'Editorial composition begins with an invisible structure. Columns create order before the page starts to move.' },
+  { no:'02', title:'Typography', copy:'Serif and sans-serif work as voices: one creates character, the other creates information and rhythm.' },
+  { no:'03', title:'Image', copy:'A visual can act as evidence, atmosphere or interruption. It should carry meaning, not simply fill space.' },
+  { no:'04', title:'Hierarchy', copy:'Scale, weight and placement decide what the eye reads first, what it notices next and what it discovers later.' },
+  { no:'05', title:'Rhythm', copy:'Rules, captions, whitespace and changing proportions create a pace that makes a page feel designed.' },
 ];
+
+function HeroVisual(){
+  return <div className="editorial-visual editorial-visual-hero" aria-hidden="true">
+    <span className="visual-index">01</span>
+    <div className="visual-frame"><i/><i/><i/></div>
+    <div className="visual-word">FORM</div>
+    <div className="visual-orbit"/>
+    <span className="visual-caption">A STUDY IN SCALE / SPACE / CONTRAST</span>
+  </div>;
+}
+
+function FeatureVisual(){
+  return <div className="editorial-visual editorial-visual-feature" aria-hidden="true">
+    <span className="visual-index">02</span>
+    <div className="feature-circle"/>
+    <div className="feature-bar bar-one"/>
+    <div className="feature-bar bar-two"/>
+    <div className="feature-square"/>
+    <span className="feature-letter">A</span>
+    <span className="feature-caption">OBJECT / 002<br/>COMPOSITION AS LANGUAGE</span>
+  </div>;
+}
+
+function SpreadVisual(){
+  return <div className="editorial-visual editorial-visual-spread" aria-hidden="true">
+    <div className="spread-panel">
+      <span>03</span><b>THE<br/><em>FORM</em></b>
+      <i/>
+      <small>EDITORIAL STUDY<br/>RYŪMA / 2026</small>
+    </div>
+    <div className="spread-grid-lines"/>
+  </div>;
+}
 
 export default function EditorialDesignStyle({ onNavigate }) {
   return <main className="editorial-shell">
@@ -22,27 +53,24 @@ export default function EditorialDesignStyle({ onNavigate }) {
 
     <section className="editorial-hero">
       <div className="editorial-hero-copy">
-        <span className="editorial-kicker">WILDLIFE / VISUAL ESSAY</span>
-        <h1>THE<br/><i>TIGER.</i></h1>
-        <p>Power doesn't need to shout. Sometimes the image does the talking.</p>
-        <div className="editorial-byline"><span>FIELD NOTE 01</span><span>RAJASTHAN · INDIA</span></div>
+        <span className="editorial-kicker">VISUAL CULTURE / EDITORIAL STUDY</span>
+        <h1>THE<br/><i>FORM.</i></h1>
+        <p>A page is not a container for information. It is a composition that teaches the eye where to look.</p>
+        <div className="editorial-byline"><span>ISSUE 01</span><span>RYŪMA · 2026</span></div>
       </div>
-      <figure className="editorial-hero-image">
-        <img src={tigerPhoto} alt="Real tiger photographed in a natural setting" />
-        <figcaption><span>01</span><span>THE SUBJECT — A STUDY IN PRESENCE</span></figcaption>
-      </figure>
+      <figure className="editorial-hero-image"><HeroVisual/><figcaption><span>01</span><span>THE COMPOSITION — A STUDY IN PRESENCE</span></figcaption></figure>
       <div className="editorial-hero-side">RYŪMA / EDITORIAL STUDY</div>
     </section>
 
     <section className="editorial-intro">
       <span className="editorial-section-no">01 — THE IDEA</span>
       <div><h2>The page<br/><i>becomes the story.</i></h2></div>
-      <div className="editorial-intro-copy"><p>Editorial design is art direction with a reading order. It combines image, type, grid, space and pacing to turn information into an experience.</p><p><strong>Here, the tiger is not an illustration of the idea. It is the subject around which the entire visual system is composed.</strong></p></div>
+      <div className="editorial-intro-copy"><p>Editorial design is art direction with a reading order. It combines image, type, grid, space and pacing to turn information into an experience.</p><p><strong>There is no single subject here. The subject is composition itself — how visual decisions create meaning before a sentence is finished.</strong></p></div>
     </section>
 
     <section className="editorial-feature">
-      <div className="editorial-feature-image"><img src={tigerPhoto} alt="Close editorial portrait of a tiger" /></div>
-      <div className="editorial-feature-copy"><span>FIELD OBSERVATION / 02</span><h2>Look closer.</h2><p>The strongest editorial pages create a tension between what is immediately visible and what rewards a second look.</p><blockquote>“A photograph can carry the weight of a whole page.”</blockquote><small>EDITORIAL PRINCIPLE / IMAGE AS INFORMATION</small></div>
+      <div className="editorial-feature-image"><FeatureVisual/></div>
+      <div className="editorial-feature-copy"><span>OBJECT STUDY / 02</span><h2>Look<br/>closer.</h2><p>Good editorial work rewards attention. A small shift in scale, a line crossing a margin or an unexpected block of colour can change the entire reading of a page.</p><blockquote>“The detail is where the composition reveals itself.”</blockquote><small>EDITORIAL PRINCIPLE / DETAIL CREATES DEPTH</small></div>
     </section>
 
     <section className="editorial-anatomy">
@@ -51,22 +79,22 @@ export default function EditorialDesignStyle({ onNavigate }) {
     </section>
 
     <section className="editorial-spread">
-      <div className="editorial-spread-meta"><span>03 — THE SPREAD</span><span>WILDLIFE / 01—05</span></div>
+      <div className="editorial-spread-meta"><span>03 — THE SPREAD</span><span>FORM / 01—05</span></div>
       <div className="editorial-spread-grid">
-        <div className="editorial-spread-text"><span className="dropcap">T</span><p>he tiger moves through the landscape with an economy that feels almost designed. Stripes break the body into rhythm. Amber fur catches light. A stare establishes hierarchy before a single word is read.</p><p>This is why editorial design begins with the subject. Once the visual idea is clear, every other decision can support it.</p></div>
-        <figure><img src={tigerPhoto} alt="Tiger detail used as editorial photography"/><figcaption>FIG. 01 / TEXTURE, PATTERN, CONTRAST</figcaption></figure>
-        <div className="editorial-pull">IMAGE<br/><i>→</i><br/>TYPE<br/><i>→</i><br/>MEANING</div>
+        <div className="editorial-spread-text"><span className="dropcap">A</span><p>page begins before the reader understands what it is saying. Scale establishes importance. Margins establish boundaries. A headline creates an entry point. Empty space gives the eye permission to pause.</p><p>Editorial design works because these decisions are connected. Change one and the rhythm of the whole composition changes with it.</p></div>
+        <figure><SpreadVisual/><figcaption>FIG. 01 / SCALE, STRUCTURE, RHYTHM</figcaption></figure>
+        <div className="editorial-pull">GRID<br/><i>→</i><br/>TYPE<br/><i>→</i><br/>RHYTHM</div>
       </div>
     </section>
 
     <section className="editorial-system">
-      <div><span>04 — VISUAL SYSTEM</span><h2>Quiet colour.<br/><i>Strong contrast.</i></h2></div>
+      <div><span>04 — VISUAL SYSTEM</span><h2>Quiet colour.<br/><i>Strong structure.</i></h2></div>
       <div className="editorial-colours"><span className="paper">PAPER<br/><b>#F3EFE7</b></span><span className="ink">INK<br/><b>#171614</b></span><span className="rust">RUST<br/><b>#A64B2A</b></span><span className="gold">GOLD<br/><b>#C7A45A</b></span></div>
     </section>
 
     <section className="editorial-rules">
       <span>05 — RULES</span>
-      <div><p>01 / Let the image lead.</p><p>02 / Build a grid before breaking it.</p><p>03 / Give typography a voice.</p><p>04 / Use whitespace as punctuation.</p><p>05 / Every detail should support the story.</p></div>
+      <div><p>01 / Build the grid before breaking it.</p><p>02 / Give typography a voice.</p><p>03 / Let one element dominate.</p><p>04 / Use whitespace as punctuation.</p><p>05 / Make every detail earn its place.</p></div>
     </section>
 
     <footer className="editorial-footer"><div><span>RYUMA / DESIGN ANATOMY</span><h2>Make the page<br/><i>worth reading.</i></h2></div><button onClick={()=>onNavigate?.('library')}>BACK TO LIBRARY <ArrowRight size={16}/></button></footer>
