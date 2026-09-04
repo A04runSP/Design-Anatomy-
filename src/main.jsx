@@ -20,6 +20,7 @@ import './memphis-design-style.css';
 import './editorial-design-style.css';
 import './editorial-design-enhancements.css';
 import './organic-natural-design-style.css';
+import './organic-natural-design-assets.css';
 import Dashboard from './dashboard.jsx';
 import Library from './library.jsx';
 import ViewStyle from './view-style.jsx';
