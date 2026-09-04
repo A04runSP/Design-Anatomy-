@@ -13,6 +13,7 @@ import './aurora-brightness.css';
 import './home-mobile-fix.css';
 import './dark-ui-style.css';
 import './maximalism-style.css';
+import './maximalism-fixes.css';
 import Dashboard from './dashboard.jsx';
 import Library from './library.jsx';
 import ViewStyle from './view-style.jsx';
