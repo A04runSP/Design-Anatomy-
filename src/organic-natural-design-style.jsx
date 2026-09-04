@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import './organic-natural-design-style.css';
+import './organic-botanical-details.css';
 
 const images = {
   hero: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1800&q=88',
